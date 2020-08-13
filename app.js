@@ -28,6 +28,7 @@ mongoose.connect(process.env.DB_HOST,{
 
 //Connect bot
 client.once('ready', () => {
+    client.user.setActivity('your private data', { type: "WATCHING" });
     console.log('Dan-1000 is online!');
 });
 

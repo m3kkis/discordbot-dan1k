@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
     name: 'clear',
-    description: 'Delete the <x> amount of last messages.',
+    description: 'Delete the <X> amount of last messages.',
     args: true,
     usage: '<quantity>',
     aliases: ['c'],
@@ -42,7 +42,7 @@ module.exports = {
         var reply = arrReplies[Math.floor(Math.random() * arrReplies.length)];
 
         embedded.setColor('#78de87')
-            .setDescription(`Cleaned it, ${reply}`);
+            .setDescription(`Cleaned it... ${reply}`);
 
         message.channel.bulkDelete( ( amount ) )
             .then( messages => {
