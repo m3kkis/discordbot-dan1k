@@ -62,14 +62,14 @@ client.on('message', message => {
 			reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
         }
         
-        embedded.setColor('#d48c20')
+        embedded.setColor('#ff4f4f')
             .setDescription(reply);
 
 		return message.channel.send(embedded);
     }
 
     try {
-        command.execute(message, args);
+        command.execute(client, message, args);
     } catch (error) {
         console.error(error);
         message.reply('There was an error trying to execute that command!');

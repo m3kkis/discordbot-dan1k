@@ -6,7 +6,7 @@ module.exports = {
     args: true,
     usage: '<quantity>',
     aliases: ['c'],
-    execute(message, args){
+    execute(client, message, args){
 
         const MAX_MSG = 25;
         var amount = parseInt(args[0]);
@@ -16,12 +16,18 @@ module.exports = {
 
 
         if( isNaN(amount) ) {
-            embedded.setColor('#ff4f4f').setDescription(`That doesn't seem to be a valid NUMBER.`);
+            
+            embedded.setColor('#ff4f4f')
+                .setDescription(`That doesn't seem to be a valid NUMBER.`);
+
             return message.channel.send(embedded);
         }
 
         if( amount < 2 || amount >= MAX_MSG ) {
-            embedded.setColor('#ff4f4f').setDescription(`Need to put a NUMBER between 2 and ${MAX_MSG}`);
+
+            embedded.setColor('#ff4f4f')
+                .setDescription(`Need to put a NUMBER between 2 and ${MAX_MSG}`);
+
             return message.channel.send(embedded);
         }
         
@@ -36,12 +42,12 @@ module.exports = {
         var reply = arrReplies[Math.floor(Math.random() * arrReplies.length)];
 
         embedded.setColor('#78de87')
-                .setDescription(`Cleaned it, ${reply}`);
+            .setDescription(`Cleaned it, ${reply}`);
 
         message.channel.bulkDelete( ( amount ) )
-                       .then( messages => {
-                            return message.channel.send(embedded);
-                        });
+            .then( messages => {
+                return message.channel.send(embedded);
+            });
 
     }
 }
