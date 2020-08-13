@@ -1,0 +1,24 @@
+{
+  "name": "discordbot-dan1k",
+  "version": "1.0.0",
+  "description": "Bot for my discord server dan1k, short for dan-1000",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m3kkis/discordbot-dan1k.git"
+  },
+  "author": "Daniel Mekker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m3kkis/discordbot-dan1k/issues"
+  },
+  "homepage": "https://github.com/m3kkis/discordbot-dan1k#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.9.28"
+  }
+}
