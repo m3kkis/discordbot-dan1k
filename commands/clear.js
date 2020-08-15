@@ -18,7 +18,7 @@ module.exports = {
         if( isNaN(amount) ) {
             
             embedded.setColor('#ff4f4f')
-                .setDescription(`That doesn't seem to be a valid NUMBER.`);
+                .setDescription('That doesn\'t seem to be a valid NUMBER.');
 
             return message.channel.send(embedded);
         }
