@@ -39,17 +39,17 @@ client.once('ready', () => {
 
     
     //Add emoji cards to server
-    /*
+    
     const cardFiles = fs.readdirSync('./cards/').filter(file => file.endsWith('.jpg'));
     for(const file of cardFiles){
         guild.emojis.create('./cards/' + file, file.replace(/.jpg/g, ''))
             .then(emoji => console.log(`Created new emoji with name :${emoji.name}: !`))
             .catch(console.error);
     }
-    */
+    
     
 
-    //Create blackjack
+    //Create blackjack deck
     deckHandler.createDeck(3);
     
 });
