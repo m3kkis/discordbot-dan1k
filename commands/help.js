@@ -4,7 +4,7 @@ module.exports = {
     name: 'help',
     description: 'Get the list of commands',
     args: false,
-    execute(client, message, args){
+    execute(client, message, args, _User){
 
         var embedded = new Discord.MessageEmbed();
         embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())

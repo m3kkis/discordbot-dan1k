@@ -81,4 +81,4 @@ class DeckHandler {
     }
 
 }
-module.exports = DeckHandler
+module.exports = DeckHandler;

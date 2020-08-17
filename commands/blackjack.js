@@ -6,7 +6,7 @@ module.exports = {
     args: true,
     usage: '<amount>',
     aliases: ['bj'],
-    execute(client, message, args, deckHandler){
+    execute(client, message, args, _User, _DeckHandler){
 
         var amount = parseInt(args[0]);
 
@@ -59,7 +59,7 @@ module.exports = {
             {
                 for (var j = 0; j < participants.length; j++)
                 {
-                    var card = deckHandler.getCard();
+                    var card = _DeckHandler.getCard();
                     participants[j].hand.push(card);
                     setCardDisplay( participants[j].id, participants[j].hand[participants[j].hand.length - 1].Suit);
                 }
@@ -164,7 +164,7 @@ module.exports = {
                     { name: '\u200B', value: '\u200B', inline: true },
                     { name:"Dealer hand", value: dealer.displayHiddenCard + "\n\nValue: " + (dealer.score - dealer.hand[ dealer.hand.length - 1 ].Weight ), inline: true },
                 )
-                .setFooter( 'Remaining cards: ' + deckHandler.countRemainingCards() )
+                .setFooter( 'Remaining cards: ' + _DeckHandler.countRemainingCards() )
 
             message.channel.send(embedded).then( sent => {
                 embedID = sent.id;
@@ -189,7 +189,7 @@ module.exports = {
         function hit(participant){
             console.log("[BLACKJACK] Player Hit");
 
-            var card = deckHandler.getCard();
+            var card = _DeckHandler.getCard();
             participant.hand.push(card);
 
             setCardDisplay( participant.id, participant.hand[participant.hand.length - 1].Suit);
@@ -211,7 +211,7 @@ module.exports = {
             console.log("[BLACKJACK] Showing Result");
 
             embedded.fields = [];
-            embedded.setFooter( 'Remaining cards: ' + deckHandler.countRemainingCards() );
+            embedded.setFooter( 'Remaining cards: ' + _DeckHandler.countRemainingCards() );
 
             if(participant.id == "player"){
 

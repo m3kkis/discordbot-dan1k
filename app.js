@@ -1,16 +1,19 @@
+//requires node 12 and up
+//discordjs 12
+
 const dotenv = require('dotenv').config();
 const Discord = require("discord.js");
 const fs = require('fs');
+
 const mongoose = require('mongoose');
+const User = require('./models/User'); 
 
 const prefix = process.env.BOT_PREFIX;
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
 const DeckHandler = require('./handlers/DeckHandler.js');
-var deckHandler = new DeckHandler();
-
-
+var _DeckHandler = new DeckHandler();
 
 //Set files in /commands as your commands
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -25,32 +28,35 @@ mongoose.connect(process.env.DB_HOST,{
         useNewUrlParser: true,
         useUnifiedTopology: true
     }) 
-    .then(() => console.log('Now connected to MongoDB!'))
-    .catch(err => console.error('Something went wrong with MongoDB', err));
+    .then(() => console.log('[APP] Now connected to MongoDB!'))
+    .catch(err => console.error('[APP] Something went wrong with MongoDB', err));
+
+mongoose.set('useFindAndModify', false);
 
 //Connect bot
 client.once('ready', () => {
     //Set bot status
     client.user.setActivity('your private data', { type: "WATCHING" });
-    console.log('DAN-1000 is online!');
+    console.log('[APP] DAN-1000 is online!');
 
     const guild = client.guilds.cache.get(process.env.GUILD_ID);
-
-
     
     //Add emoji cards to server
     
     const cardFiles = fs.readdirSync('./cards/').filter(file => file.endsWith('.jpg'));
     for(const file of cardFiles){
-        guild.emojis.create('./cards/' + file, file.replace(/.jpg/g, ''))
-            .then(emoji => console.log(`Created new emoji with name :${emoji.name}: !`))
+
+        var emojiName = file.replace(/.jpg/g, '');
+
+        if(client.emojis.name)
+
+        guild.emojis.create('./cards/' + file, emojiName)
+            .then(emoji => console.log(`[APP] Created new emoji with name :${emoji.name}: !`))
             .catch(console.error);
     }
-    
-    
 
     //Create blackjack deck
-    deckHandler.createDeck(3);
+    _DeckHandler.createDeck(3);
     
 });
 
@@ -92,20 +98,48 @@ client.on('message', message => {
 		return message.channel.send(embedded);
     }
 
-    try {
-        if( commandName == "blackjack" || commandName == "bj")
+
+    User.findOne({
+        dsid: message.author.id
+    })
+    .then(_User => {
+        if(_User)
         {
-            command.execute(client, message, args, deckHandler);
+            console.log("[APP] User found.");
+
+            try {
+                if( commandName == "blackjack" || commandName == "bj")
+                {
+                    command.execute(client, message, args, _User, _DeckHandler);
+                }
+                else
+                {
+                    command.execute(client, message, args, _User);
+                }
+            } 
+            catch (error) {
+                console.error(error);
+                message.reply('There was an error trying to execute that command!');
+            }
         }
         else
         {
-            command.execute(client, message, args);
+            console.log("[APP] Creating new user.");
+
+            var newUser = new User({
+                dsid: message.author.id,
+                tag: message.author.tag,
+                username: message.author.username,
+                economy : {
+                    cash: 100,
+                    bank: 100,
+                }
+            });
+    
+            newUser.save().then(console.log("[APP] New user created."));
+            message.reply('I just created an account for you, try your command again.');
         }
-        
-    } catch (error) {
-        console.error(error);
-        message.reply('There was an error trying to execute that command!');
-    }
+    });
 
 });
 

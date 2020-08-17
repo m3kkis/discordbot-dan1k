@@ -2,11 +2,11 @@ const Discord = require("discord.js");
 
 module.exports = {
     name: 'clear',
-    description: 'Delete the <X> amount of last messages.',
+    description: 'Delete the <amount> amount of last messages.',
     args: true,
     usage: '<quantity>',
     aliases: ['c'],
-    execute(client, message, args){
+    execute(client, message, args, _User){
 
         const MAX_MSG = 25;
         var amount = parseInt(args[0]);
