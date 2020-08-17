@@ -8,7 +8,7 @@ class DeckHandler {
     }
 
     createDeck(nbrOfDecks){
-        console.log("[DECKHANDLER] Creating new deck.");
+        console.log("[DECK HANDLER] Creating new deck.");
         var me = this;
 
         me.deckAmount = nbrOfDecks;
@@ -47,7 +47,7 @@ class DeckHandler {
 
     shuffleDeck()
     {
-        console.log("[DECKHANDLER] Shuffling deck.");
+        console.log("[DECK HANDLER] Shuffling deck.");
         var me = this;
 
         for (var i = 0; i < 2000; i++)
@@ -66,7 +66,7 @@ class DeckHandler {
 
         if( me.deck.length == 0 )
         {
-            console.log("[DECKHANDLER] No more cards in deck.");
+            console.log("[DECK HANDLER] No more cards in deck.");
             me.deck = new Array();
             me.createDeck(me.deckAmount);
         }

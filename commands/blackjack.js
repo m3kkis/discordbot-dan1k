@@ -6,7 +6,7 @@ module.exports = {
     args: true,
     usage: '<amount>',
     aliases: ['bj'],
-    execute(client, message, args, _User, _DeckHandler){
+    execute(client, message, args, _User, _Dealer, _DeckHandler){
 
         var amount = parseInt(args[0]);
 
@@ -21,6 +21,14 @@ module.exports = {
             return message.channel.send(embedded);
         }
 
+        if( amount > _User.economy.cash ) {
+            
+            embedded.setColor('#ff4f4f')
+                .setDescription('You do not have enough money.');
+
+            return message.channel.send(embedded);
+        }
+
         const emjCLUBS = message.guild.emojis.cache.find(emoji => emoji.name === 'CARD_CLUBS');
         const emjSPADES = message.guild.emojis.cache.find(emoji => emoji.name === 'CARD_SPADES');
         const emjHEARTS = message.guild.emojis.cache.find(emoji => emoji.name === 'CARD_HEARTS');
@@ -28,7 +36,6 @@ module.exports = {
         const emjHIDDEN = message.guild.emojis.cache.find(emoji => emoji.name === 'CARD_HIDDEN');
 
         var embedID;
-
 
         var player = {
             id : "player",
@@ -217,6 +224,8 @@ module.exports = {
 
                 if( player.score > 21 ){
 
+                    setStatistics(amount, 'loss');
+
                     embedded.setColor('#ff4f4f')
                         .setDescription('Result: Loss')
                         .addFields(
@@ -229,6 +238,8 @@ module.exports = {
 
                 }
                 else if( player.score == 21 ){
+
+                    setStatistics(amount, 'win');
 
                     embedded.setColor('#78de87')
                         .setDescription('Result: Win')
@@ -275,19 +286,30 @@ module.exports = {
                 );
 
                 if( dealer.score > 21 ){
+
+                    setStatistics(amount, 'win');
+
                     embedded.setColor('#78de87')
                         .setDescription('Result: Win')
                 }
                 else if( dealer.score > player.score ){
 
+                    setStatistics(amount, 'loss');
+
                     embedded.setColor('#ff4f4f')
                         .setDescription('Result: Loss')
                 }
                 else if( dealer.score < player.score ){
+
+                    setStatistics(amount, 'win');
+
                     embedded.setColor('#78de87')
                         .setDescription('Result: Win')
                 }
                 else if( dealer.score == player.score ){
+
+                    setStatistics(amount, 'push');
+
                     embedded.setColor('#ffd900')
                         .setDescription('Result: Push')
                 }
@@ -315,6 +337,47 @@ module.exports = {
             dealer.display = "",
             dealer.score = 0
             
+        }
+
+        function setStatistics(amount, result){
+
+            console.log("[BLACKJACK] Saving result.");
+            
+            if(result == "win")
+            {
+                _User.economy.cash += amount;
+
+                _User.blackjack.win += 1;
+                _User.blackjack.cash_won += amount;
+                _User.blackjack.cash_spent += amount;
+
+                _Dealer.loss += 1;
+                _Dealer.cash_lost += amount;
+            }
+            else if(result == "loss")
+            {
+                _User.economy.cash -= amount;
+
+                _User.blackjack.loss += 1;
+                _User.blackjack.cash_lost += amount;
+                _User.blackjack.cash_spent += amount;
+
+                _Dealer.win += 1;
+                _Dealer.cash_won += amount;
+            }
+            else if(result == "push")
+            {
+                _User.blackjack.push += 1;
+                _User.blackjack.cash_spent += amount;
+
+                _Dealer.push += 1;
+            }
+            
+
+
+            _User.save().then(()=>{
+                _Dealer.save();
+            });
         }
 
 

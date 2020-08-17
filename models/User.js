@@ -9,6 +9,14 @@ const userSchema = new Schema(
     economy: {
         cash: { type: Number },
         bank: { type: Number },
+    },
+    blackjack: {
+        win: { type: Number },
+        loss: { type: Number },
+        push: { type: Number },
+        cash_won: { type: Number },
+        cash_lost: { type: Number },
+        cash_spent: { type: Number },
     }
 });
 
