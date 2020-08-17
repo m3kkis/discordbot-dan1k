@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
     name: 'withdraw',
-    description: 'Withdaw <amount> from your bank',
+    description: 'Withdaw cash from your bank',
     args: true,
     usage: '<amount>',
     aliases: ['with'],

@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
     name: 'clear',
-    description: 'Delete the <amount> amount of last messages.',
+    description: 'Delete the amount of last messages.',
     args: true,
     usage: '<quantity>',
     aliases: ['c'],
