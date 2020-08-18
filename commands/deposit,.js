@@ -31,14 +31,14 @@ module.exports = {
             _User.save();
 
             embedded.setColor('#78de87')
-                .addField("Success deposit","Thank you for doing business with us.",true)
+                .setDescription(`✅ Deposited $${amount} to your bank!`)
             return message.channel.send(embedded);
         }
         else
         {
             console.log("[DEPOSIT] Not enough cash.");
             embedded.setColor('#ff4f4f')
-                .addField("Failed deposit","It looks like you do not have enough cash to deposit that amount.",true)
+                .setDescription(`❌ Can't deposit to bank, not enough cash`)
             return message.channel.send(embedded);
         }
 

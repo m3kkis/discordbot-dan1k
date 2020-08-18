@@ -32,14 +32,14 @@ module.exports = {
             _User.save();
             
             embedded.setColor('#78de87')
-                .addField("Success withdraw","Thank you for doing business with us.",true)
+                .setDescription(`✅ Withdrew $${amount} from your bank!`)
             return message.channel.send(embedded);
         }
         else
         {
             console.log("[WITHDRAW] Not enough in bank.");
             embedded.setColor('#ff4f4f')
-                .addField("Failed withdraw","It looks like you do not have enough in the bank to withdraw that amount.",true)
+                .setDescription(`❌ Can't withdraw that amount from bank`)
             return message.channel.send(embedded);
         }
 

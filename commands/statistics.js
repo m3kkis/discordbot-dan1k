@@ -79,7 +79,7 @@ module.exports = {
                         inline: true 
                     },
                     { 
-                        name:"---", 
+                        name:"-----", 
                         value: "Cash made: $" + _User.blackjack.cash_won + 
                                "\nCash lost: $" + _User.blackjack.cash_lost + 
                                "\nCash spent: $" + _User.blackjack.cash_spent,
