@@ -23,6 +23,11 @@ module.exports = {
                     { name:"Cash Lost", value: "$" + _Dealer.cash_lost, inline: true },
                 );
         }
+        if(args[0] == 'raw')
+        {
+            const rawData = JSON.stringify(_User, null, 2);
+            return message.channel.send('```json\n' + rawData + '\n```');
+        }
         else
         {
             embedded.addFields(
