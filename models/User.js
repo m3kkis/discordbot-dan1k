@@ -31,6 +31,13 @@ const userSchema = new Schema(
             times_used_failed: { type: Number },
             cash_earned: { type: Number },
             cash_lost: { type: Number },
+        },
+        rob:{
+            last_updated: { type: Number },
+            times_used_success: { type: Number },
+            times_used_failed: { type: Number },
+            cash_earned: { type: Number },
+            cash_lost: { type: Number },
         }
     },
     blackjack: {

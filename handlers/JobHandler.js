@@ -9,6 +9,7 @@ class JobHanlder{
         this.workTimeout = 5;
         this.slutTimeout = 10;
         this.crimeTimeout = 15;
+        this.robTimeout = 15;
         this.jsonJobSuccess;
         this.jsonJobFailed;
     }
@@ -29,7 +30,7 @@ class JobHanlder{
     }
 
     doWork(tag, avatar, _User){
-        console.log('[JOB HANDLER] Do work.');
+        console.log('[JOB HANDLER] Do work success.');
         var me = this;
 
         var embedded = new Discord.MessageEmbed();
@@ -64,6 +65,7 @@ class JobHanlder{
 
         if(chance < 0.4)
         {
+            console.log('[JOB HANDLER] Do slut failed.');
             embedded.setColor('#ff4f4f')
             var randomReply =  me.jsonJobFailed.slut[Math.floor((Math.random() * me.jsonJobFailed.slut.length))].reply;
             randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
@@ -75,6 +77,7 @@ class JobHanlder{
         }
         else
         {
+            console.log('[JOB HANDLER] Do slut success.');
             embedded.setColor('#78de87')
             var randomReply =  me.jsonJobSuccess.slut[Math.floor((Math.random() * me.jsonJobSuccess.slut.length))].reply;
             randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
@@ -102,6 +105,7 @@ class JobHanlder{
 
         if(chance < 0.6)
         {
+            console.log('[JOB HANDLER] Do crime failed.');
             embedded.setColor('#ff4f4f')
             var randomReply =  me.jsonJobFailed.crime[Math.floor((Math.random() * me.jsonJobFailed.crime.length))].reply;
             randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
@@ -113,6 +117,7 @@ class JobHanlder{
         }
         else
         {
+            console.log('[JOB HANDLER] Do crime success.');
             embedded.setColor('#78de87')
             var randomReply =  me.jsonJobSuccess.crime[Math.floor((Math.random() * me.jsonJobSuccess.crime.length))].reply;
             randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
@@ -124,6 +129,48 @@ class JobHanlder{
 
         embedded.setDescription(randomReply);
         _User.save();
+        return embedded;
+    }
+
+    doRob(tag, avatar, _User, _Victim){
+        console.log('[JOB HANDLER] Do rob.');
+        var me = this;
+
+        var embedded = new Discord.MessageEmbed();
+        embedded.setAuthor(tag, avatar);
+        var reply;
+
+        /* your networth / (their cash + your networth) */
+        var robProbability = ( _User.economy.cash + _User.economy.bank ) / ( _Victim.economy.cash + ( _User.economy.cash + _User.economy.bank ) )
+        var chance = Math.random();
+
+        if(chance < robProbability)
+        {
+            console.log('[JOB HANDLER] Do crime failed.');
+            var randomCashAmount = Math.floor(Math.random() * ( me.crimeMinMax[1] - me.crimeMinMax[0]) + me.crimeMinMax[0]);
+            embedded.setColor('#ff4f4f')
+            reply = `You tried to rob ${_Victim.tag}, but you failed and got caught with a fine of **$${randomCashAmount}**`;
+
+            _User.economy.cash -= randomCashAmount;
+
+        }
+        else
+        {
+            console.log('[JOB HANDLER] Do crime success.');
+            var randomCashAmount = Math.floor(Math.random() * ( (_Victim.economy.cash/2) - (_Victim.economy.cash/4)) + (_Victim.economy.cash/4));
+            embedded.setColor('#78de87')
+
+            _User.economy.cash += randomCashAmount;
+            _Victim.economy.cash -= randomCashAmount;
+
+            reply = `You have successfully robbed ${_Victim.tag}, and stole **$${randomCashAmount}**`;
+        }
+
+        embedded.setDescription(reply);
+        _User.save().then(()=>{
+            _Victim.save();
+        });
+
         return embedded;
     }
 

@@ -43,7 +43,7 @@ mongoose.set('useFindAndModify', false);
 //Connect bot
 client.once('ready', () => {
     //Set bot status
-    client.user.setActivity('your private data', { type: "WATCHING" });
+    client.user.setActivity('your private data', { type: "WATCHING", url:"https://github.com/m3kkis/discordbot-dan1k" });
     console.log('[APP] DAN-1000 is online!');
 
     const guild = client.guilds.cache.get(process.env.GUILD_ID);
@@ -154,7 +154,7 @@ client.on('message', message => {
                 {
                     command.execute(client, message, args, _User, _Dealer);
                 }
-                else if( commandName == "work" || commandName == "slut" || commandName == "crime")
+                else if( commandName == "work" || commandName == "slut" || commandName == "crime" || commandName == "rob")
                 {
                     command.execute(client, message, args, _User, _JobHandler);
                 }
@@ -196,6 +196,13 @@ client.on('message', message => {
                         cash_lost:0,
                     },
                     crime:{
+                        last_updated:0,
+                        times_used_success:0,
+                        times_used_failed:0,
+                        cash_earned:0,
+                        cash_lost:0,
+                    },
+                    rob:{
                         last_updated:0,
                         times_used_success:0,
                         times_used_failed:0,
