@@ -263,6 +263,7 @@ module.exports = {
                     message.channel.awaitMessages(m => m.author.id == message.author.id,{ max: 1, time: 60000 }).then(collected => {
                         if (collected.first().content.toLowerCase() == 'hit') {
                             hit(player);
+                            ShowResult(player);
                         }
                         else if (collected.first().content.toLowerCase() == 'stand') {
                             stand();
