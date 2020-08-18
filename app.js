@@ -15,6 +15,10 @@ const prefix = process.env.BOT_PREFIX;
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
+const JobHandler = require('./handlers/JobHandler.js');
+var _JobHandler = new JobHandler();
+_JobHandler.loadJsonFiles();
+
 const DeckHandler = require('./handlers/DeckHandler.js');
 var _DeckHandler = new DeckHandler();
 
@@ -149,6 +153,10 @@ client.on('message', message => {
                 else if( commandName == "statistics" || commandName == "stats")
                 {
                     command.execute(client, message, args, _User, _Dealer);
+                }
+                else if( commandName == "work" || commandName == "slut" || commandName == "crime")
+                {
+                    command.execute(client, message, args, _User, _JobHandler);
                 }
                 else
                 {

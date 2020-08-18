@@ -1,0 +1,17 @@
+{
+    "work":[
+        {"reply":"You had a hard day at work, you earn ##"},
+        {"reply":"Walking back from work you find ## on the floor."},
+        {"reply":"A chicken dropped an egg while crossing the road, you take it and sell it for ##"}
+    ],
+    "slut":[
+        {"reply":"You prostitute yourself to an old person, you earn ##"},
+        {"reply":"While doing a handjob you found ## under the persons belly"},
+        {"reply":"A hamster came out of your arse with ##"}
+    ],
+    "crime":[
+        {"reply":"You stole a bicycle from a child and sold it for ##"},
+        {"reply":"You hacked your local convenience store, you stole ##"},
+        {"reply":"You sotle manholes on your street and sold them all for ##"}
+    ]
+}
