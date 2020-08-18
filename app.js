@@ -180,6 +180,29 @@ client.on('message', message => {
                     cash: 100,
                     bank: 100,
                 },
+                jobs:{
+                    work:{
+                        last_updated:0,
+                        times_used_success:0,
+                        times_used_failed:0,
+                        cash_earned:0,
+                        cash_lost:0,
+                    },
+                    slut:{
+                        last_updated:0,
+                        times_used_success:0,
+                        times_used_failed:0,
+                        cash_earned:0,
+                        cash_lost:0,
+                    },
+                    crime:{
+                        last_updated:0,
+                        times_used_success:0,
+                        times_used_failed:0,
+                        cash_earned:0,
+                        cash_lost:0,
+                    }
+                },
                 blackjack : {
                     win: 0,
                     loss: 0,
@@ -189,6 +212,7 @@ client.on('message', message => {
                     cash_spent: 0
                 }
             });
+
     
             newUser.save().then(console.log("[APP] New user created."));
             message.reply('I just created an account for you, try your command again.');

@@ -10,6 +10,29 @@ const userSchema = new Schema(
         cash: { type: Number },
         bank: { type: Number },
     },
+    jobs:{
+        work:{
+            last_updated: { type: Number },
+            times_used_success: { type: Number },
+            times_used_failed: { type: Number },
+            cash_earned: { type: Number },
+            cash_lost: { type: Number },
+        },
+        slut:{
+            last_updated: { type: Number },
+            times_used_success: { type: Number },
+            times_used_failed: { type: Number },
+            cash_earned: { type: Number },
+            cash_lost: { type: Number },
+        },
+        crime:{
+            last_updated: { type: Number },
+            times_used_success: { type: Number },
+            times_used_failed: { type: Number },
+            cash_earned: { type: Number },
+            cash_lost: { type: Number },
+        }
+    },
     blackjack: {
         win: { type: Number },
         loss: { type: Number },

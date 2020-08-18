@@ -6,6 +6,9 @@ class JobHanlder{
         this.workMinMax = [1,150]; 
         this.slutMinMax = [150,300]; 
         this.crimeMinMax = [300,600]; 
+        this.workTimeout = 5;
+        this.slutTimeout = 10;
+        this.crimeTimeout = 15;
         this.jsonJobSuccess;
         this.jsonJobFailed;
     }
@@ -39,6 +42,10 @@ class JobHanlder{
         randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
 
         _User.economy.cash += randomCashAmount;
+
+        _User.jobs.work.times_used_success += 1;
+        _User.jobs.work.cash_earned += randomCashAmount;
+
         _User.save();
 
         embedded.setDescription(randomReply);
@@ -60,14 +67,22 @@ class JobHanlder{
             embedded.setColor('#ff4f4f')
             var randomReply =  me.jsonJobFailed.slut[Math.floor((Math.random() * me.jsonJobFailed.slut.length))].reply;
             randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
+
             _User.economy.cash -= randomCashAmount;
+            _User.jobs.slut.times_used_failed += 1;
+            _User.jobs.slut.cash_lost += randomCashAmount;
+
         }
         else
         {
             embedded.setColor('#78de87')
             var randomReply =  me.jsonJobSuccess.slut[Math.floor((Math.random() * me.jsonJobSuccess.slut.length))].reply;
             randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
+
             _User.economy.cash += randomCashAmount;
+            _User.jobs.slut.times_used_success += 1;
+            _User.jobs.slut.cash_earned += randomCashAmount;
+
         }
 
         embedded.setDescription(randomReply);
@@ -90,14 +105,21 @@ class JobHanlder{
             embedded.setColor('#ff4f4f')
             var randomReply =  me.jsonJobFailed.crime[Math.floor((Math.random() * me.jsonJobFailed.crime.length))].reply;
             randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
+
             _User.economy.cash -= randomCashAmount;
+            _User.jobs.crime.times_used_failed += 1;
+            _User.jobs.crime.cash_lost += randomCashAmount;
+
         }
         else
         {
             embedded.setColor('#78de87')
             var randomReply =  me.jsonJobSuccess.crime[Math.floor((Math.random() * me.jsonJobSuccess.crime.length))].reply;
             randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
+
             _User.economy.cash += randomCashAmount;
+            _User.jobs.crime.times_used_success += 1;
+            _User.jobs.crime.cash_earned += randomCashAmount;
         }
 
         embedded.setDescription(randomReply);
