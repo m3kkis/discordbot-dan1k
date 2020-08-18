@@ -29,6 +29,14 @@ module.exports = {
             return message.channel.send(embedded);
         }
 
+        if( amount < 100 ) {
+            
+            embedded.setColor('#ff4f4f')
+                .setDescription('Minimum $100 is required to play blackjack.');
+
+            return message.channel.send(embedded);
+        }
+
         const emjCLUBS = message.guild.emojis.cache.find(emoji => emoji.name === 'CARD_CLUBS');
         const emjSPADES = message.guild.emojis.cache.find(emoji => emoji.name === 'CARD_SPADES');
         const emjHEARTS = message.guild.emojis.cache.find(emoji => emoji.name === 'CARD_HEARTS');
