@@ -10,13 +10,12 @@ module.exports = {
         embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
             .setTitle("List of commands")
 
+        var reply = "For more info visit https://github.com/m3kkis/discordbot-dan1k \n\n";
         client.commands.map(function (cmd) {
-            embedded.addFields({
-                name: cmd.name,
-                value: cmd.description,
-                inline: false
-            });
+            reply += "\`" + process.env.BOT_PREFIX + cmd.name + "\` : " + cmd.description + "\n";
         });
+
+        embedded.setDescription(reply);
 
         return message.channel.send(embedded);
 
