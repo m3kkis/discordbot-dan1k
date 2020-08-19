@@ -177,8 +177,8 @@ client.on('message', message => {
                 tag: message.author.tag,
                 username: message.author.username,
                 economy : {
-                    cash: 100,
-                    bank: 100,
+                    cash: 1000,
+                    bank: 1000,
                 },
                 jobs:{
                     work:{
