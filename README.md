@@ -21,7 +21,7 @@ This project uses dotenv package so you wil need to create a `.env` file next to
 BOT_PREFIX=       // Place a prefix to start your commands
 BOT_TOKEN=        // Your bot ssecret token
 GUILD_ID=         // Your guild/server ID. Can be found by activating developers tool in discord
-DB_HOST=mongodb:  // URL to your database
+DB_HOST=          // URL to your database
 ```
 
 ***Example***
