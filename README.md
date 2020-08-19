@@ -1,5 +1,5 @@
 # Discord bot [DAN-1000]
-***NOTE***: *This bot is NSFW and was created to use within my discord server with friends for* ***FUN*** some messages may not be the most nicest but its all for fun and game. ***Please do not take it seriously***.
+***NOTE***: *This bot is NSFW and was created to use within my discord server with friends for* ***FUN*** *some messages may not be the most nicest but its all for fun and game.* ***Please do not take it seriously***.
 
 With that being said, I created this bot inspired by another one that was on my server but I wanted more personal customization and freedom to add more commands that I specifically want or need. I have it running on my Raspberry Pi 3, this bot will not work properly if you use it for multiple servers as some settings are specific to your server. 
 
