@@ -1,0 +1,51 @@
+{
+    "store":[
+        {
+            "name": "key_lootbox",
+            "display": "Key",
+            "description": "The key that opens lootboxes.",
+            "price": 1000,
+            "quantity": 1
+        },
+        {
+            "name": "test_item1",
+            "display": "Item1",
+            "description": "This is a test item that i have added",
+            "price": 500,
+            "quantity": 1
+        },
+        {
+            "name": "test_item2",
+            "display": "Item2",
+            "description": "This is a test item that i have added one more same thing just longer",
+            "price": 100,
+            "quantity": 1
+        }
+    ],
+    "lootbox":[
+        {
+            "name": "card_cash_common",
+            "display": "Common Cash Card",
+            "value": 1500,
+            "quantity": 1
+        },
+        {
+            "name": "card_cash_rare",
+            "display": "Rare Cash Card",
+            "value": 3000,
+            "quantity": 1
+        },
+        {
+            "name": "card_cash_epic",
+            "display": "Epic Cash Card",
+            "value": 6000,
+            "quantity": 1
+        },
+        {
+            "name": "card_cash_legendary",
+            "display": "Legendary Cash Card",
+            "value": 12000,
+            "quantity": 1
+        }
+    ]
+}

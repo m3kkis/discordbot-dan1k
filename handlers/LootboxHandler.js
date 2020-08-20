@@ -24,6 +24,7 @@ class LootboxHandler {
     }
 
     giveLootbox(message, _User){
+        console.log('[LOOTBOX HANDLER] Giving a lootbox.');
         var me = this;
         var embedded = new Discord.MessageEmbed();
         embedded.setColor('#ae00ff')

@@ -15,6 +15,10 @@ client.commands = new Discord.Collection();
 const LootboxHandler = require('./handlers/LootboxHandler.js');
 var _LootboxHandler = new LootboxHandler();
 
+const ItemHandler = require('./handlers/ItemHandler.js');
+var _ItemHandler = new ItemHandler();
+_ItemHandler.loadJsonFiles();
+
 const JobHandler = require('./handlers/JobHandler.js');
 var _JobHandler = new JobHandler();
 _JobHandler.loadJsonFiles();
@@ -138,13 +142,21 @@ client.on('message', message => {
             console.log("[APP] User found.");
 
             try {
-                if( commandName == "blackjack" || commandName == "bj")
+                if( commandName == "store")
+                {
+                    command.execute(client, message, args, _User, _ItemHandler);
+                }
+                else if( commandName == "blackjack" || commandName == "bj")
                 {
                     command.execute(client, message, args, _User, _Dealer, _DeckHandler);
                 }
                 else if( commandName == "statistics" || commandName == "stats")
                 {
                     command.execute(client, message, args, _User, _Dealer);
+                }
+                else if( commandName == "lootbox" || commandName == "lbx")
+                {
+                    command.execute(client, message, args, _User, _LootboxHandler);
                 }
                 else if( commandName == "work" || commandName == "slut" || commandName == "crime" || commandName == "rob")
                 {
