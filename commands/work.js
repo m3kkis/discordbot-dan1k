@@ -5,7 +5,7 @@ module.exports = {
     description: 'Your safest method of earning cash but the least rewarding',
     args: false,
     usage: '',
-    execute(client, message, args, _User, _JobHandler){
+    execute(client, message, args, _User, _JobHandler, _LootboxHandler){
 
         var d = new Date();
         var n = d.getTime();
@@ -16,7 +16,8 @@ module.exports = {
         if( timeDifference > timeLimit )
         {
             _User.jobs.work.last_updated = n;
-            var reply = _JobHandler.doWork(message.member.user.tag, message.member.user.avatarURL(), _User);
+            var reply = _JobHandler.doWork(message, _User);
+            _User.save();
             return message.channel.send(reply);
         }
         else

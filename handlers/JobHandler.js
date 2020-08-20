@@ -1,14 +1,16 @@
 const Discord = require("discord.js");
 var fs = require('fs');
 
-class JobHanlder{
+class JobHandler{
     constructor(){
-        this.workMinMax = [1,150]; 
+        this.workMinMax = [50,150]; 
         this.slutMinMax = [150,300]; 
         this.crimeMinMax = [300,600]; 
         this.workTimeout = 5;
         this.slutTimeout = 10;
+        this.slutFailChance = 0.4;
         this.crimeTimeout = 15;
+        this.crimeFailChance = 0.6;
         this.robTimeout = 15;
         this.jsonJobSuccess;
         this.jsonJobFailed;
@@ -29,13 +31,13 @@ class JobHanlder{
         });
     }
 
-    doWork(tag, avatar, _User){
+    doWork(message, _User){
         console.log('[JOB HANDLER] Do work success.');
         var me = this;
 
         var embedded = new Discord.MessageEmbed();
         embedded.setColor('#78de87')
-            .setAuthor(tag, avatar)
+            .setAuthor(message.member.user.tag, message.member.user.avatarURL())
 
         var randomReply =  me.jsonJobSuccess.work[Math.floor((Math.random() * me.jsonJobSuccess.work.length))].reply;
         var randomCashAmount = Math.floor(Math.random() * ( me.workMinMax[1] - me.workMinMax[0]) + me.workMinMax[0]);
@@ -47,23 +49,21 @@ class JobHanlder{
         _User.jobs.work.times_used_success += 1;
         _User.jobs.work.cash_earned += randomCashAmount;
 
-        _User.save();
-
         embedded.setDescription(randomReply);
         return embedded;
     }
 
-    doSlut(tag, avatar, _User){
+    doSlut(message, _User){
         console.log('[JOB HANDLER] Do slut.');
         var me = this;
 
         var embedded = new Discord.MessageEmbed();
-        embedded.setAuthor(tag, avatar)
+        embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
 
         var chance = Math.random();
         var randomCashAmount = Math.floor(Math.random() * ( me.slutMinMax[1] - me.slutMinMax[0]) + me.slutMinMax[0]);
 
-        if(chance < 0.4)
+        if(chance < me.slutFailChance)
         {
             console.log('[JOB HANDLER] Do slut failed.');
             embedded.setColor('#ff4f4f')
@@ -89,21 +89,20 @@ class JobHanlder{
         }
 
         embedded.setDescription(randomReply);
-        _User.save();
         return embedded;
     }
 
-    doCrime(tag, avatar, _User){
+    doCrime(message, _User){
         console.log('[JOB HANDLER] Do crime.');
         var me = this;
 
         var embedded = new Discord.MessageEmbed();
-        embedded.setAuthor(tag, avatar)
+        embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
 
         var chance = Math.random();
         var randomCashAmount = Math.floor(Math.random() * ( me.crimeMinMax[1] - me.crimeMinMax[0]) + me.crimeMinMax[0]);
 
-        if(chance < 0.6)
+        if(chance < me.crimeFailChance)
         {
             console.log('[JOB HANDLER] Do crime failed.');
             embedded.setColor('#ff4f4f')
@@ -128,16 +127,15 @@ class JobHanlder{
         }
 
         embedded.setDescription(randomReply);
-        _User.save();
         return embedded;
     }
 
-    doRob(tag, avatar, _User, _Victim){
+    doRob(message, _User, _Victim){
         console.log('[JOB HANDLER] Do rob.');
         var me = this;
 
         var embedded = new Discord.MessageEmbed();
-        embedded.setAuthor(tag, avatar);
+        embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL());
         var reply;
 
         /* your networth / (their cash + your networth) */
@@ -167,12 +165,9 @@ class JobHanlder{
         }
 
         embedded.setDescription(reply);
-        _User.save().then(()=>{
-            _Victim.save();
-        });
 
         return embedded;
     }
 
 }
-module.exports=JobHanlder;
+module.exports=JobHandler;

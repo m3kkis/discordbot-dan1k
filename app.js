@@ -1,6 +1,3 @@
-//requires node 12 and up
-//discordjs 12
-
 const dotenv = require('dotenv').config();
 const Discord = require("discord.js");
 const fs = require('fs');
@@ -14,6 +11,9 @@ var _Dealer;
 const prefix = process.env.BOT_PREFIX;
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
+
+const LootboxHandler = require('./handlers/LootboxHandler.js');
+var _LootboxHandler = new LootboxHandler();
 
 const JobHandler = require('./handlers/JobHandler.js');
 var _JobHandler = new JobHandler();
@@ -38,7 +38,7 @@ mongoose.connect(process.env.DB_HOST,{
     .then(() => console.log('[APP] Now connected to MongoDB!'))
     .catch(err => console.error('[APP] Something went wrong with MongoDB', err));
 
-mongoose.set('useFindAndModify', false);
+//mongoose.set('useFindAndModify', false);
 
 //Connect bot
 client.once('ready', () => {
@@ -76,16 +76,7 @@ client.once('ready', () => {
         else
         {
             console.log("[APP] Creating new dealer.");
-
-            var newDealer = new Dealer({
-                name: "dan-1000",
-                win: 0,
-                loss: 0,
-                push: 0,
-                cash_won: 0,
-                cash_lost: 0,
-            });
-    
+            var newDealer = new Dealer();
             newDealer.save().then( newDealer => {
                 console.log("[APP] New dealer created.")
                 _Dealer = newDealer;
@@ -108,6 +99,7 @@ client.on('message', message => {
      * ORANGE:  #ffd900
      * RED:     #ff4f4f
      * BLUE:    #03b6fc
+     * PURPLE:    #ae00ff
      */
 
 
@@ -156,7 +148,7 @@ client.on('message', message => {
                 }
                 else if( commandName == "work" || commandName == "slut" || commandName == "crime" || commandName == "rob")
                 {
-                    command.execute(client, message, args, _User, _JobHandler);
+                    command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
                 }
                 else
                 {
@@ -175,52 +167,9 @@ client.on('message', message => {
             var newUser = new User({
                 dsid: message.author.id,
                 tag: message.author.tag,
-                username: message.author.username,
-                economy : {
-                    cash: 1000,
-                    bank: 1000,
-                },
-                jobs:{
-                    work:{
-                        last_updated:0,
-                        times_used_success:0,
-                        times_used_failed:0,
-                        cash_earned:0,
-                        cash_lost:0,
-                    },
-                    slut:{
-                        last_updated:0,
-                        times_used_success:0,
-                        times_used_failed:0,
-                        cash_earned:0,
-                        cash_lost:0,
-                    },
-                    crime:{
-                        last_updated:0,
-                        times_used_success:0,
-                        times_used_failed:0,
-                        cash_earned:0,
-                        cash_lost:0,
-                    },
-                    rob:{
-                        last_updated:0,
-                        times_used_success:0,
-                        times_used_failed:0,
-                        cash_earned:0,
-                        cash_lost:0,
-                    }
-                },
-                blackjack : {
-                    win: 0,
-                    loss: 0,
-                    push: 0,
-                    cash_won: 0,
-                    cash_lost: 0,
-                    cash_spent: 0
-                }
+                username: message.author.username
             });
 
-    
             newUser.save().then(console.log("[APP] New user created."));
             message.reply('I just created an account for you, try your command again.');
         }
