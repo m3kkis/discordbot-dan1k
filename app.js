@@ -142,7 +142,7 @@ client.on('message', message => {
             console.log("[APP] User found.");
 
             try {
-                if( commandName == "store")
+                if( commandName == "store" || commandName == "buy" )
                 {
                     command.execute(client, message, args, _User, _ItemHandler);
                 }

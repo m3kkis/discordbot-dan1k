@@ -20,24 +20,45 @@ class ItemHandler {
     displayAllStoreItems(message){
         console.log('[ITEM HANDLER] Display all store items');
         var me = this;
-
-        var embedded = new Discord.MessageEmbed();
-        embedded.setColor('#03b6fc')
-            .setAuthor(message.member.user.tag, message.member.user.avatarURL())
-            .setDescription("To buy an item type `!buy <list_id_of_item>`.\n *example:* `!buy 1` ");
-
         var reply = "";
         me.jsonItems.store.map(function (item,idx) {
             reply += `${(idx+1)}. **${item.display}** ($${item.price}): *${item.description}*\n`;
         });
-        
-
-        embedded.addField("Store Items",reply,true);
-        return embedded;
-
+        return reply;
     }
 
     displayAllLootboxItems(){
+
+    }
+
+    checkIfIDExists(idx){
+        console.log('[ITEM HANDLER] Check if item exists.');
+        var me = this;
+        var item = me.jsonItems.store[idx];
+        
+        if(item != undefined)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    buyItem(idx, _User){
+        console.log('[ITEM HANDLER] Buying item.');
+        var me = this;
+        var item = me.jsonItems.store[idx];
+        
+        _User.inventory.push({
+            "name":item.name,
+            "display":item.display,
+            "description":item.description,
+            "source":"store"
+        });
+        
+        _User.economy.cash -= item.price;
 
     }
 

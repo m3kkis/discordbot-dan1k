@@ -7,6 +7,7 @@ const userSchema = new Schema(
     tag: { type: String },
     username: { type: String },
     lootbox: { type: Number, default: 0 },
+    inventory: { type: Array, default: [] },
     economy: {
         cash: { type: Number, default: 1000 },
         bank: { type: Number, default: 1000 },
