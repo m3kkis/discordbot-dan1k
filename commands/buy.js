@@ -33,7 +33,7 @@ module.exports = {
         }
         else
         {
-            if(_User.inventory.length >= 10)
+            if(_User.inventory.length >= _User.inventorySize)
             {
                 embedded.setColor('#ff4f4f')
                 .setDescription('Your inventory is full');
