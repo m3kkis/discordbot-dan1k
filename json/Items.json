@@ -4,7 +4,7 @@
             "name": "key_lootbox",
             "display": "Lootbox Key",
             "description": "The key that opens lootboxes.",
-            "price": 1
+            "price": 1000
         }
     ],
     "lootbox":[
