@@ -4,19 +4,7 @@
             "name": "key_lootbox",
             "display": "Lootbox Key",
             "description": "The key that opens lootboxes.",
-            "price": 1
-        },
-        {
-            "name": "test_item1",
-            "display": "Item1",
-            "description": "This is a test item that i have added",
-            "price": 500
-        },
-        {
-            "name": "test_item2",
-            "display": "Item2",
-            "description": "This is a test item that i have added one more same thing just longer",
-            "price": 100
+            "price": 1000
         }
     ],
     "lootbox":[

@@ -5,8 +5,8 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const User = require('./models/User'); 
 
-const Dealer = require('./models/Dealer');
-var _Dealer;
+const Bot = require('./models/Bot');
+var _Bot;
 
 const prefix = process.env.BOT_PREFIX;
 const client = new Discord.Client();
@@ -67,23 +67,23 @@ client.once('ready', () => {
     }
 
 
-    //Create or find dealer
-    Dealer.findOne({
-        name: "dan-1000"
+    //Create or find bot
+    Bot.findOne({
+        name: "DAN-1000"
     })
-    .then(dealer => {
-        if(dealer)
+    .then(bot => {
+        if(bot)
         {
-            console.log("[APP] Dealer found.");
-            _Dealer = dealer;
+            console.log("[APP] Bot found.");
+            _Bot = bot;
         }
         else
         {
-            console.log("[APP] Creating new dealer.");
-            var newDealer = new Dealer();
-            newDealer.save().then( newDealer => {
-                console.log("[APP] New dealer created.")
-                _Dealer = newDealer;
+            console.log("[APP] Creating new bot.");
+            var newBot = new Bot();
+            newBot.save().then( newBot => {
+                console.log("[APP] New bot created.")
+                _Bot = newBot;
             });
         }
     });
@@ -105,7 +105,6 @@ client.on('message', message => {
      * BLUE:    #03b6fc
      * PURPLE:    #ae00ff
      */
-
 
     if(!message.content.startsWith(prefix) || message.author.bot) return;
 
@@ -148,11 +147,7 @@ client.on('message', message => {
                 }
                 else if( commandName == "blackjack" || commandName == "bj")
                 {
-                    command.execute(client, message, args, _User, _Dealer, _DeckHandler);
-                }
-                else if( commandName == "statistics" || commandName == "stats")
-                {
-                    command.execute(client, message, args, _User, _Dealer);
+                    command.execute(client, message, args, _User, _Bot, _DeckHandler);
                 }
                 else if( commandName == "lootbox" || commandName == "lbx")
                 {

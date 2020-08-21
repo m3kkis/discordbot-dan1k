@@ -6,7 +6,7 @@ module.exports = {
     args: true,
     usage: '<amount>',
     aliases: ['bj'],
-    execute(client, message, args, _User, _Dealer, _DeckHandler){
+    execute(client, message, args, _User, _Bot, _DeckHandler){
 
         var amount = parseInt(args[0]);
 
@@ -355,37 +355,19 @@ module.exports = {
             if(result == "win")
             {
                 _User.economy.cash += amount;
-
-                _User.blackjack.win += 1;
-                _User.blackjack.cash_won += amount;
-                _User.blackjack.cash_spent += amount;
-
-                _Dealer.loss += 1;
-                _Dealer.cash_lost += amount;
             }
             else if(result == "loss")
             {
                 _User.economy.cash -= amount;
-
-                _User.blackjack.loss += 1;
-                _User.blackjack.cash_lost += amount;
-                _User.blackjack.cash_spent += amount;
-
-                _Dealer.win += 1;
-                _Dealer.cash_won += amount;
+                _Bot.bank += amount;
             }
             else if(result == "push")
             {
-                _User.blackjack.push += 1;
-                _User.blackjack.cash_spent += amount;
-
-                _Dealer.push += 1;
+                
             }
             
-
-
             _User.save().then(()=>{
-                _Dealer.save();
+                _Bot.save();
             });
         }
 
