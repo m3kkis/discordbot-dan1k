@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 class LootboxHandler {
 
     constructor(){
-        this.dropChance = 0.1;
+        this.dropChance = 0.05;
     }
 
     checkForLootboxDrop(){
