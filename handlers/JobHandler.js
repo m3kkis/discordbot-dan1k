@@ -46,9 +46,6 @@ class JobHandler{
 
         _User.economy.cash += randomCashAmount;
 
-        _User.jobs.work.times_used_success += 1;
-        _User.jobs.work.cash_earned += randomCashAmount;
-
         embedded.setDescription(randomReply);
         return embedded;
     }
@@ -71,9 +68,6 @@ class JobHandler{
             randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
 
             _User.economy.cash -= randomCashAmount;
-            _User.jobs.slut.times_used_failed += 1;
-            _User.jobs.slut.cash_lost += randomCashAmount;
-
         }
         else
         {
@@ -83,9 +77,6 @@ class JobHandler{
             randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
 
             _User.economy.cash += randomCashAmount;
-            _User.jobs.slut.times_used_success += 1;
-            _User.jobs.slut.cash_earned += randomCashAmount;
-
         }
 
         embedded.setDescription(randomReply);
@@ -110,8 +101,6 @@ class JobHandler{
             randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
 
             _User.economy.cash -= randomCashAmount;
-            _User.jobs.crime.times_used_failed += 1;
-            _User.jobs.crime.cash_lost += randomCashAmount;
 
         }
         else
@@ -122,8 +111,6 @@ class JobHandler{
             randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
 
             _User.economy.cash += randomCashAmount;
-            _User.jobs.crime.times_used_success += 1;
-            _User.jobs.crime.cash_earned += randomCashAmount;
         }
 
         embedded.setDescription(randomReply);
