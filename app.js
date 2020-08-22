@@ -14,10 +14,11 @@ client.commands = new Discord.Collection();
 
 const LootboxHandler = require('./handlers/LootboxHandler.js');
 var _LootboxHandler = new LootboxHandler();
+_LootboxHandler.loadJsonFiles();
 
-const ItemHandler = require('./handlers/ItemHandler.js');
-var _ItemHandler = new ItemHandler();
-_ItemHandler.loadJsonFiles();
+const StoreHandler = require('./handlers/StoreHandler.js');
+var _StoreHandler = new StoreHandler();
+_StoreHandler.loadJsonFiles();
 
 const JobHandler = require('./handlers/JobHandler.js');
 var _JobHandler = new JobHandler();
@@ -143,7 +144,7 @@ client.on('message', message => {
             try {
                 if( commandName == "store" || commandName == "buy" )
                 {
-                    command.execute(client, message, args, _User, _ItemHandler);
+                    command.execute(client, message, args, _User, _StoreHandler);
                 }
                 else if( commandName == "blackjack" || commandName == "bj")
                 {

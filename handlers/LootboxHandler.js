@@ -4,6 +4,17 @@ class LootboxHandler {
 
     constructor(){
         this.dropChance = 0.05;
+        this.jsonLootboxItems;
+    }
+
+    loadJsonFiles(){
+        console.log('[LOOTBOX HANDLER] Load items json files.');
+        var me = this;
+
+        fs.readFile('./json/Items_Lootbox.json', (err, data) => {
+            if (err) throw err;
+            me.jsonLootboxItems = JSON.parse(data);
+        });
     }
 
     checkForLootboxDrop(){

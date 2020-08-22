@@ -1,38 +1,35 @@
 const Discord = require("discord.js");
 var fs = require('fs');
 
-class ItemHandler {
+//change this to store handler
+class StoreHandler {
 
     constructor(){
-        this.jsonItems;
+        this.jsonStoreItems;
     }
 
     loadJsonFiles(){
-        console.log('[ITEM HANDLER] Load items json files.');
+        console.log('[STORE HANDLER] Load items json files.');
         var me = this;
 
-        fs.readFile('./json/Items.json', (err, data) => {
+        fs.readFile('./json/Items_Store.json', (err, data) => {
             if (err) throw err;
-            me.jsonItems = JSON.parse(data);
+            me.jsonStoreItems = JSON.parse(data);
         });
     }
 
     displayAllStoreItems(message){
-        console.log('[ITEM HANDLER] Display all store items');
+        console.log('[STORE HANDLER] Display all store items');
         var me = this;
         var reply = "";
-        me.jsonItems.store.map(function (item,idx) {
+        me.jsonStoreItems.map(function (item,idx) {
             reply += `${(idx+1)}. **${item.display}** ($${item.price}): *${item.description}*\n`;
         });
         return reply;
     }
 
-    displayAllLootboxItems(){
-
-    }
-
     checkIfIDExists(idx){
-        console.log('[ITEM HANDLER] Check if item exists.');
+        console.log('[STORE HANDLER] Check if item exists.');
         var me = this;
         var item = me.jsonItems.store[idx];
         
@@ -47,7 +44,7 @@ class ItemHandler {
     }
 
     buyItem(idx, _User){
-        console.log('[ITEM HANDLER] Buying item.');
+        console.log('[STORE HANDLER] Buying item.');
         var me = this;
         var item = me.jsonItems.store[idx];
         
@@ -63,4 +60,4 @@ class ItemHandler {
     }
 
 }
-module.exports = ItemHandler;
+module.exports = StoreHandler;

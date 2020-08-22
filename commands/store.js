@@ -7,13 +7,13 @@ module.exports = {
     description: 'View whats in-store!',
     args: false,
     usage: '',
-    execute(client, message, args, _User, _ItemHandler){
+    execute(client, message, args, _User, _StoreHandler){
 
         var embedded = new Discord.MessageEmbed();
         embedded.setColor('#03b6fc')
             .setAuthor(message.member.user.tag, message.member.user.avatarURL())
             .setDescription("To buy an item type `!buy <list_id_of_item>`.\n *example:* `!buy 1` ")
-            .addField("Store Items",_ItemHandler.displayAllStoreItems(),true);
+            .addField("Store Items",_StoreHandler.displayAllStoreItems(),true);
 
         
         return message.channel.send(embedded);

@@ -5,7 +5,7 @@ module.exports = {
     description: 'Buy an item from the store.',
     args: true,
     usage: '<store_item_id>',
-    execute(client, message, args, _User, _ItemHandler){
+    execute(client, message, args, _User, _StoreHandler){
 
         var embedded = new Discord.MessageEmbed();
             embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL());
@@ -24,7 +24,7 @@ module.exports = {
             id--;
         }
 
-        if( !_ItemHandler.checkIfIDExists(id) )
+        if( !_StoreHandler.checkIfIDExists(id) )
         {
             embedded.setColor('#ff4f4f')
                 .setDescription('That ID doesn\'t ID exist in store list');
@@ -42,7 +42,7 @@ module.exports = {
             }
             else
             {
-                if(_ItemHandler.jsonItems.store[id].price > _User.economy.cash)
+                if(_StoreHandler.jsonStoreItems[id].price > _User.economy.cash)
                 {
                     embedded.setColor('#ff4f4f')
                         .setDescription('You can\'t afford that item.');
@@ -51,7 +51,7 @@ module.exports = {
                 }
                 else
                 {
-                    _ItemHandler.buyItem(id, _User);
+                    _StoreHandler.buyItem(id, _User);
     
                     embedded.setColor('#78de87')
                         .setDescription('Purchase successful');
