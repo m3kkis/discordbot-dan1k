@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+var fs = require('fs');
 
 class LootboxHandler {
 

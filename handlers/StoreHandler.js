@@ -18,7 +18,7 @@ class StoreHandler {
         });
     }
 
-    displayAllStoreItems(message){
+    displayAllStoreItems(){
         console.log('[STORE HANDLER] Display all store items');
         var me = this;
         var reply = "";
@@ -31,7 +31,7 @@ class StoreHandler {
     checkIfIDExists(idx){
         console.log('[STORE HANDLER] Check if item exists.');
         var me = this;
-        var item = me.jsonItems.store[idx];
+        var item = me.jsonStoreItems[idx];
         
         if(item != undefined)
         {
@@ -46,7 +46,7 @@ class StoreHandler {
     buyItem(idx, _User){
         console.log('[STORE HANDLER] Buying item.');
         var me = this;
-        var item = me.jsonItems.store[idx];
+        var item = me.jsonStoreItems[idx];
         
         _User.inventory.push({
             "name":item.name,
