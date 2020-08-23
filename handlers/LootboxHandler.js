@@ -54,5 +54,11 @@ class LootboxHandler {
         return embedded;
     }
 
+    getAllLootboxItems(){
+        console.log('[LOOTBOX HANDLER] Getting all lootbox items.');
+        var me = this;
+        return me.jsonLootboxItems;
+    }
+
 }
 module.exports = LootboxHandler;

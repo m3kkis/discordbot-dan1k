@@ -7,7 +7,7 @@ module.exports = {
     description: 'Open your lootbox using a key or view item drops chances from lootbox',
     args: true,
     usage: '<open|itemlist>',
-    aliases: ['lbx'],
+    aliases: ['loot'],
     execute(client, message, args, _User, _LootboxHandler){
 
         var embedded = new Discord.MessageEmbed();
@@ -20,10 +20,18 @@ module.exports = {
             embedded.setDescription("This is currently unavailable, but your lootboxes and keys that you got will be saved for now.");
             return message.channel.send(embedded);
         }
-        if(args[0].toLowerCase() == 'itemlist')
+        if(args[0].toLowerCase() == 'items')
         {
             console.log('[LOOTBOX] Show all items available in lootbox.');
-            embedded.setDescription("This is currently unavailable, but your lootboxes and keys that you got will be saved for now.");
+            var allItems = _LootboxHandler.getAllLootboxItems();
+
+            var reply = "";
+            allItems.map((item,idx)=>{
+                reply += `${(idx+1)}. **${item.display}** - *${item.description}* \`${item.chance * 100}%\`\n`;
+            });
+
+            embedded.setDescription(reply);
+
             return message.channel.send(embedded);
         }
        

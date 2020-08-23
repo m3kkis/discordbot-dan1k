@@ -1,7 +1,7 @@
 [
     {
         "name": "instant_cash_common",
-        "display": "Cash Reward $2000 [COMMON]",
+        "display": "[COMMON] Cash Reward",
         "description": "$2000 added to your cash.",
         "chance":0.6,
         "value": 2000,
@@ -9,7 +9,7 @@
     },
     {
         "name": "instant_cash_uncommon",
-        "display": "Cash Reward $4000 [UNCOMMON]",
+        "display": "[UNCOMMON] Cash Reward",
         "description": "$4000 added to your cash.",
         "chance":0.3,
         "value": 4000,
@@ -17,7 +17,7 @@
     },
     {
         "name": "card_debt_cleaner",
-        "display": "Card Debt Cleaner [UNCOMMON]",
+        "display": "[UNCOMMON] Card Debt Cleaner",
         "description": "Removes your all your debts.",
         "chance":0.3,
         "value": 4000,
@@ -25,7 +25,7 @@
     },
     {
         "name": "instant_cash_rare",
-        "display": "Cash Reward [RARE]",
+        "display": "[RARE] Cash Reward",
         "description": "$6000 added to your cash.",
         "chance":0.15,
         "value": 6000,
@@ -33,7 +33,7 @@
     },
     {
         "name": "card_free_slot",
-        "display": "Inventory Upgrade [RARE]",
+        "display": "[RARE] Inventory Upgrade",
         "description": "Add 1 free inventory slot.",
         "chance":0.15,
         "value": 6000,
@@ -41,7 +41,7 @@
     },
     {
         "name": "instant_cash_epic",
-        "display": "Cash Reward [EPIC]",
+        "display": "[EPIC] Cash Reward",
         "description": "$8000 added to your cash.",
         "chance":0.05,
         "value": 8000,
@@ -49,7 +49,7 @@
     },
     {
         "name": "instant_cash_legendary",
-        "display": "Cash Reward [LEGENDARY]",
+        "display": "[LEGENDARY] Cash Reward",
         "description": "$16000 added to your cash.",
         "chance":0.01,
         "value": 16000,
@@ -57,7 +57,7 @@
     },
     {
         "name": "card_doublebank",
-        "display": "Card Double Cash [LEGENDARY]",
+        "display": "[LEGENDARY] Card Double Cash",
         "description": "Double your cash. (Not bank)",
         "chance":0.01,
         "value": 16000,
