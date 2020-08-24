@@ -13,7 +13,7 @@ module.exports = {
 
         if(args[0].toLowerCase() == "all")
         {
-            if(_User.economy.cash == 0)
+            if(_User.economy.cash <= 0)
             {
                 console.log("[DEPOSIT] 0 in cash.");
                 embedded.setColor('#ff4f4f')

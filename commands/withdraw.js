@@ -13,7 +13,7 @@ module.exports = {
 
         if(args[0].toLowerCase() == "all")
         {
-            if(_User.economy.bank == 0)
+            if(_User.economy.bank <= 0)
             {
                 console.log("[WITHDRAW] 0 in the bank.");
                 embedded.setColor('#ff4f4f')
