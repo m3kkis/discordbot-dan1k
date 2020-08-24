@@ -50,6 +50,7 @@ module.exports = {
 
         if(slotOne === slotTwo && slotOne === slotThree)
         {
+            embedded.setColor('#78de87');
             var winnings;
 
             if(slotOne === ':eggplant:')
@@ -74,6 +75,7 @@ module.exports = {
         }
         else
         {
+            embedded.setColor('#ff4f4f');
             _User.economy.cash -= amount;
             result = 'Try again next time!';
         }
