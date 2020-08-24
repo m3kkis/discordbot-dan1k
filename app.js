@@ -150,7 +150,7 @@ client.on('message', message => {
                 {
                     command.execute(client, message, args, _User, _Bot, _DeckHandler);
                 }
-                else if( commandName == "lootbox" || commandName == "loot")
+                else if( commandName == "lootbox" || commandName == "loot" || commandName == "slot-machine" || commandName == "sm")
                 {
                     command.execute(client, message, args, _User, _LootboxHandler);
                 }

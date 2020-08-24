@@ -46,7 +46,7 @@ pm2 start app.js
 ```
 
 ## Commands (so far)
-* `!blackjack <amount>` play blackjack with the bot.
+* `!blackjack <amount>` play blackjack! $100 minimum.
 * `!buy <list_item_number>` buy an item from the store.
 * `!clear <amount>` clear the amount specified of messages from chat.
 * `!crime` work in crime, get highest pay but more chances to be caught.
@@ -58,6 +58,7 @@ pm2 start app.js
 * `!money` display your current cash in pocket, bank and your networth.
 * `!rob` rob a member of your server.
 * `!sell <item_inventory_number_list>` sell an item from your inventory.
+* `!slot-machine <amount>` play the slot machine! $50 minimum.
 * `!slut` medium amount of pay, also chances of being caught.
 * `!store` view whats in-store.
 * `!use <item_inventory_number_list>` Use an item from your inventory.

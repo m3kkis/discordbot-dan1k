@@ -1,0 +1,93 @@
+const Discord = require("discord.js");
+
+module.exports = {
+    name: 'slot-machine',
+    description: 'Play the slot machine!',
+    args: true,
+    usage: '<amount>',
+    aliases: ['sm'],
+    execute(client, message, args, _User, _LootboxHandler){
+
+        var embedded = new Discord.MessageEmbed();
+            embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL());
+
+        var amount = parseInt(args[0]);
+
+        if( isNaN(amount) ) {
+            
+            embedded.setColor('#ff4f4f')
+                .setDescription('That doesn\'t seem to be a valid NUMBER.');
+
+            return message.channel.send(embedded);
+        }
+
+        if( amount > _User.economy.cash ) {
+            
+            embedded.setColor('#ff4f4f')
+                .setDescription('You do not have enough money.');
+
+            return message.channel.send(embedded);
+        }
+
+        if( amount < 50 ) {
+            
+            embedded.setColor('#ff4f4f')
+                .setDescription('Minimum $50 is required to play slot machine.');
+
+            return message.channel.send(embedded);
+        }
+
+        var slotItems = [':gem:',':eggplant:',':moneybag:'];
+
+        var slotOne = slotItems[Math.floor(Math.random() * slotItems.length)];
+        var slotTwo = slotItems[Math.floor(Math.random() * slotItems.length)];
+        var slotThree = slotItems[Math.floor(Math.random() * slotItems.length)];
+
+        var result;
+        var lootBox = false;
+
+        if(slotOne === slotTwo && slotOne === slotThree)
+        {
+            var winnings;
+
+            if(slotOne === ':eggplant:')
+            {   
+                winnings = (amount*3);
+                _User.economy.cash += winnings;
+            }
+            else if(slotOne === ':moneybag:')
+            {
+                winnings = (amount*6);
+                _User.economy.cash += winnings
+            }
+            else if(slotOne === ':gem:')
+            {
+                winnings = (amount*6);
+                _User.economy.cash += winnings
+                lootBox = true;
+            }
+
+            result = `You **WIN** $${winnings}!`;
+
+        }
+        else
+        {
+            _User.economy.cash -= amount;
+            result = 'Try again next time!';
+        }
+
+        embedded.setDescription('*Get three of the same and triple your amount. If you get 3x :gem:, you also get a LOOTBOX!*')
+            .addField('Your roll',`+----------------+\n+ ${slotOne} | ${slotTwo} | ${slotThree} +\n+----------------+`, true)
+            .addField('Result',`${result}`, true)
+            .addField('Combo Rewards',':eggplant: :eggplant: :eggplant: = x3\n:moneybag: :moneybag: :moneybag: = x6\n:gem: :gem: :gem: = x6 + *LOOTBOX*\n', true)
+
+        message.channel.send(embedded);
+
+        if(lootBox == true)
+        {
+            message.channel.send(_LootboxHandler.giveLootbox(message, _User));
+        }
+
+        _User.save();
+    }
+} 
