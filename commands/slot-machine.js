@@ -85,7 +85,21 @@ module.exports = {
 
         if(lootBox == true)
         {
-            message.channel.send(_LootboxHandler.giveLootbox(message, _User));
+
+            if(_User.inventory.length >= _User.inventorySize)
+            {
+                var embedded = new Discord.MessageEmbed();
+                embedded.setColor('#ffd900')
+                    .setAuthor(message.member.user.tag, message.member.user.avatarURL())
+                    .setDescription("Your inventory is full, you will receive $500 instead of a lootbox!");
+                message.channel.send(embedded);
+                
+                _User.economy.cash += 500;
+            }
+            else
+            {
+                message.channel.send(_LootboxHandler.giveLootbox(message, _User));
+            }
         }
 
         _User.save();

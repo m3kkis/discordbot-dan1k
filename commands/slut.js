@@ -29,7 +29,9 @@ module.exports = {
                     embedded.setColor('#ffd900')
                         .setAuthor(message.member.user.tag, message.member.user.avatarURL())
                         .setDescription("Your inventory is full, you will receive $500 instead of a lootbox!");
-                    return message.channel.send(embedded);
+                    message.channel.send(embedded);
+                    
+                    _User.economy.cash += 500;
                 }
                 else
                 {
