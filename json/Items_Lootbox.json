@@ -65,7 +65,7 @@
             "type":"instant"
         },
         {
-            "name": "card_doublebank",
+            "name": "card_double_cash",
             "display": "[LEGENDARY] Card Double Cash",
             "description": "Double your cash. (Not bank)",
             "chance":0.01,
