@@ -8,6 +8,8 @@ module.exports = {
     aliases: ['sm'],
     execute(client, message, args, _User, _LootboxHandler){
 
+        console.log("[SLOT MACHINE] Playing slot-machine.");
+
         var embedded = new Discord.MessageEmbed();
             embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL());
 
