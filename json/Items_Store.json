@@ -8,7 +8,7 @@
     {
         "name": "upgrade_inventory",
         "display": "+1 Inventory Slot",
-        "description": "Increase inventory slot by 1.",
-        "value": 5000
+        "description": "Increase inventory slot by 1.(MAX 16 TOTAL SLOTS)",
+        "value": 10000
     }
 ]

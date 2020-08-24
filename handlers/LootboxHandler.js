@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 var fs = require('fs');
-const { REPL_MODE_SLOPPY } = require("repl");
 
 class LootboxHandler {
 
@@ -29,7 +28,7 @@ class LootboxHandler {
         var me = this;
         var chance = Math.random();
 
-        if(chance < me.dropChance) // change back to >
+        if(chance > me.dropChance)
         {
             console.log('[LOOTBOX HANDLER] No lootbox drop.');
             return false;

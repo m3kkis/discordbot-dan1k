@@ -39,7 +39,7 @@
         {
             "name": "card_free_slot",
             "display": "[RARE] Card Inventory Upgrade",
-            "description": "Add 1 free inventory slot.",
+            "description": "Add 1 free inventory slot. (MAX 16 TOTAL SLOTS)",
             "chance":0.15,
             "value": 6000,
             "type":"card"

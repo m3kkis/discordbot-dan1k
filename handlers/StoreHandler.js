@@ -47,16 +47,36 @@ class StoreHandler {
         console.log('[STORE HANDLER] Buying item.');
         var me = this;
         var item = me.jsonStoreItems[idx];
-        
-        _User.inventory.push({
-            "name":item.name,
-            "display":item.display,
-            "description":item.description,
-            "value":item.value,
-            "source":"store"
-        });
-        
-        _User.economy.cash -= item.value;
+        var reply = "";
+
+        if(item.name == "upgrade_inventory")
+        {
+            if(_User.inventorySize < 16)
+            {
+                _User.inventorySize += 1;
+                _User.economy.cash -= item.value;
+                return reply = "Successfully upgraded inventory slot";
+            }
+            else
+            {
+                return reply = "Cannot upgrade inventory. Max 16 slots."; 
+            }
+        }
+        else
+        {
+            _User.inventory.push({
+                "name":item.name,
+                "display":item.display,
+                "description":item.description,
+                "value":item.value,
+                "source":"store"
+            });
+
+            _User.economy.cash -= item.value;
+
+            return reply = `Succesfully purchased **${item.display}**!`; 
+
+        }
 
     }
 

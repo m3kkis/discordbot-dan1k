@@ -51,10 +51,10 @@ module.exports = {
                 }
                 else
                 {
-                    _StoreHandler.buyItem(id, _User);
+                    var reply = _StoreHandler.buyItem(id, _User);
     
                     embedded.setColor('#78de87')
-                        .setDescription('Purchase successful');
+                        .setDescription(reply);
         
                     _User.save();
         

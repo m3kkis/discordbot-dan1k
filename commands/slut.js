@@ -7,37 +7,6 @@ module.exports = {
     usage: '',
     execute(client, message, args, _User, _JobHandler, _LootboxHandler){
 
-        var reply = _JobHandler.doSlut(message, _User);
-            var hasDrop = _LootboxHandler.checkForLootboxDrop();
-
-            if(hasDrop){
-                message.channel.send(reply);
-
-                if(_User.inventory.length >= _User.inventorySize)
-                {
-
-                    var embedded = new Discord.MessageEmbed();
-                    embedded.setColor('#ffd900')
-                        .setAuthor(message.member.user.tag, message.member.user.avatarURL())
-                        .setDescription("Your inventory is full, you will receive $500 instead of a lootbox!");
-                    return message.channel.send(embedded);
-                }
-                else
-                {
-
-                    var replyLootbox = _LootboxHandler.giveLootbox(message, _User);
-                    message.channel.send(replyLootbox);
-                }
-            }
-            else
-            {
-                message.channel.send(reply);
-            }
-
-            _User.save();
-
-
-        /*
         var d = new Date();
         var n = d.getTime();
 
@@ -90,6 +59,6 @@ module.exports = {
             var sec = ((timestamp % 60000) / 1000).toFixed(0);
             return min + ":" + (sec < 10 ? '0' : '') + sec;
         }
-        */
+        
     }
 }
