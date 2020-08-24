@@ -18,7 +18,7 @@ module.exports = {
             var reply = "";
             var usedInv = 0;
             _User.inventory.map((item, idx) => {
-                reply += `${idx+1}. **${item.display}** - *${item.description}*\n`;
+                reply += `${idx+1}. **${item.display}** - *${item.description}*\n \`Sell value: $${(item.value/2)}\`\n`;
                 usedInv++;
             });
             

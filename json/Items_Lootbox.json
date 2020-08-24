@@ -1,66 +1,76 @@
-[
-    {
-        "name": "instant_cash_common",
-        "display": "[COMMON] Cash Reward",
-        "description": "$2000 added to your cash.",
-        "chance":0.6,
-        "value": 2000,
-        "type":"instant"
-    },
-    {
-        "name": "instant_cash_uncommon",
-        "display": "[UNCOMMON] Cash Reward",
-        "description": "$4000 added to your cash.",
-        "chance":0.3,
-        "value": 4000,
-        "type":"instant"
-    },
-    {
-        "name": "card_debt_cleaner",
-        "display": "[UNCOMMON] Card Debt Cleaner",
-        "description": "Removes your all your debts.",
-        "chance":0.3,
-        "value": 4000,
-        "type":"card"
-    },
-    {
-        "name": "instant_cash_rare",
-        "display": "[RARE] Cash Reward",
-        "description": "$6000 added to your cash.",
-        "chance":0.15,
-        "value": 6000,
-        "type":"instant"
-    },
-    {
-        "name": "card_free_slot",
-        "display": "[RARE] Inventory Upgrade",
-        "description": "Add 1 free inventory slot.",
-        "chance":0.15,
-        "value": 6000,
-        "type":"card"
-    },
-    {
-        "name": "instant_cash_epic",
-        "display": "[EPIC] Cash Reward",
-        "description": "$8000 added to your cash.",
-        "chance":0.05,
-        "value": 8000,
-        "type":"instant"
-    },
-    {
-        "name": "instant_cash_legendary",
-        "display": "[LEGENDARY] Cash Reward",
-        "description": "$16000 added to your cash.",
-        "chance":0.01,
-        "value": 16000,
-        "type":"instant"
-    },
-    {
-        "name": "card_doublebank",
-        "display": "[LEGENDARY] Card Double Cash",
-        "description": "Double your cash. (Not bank)",
-        "chance":0.01,
-        "value": 16000,
-        "type":"card"
-    }
-]
+{
+    "common":[
+        {
+            "name": "instant_cash_common",
+            "display": "[COMMON] Cash Reward",
+            "description": "$2000 added to your cash.",
+            "chance":0.6,
+            "value": 2000,
+            "type":"instant"
+        }
+    ],
+    "uncommon":[
+        {
+            "name": "instant_cash_uncommon",
+            "display": "[UNCOMMON] Cash Reward",
+            "description": "$4000 added to your cash.",
+            "chance":0.3,
+            "value": 4000,
+            "type":"instant"
+        },
+        {
+            "name": "card_debt_cleaner",
+            "display": "[UNCOMMON] Card Debt Cleaner",
+            "description": "Removes all of your debts.",
+            "chance":0.3,
+            "value": 4000,
+            "type":"card"
+        }
+    ],
+    "rare":[
+        {
+            "name": "instant_cash_rare",
+            "display": "[RARE] Cash Reward",
+            "description": "$6000 added to your cash.",
+            "chance":0.15,
+            "value": 6000,
+            "type":"instant"
+        },
+        {
+            "name": "card_free_slot",
+            "display": "[RARE] Card Inventory Upgrade",
+            "description": "Add 1 free inventory slot.",
+            "chance":0.15,
+            "value": 6000,
+            "type":"card"
+        }
+    ],
+    "epic":[
+        {
+            "name": "instant_cash_epic",
+            "display": "[EPIC] Cash Reward",
+            "description": "$8000 added to your cash.",
+            "chance":0.05,
+            "value": 8000,
+            "type":"instant"
+        }
+    ],
+    "legendary":[
+        {
+            "name": "instant_cash_legendary",
+            "display": "[LEGENDARY] Cash Reward",
+            "description": "$16000 added to your cash.",
+            "chance":0.01,
+            "value": 16000,
+            "type":"instant"
+        },
+        {
+            "name": "card_doublebank",
+            "display": "[LEGENDARY] Card Double Cash",
+            "description": "Double your cash. (Not bank)",
+            "chance":0.01,
+            "value": 16000,
+            "type":"card"
+        }
+    ]
+}

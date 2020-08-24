@@ -4,7 +4,7 @@ module.exports = {
     name: 'buy',
     description: 'Buy an item from the store.',
     args: true,
-    usage: '<store_item_id>',
+    usage: '<store_item_number>',
     execute(client, message, args, _User, _StoreHandler){
 
         var embedded = new Discord.MessageEmbed();
@@ -15,7 +15,7 @@ module.exports = {
         if( isNaN(id) ) {
             
             embedded.setColor('#ff4f4f')
-                .setDescription('That doesn\'t seem to be a valid ID NUMBER.');
+                .setDescription('That doesn\'t seem to be a valid NUMBER.');
 
             return message.channel.send(embedded);
         }
@@ -27,7 +27,7 @@ module.exports = {
         if( !_StoreHandler.checkIfIDExists(id) )
         {
             embedded.setColor('#ff4f4f')
-                .setDescription('That ID doesn\'t ID exist in store list');
+                .setDescription('That number doesn\'t exist in store list');
 
             return message.channel.send(embedded);
         }
@@ -42,7 +42,7 @@ module.exports = {
             }
             else
             {
-                if(_StoreHandler.jsonStoreItems[id].price > _User.economy.cash)
+                if(_StoreHandler.jsonStoreItems[id].value > _User.economy.cash)
                 {
                     embedded.setColor('#ff4f4f')
                         .setDescription('You can\'t afford that item.');

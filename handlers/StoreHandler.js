@@ -23,7 +23,7 @@ class StoreHandler {
         var me = this;
         var reply = "";
         me.jsonStoreItems.map(function (item,idx) {
-            reply += `${(idx+1)}. **${item.display}** ($${item.price}): *${item.description}*\n`;
+            reply += `${(idx+1)}. **${item.display}** ($${item.value}): *${item.description}*\n`;
         });
         return reply;
     }
@@ -52,10 +52,11 @@ class StoreHandler {
             "name":item.name,
             "display":item.display,
             "description":item.description,
+            "value":item.value,
             "source":"store"
         });
         
-        _User.economy.cash -= item.price;
+        _User.economy.cash -= item.value;
 
     }
 

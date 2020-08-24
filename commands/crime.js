@@ -21,8 +21,22 @@ module.exports = {
 
             if(hasDrop){
                 message.channel.send(reply);
-                var replyLootbox = _LootboxHandler.giveLootbox(message, _User);
-                message.channel.send(replyLootbox);
+
+                if(_User.inventory.length >= _User.inventorySize)
+                {
+
+                    var embedded = new Discord.MessageEmbed();
+                    embedded.setColor('#ffd900')
+                        .setAuthor(message.member.user.tag, message.member.user.avatarURL())
+                        .setDescription("Your inventory is full, you will receive $500 instead of a lootbox!");
+                    return message.channel.send(embedded);
+                }
+                else
+                {
+
+                    var replyLootbox = _LootboxHandler.giveLootbox(message, _User);
+                    message.channel.send(replyLootbox);
+                }
             }
             else
             {

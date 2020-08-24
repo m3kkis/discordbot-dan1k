@@ -3,12 +3,12 @@
         "name": "key_lootbox",
         "display": "Lootbox Key",
         "description": "The key that opens lootboxes.",
-        "price": 1000
+        "value": 1000
     },
     {
         "name": "upgrade_inventory",
         "display": "+1 Inventory Slot",
         "description": "Increase inventory slot by 1.",
-        "price": 5000
+        "value": 5000
     }
 ]

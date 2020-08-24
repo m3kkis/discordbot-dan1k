@@ -1,11 +1,17 @@
 const Discord = require("discord.js");
 var fs = require('fs');
+const { REPL_MODE_SLOPPY } = require("repl");
 
 class LootboxHandler {
 
     constructor(){
         this.dropChance = 0.05;
         this.jsonLootboxItems;
+        this.chanceCommon = 0.6;
+        this.chanceUncommon = 0.3;
+        this.chanceRare = 0.15;
+        this.chanceEpic = 0.05;
+        this.chanceLegendary = 0.01;
     }
 
     loadJsonFiles(){
@@ -23,7 +29,7 @@ class LootboxHandler {
         var me = this;
         var chance = Math.random();
 
-        if(chance > me.dropChance)
+        if(chance < me.dropChance) // change back to >
         {
             console.log('[LOOTBOX HANDLER] No lootbox drop.');
             return false;
@@ -43,14 +49,14 @@ class LootboxHandler {
             .setAuthor(message.member.user.tag, message.member.user.avatarURL())
             .setDescription("*...You found a **LOOTBOX** !*");
 
-        if(_User.lootbox == undefined)
-        {
-            _User.lootbox = 1;
-        }
-        else
-        {
-            _User.lootbox += 1;
-        }
+        _User.inventory.push({
+            "name":"lootbox",
+            "display":"Lootbox",
+            "description":"Open with a key and get surprise gift!",
+            "value":1000,
+            "source":"drop"
+        });
+
         return embedded;
     }
 
@@ -58,6 +64,66 @@ class LootboxHandler {
         console.log('[LOOTBOX HANDLER] Getting all lootbox items.');
         var me = this;
         return me.jsonLootboxItems;
+    }
+
+    openLootbox(_User){
+        console.log('[LOOTBOX HANDLER] Opening lootbox.');
+        var me = this;
+        var chance = Math.random();
+        var randomRaritySelected;
+        var reply;
+
+        if(chance < me.chanceLegendary)
+        {
+            randomRaritySelected = me.jsonLootboxItems.legendary;
+        }
+        else if(chance < me.chanceEpic)
+        {
+            randomRaritySelected = me.jsonLootboxItems.epic;
+        }
+        else if(chance < me.chanceRare)
+        {
+            randomRaritySelected = me.jsonLootboxItems.rare;
+        }
+        else if(chance < me.chanceUncommon)
+        {
+            randomRaritySelected = me.jsonLootboxItems.uncommon;
+        }
+        else
+        {
+            randomRaritySelected = me.jsonLootboxItems.common;
+        }
+        
+        var randomItem = randomRaritySelected[Math.floor(Math.random() * randomRaritySelected.length)];
+
+        var idxKey = _User.inventory.findIndex(item => item.name == "key_lootbox");
+        _User.inventory.splice(idxKey,1);    
+
+        var idxLootbox = _User.inventory.findIndex(item => item.name == "lootbox");
+        _User.inventory.splice(idxLootbox,1);    
+
+        if(randomItem.type == "instant")
+        {
+            _User.economy.cash += randomItem.value;
+            reply = `You got a **${randomItem.display}** - ${randomItem.description}\n*It will by applied to your account instantly. Enjoy!*`;
+            return reply;
+        }
+        else if(randomItem.type == "card")
+        {
+            _User.inventory.push({
+                "name":randomItem.name,
+                "display":randomItem.display,
+                "description":randomItem.description,
+                "value":randomItem.value,
+                "type":randomItem.type,
+                "source":"lootbox"
+            });
+
+            reply = `You got a **${randomItem.display}** - ${randomItem.description}\n*It will be added to your inventory, you can use, sell or trade it later. Enjoy!*`;
+            return reply;
+        }
+
+
     }
 
 }

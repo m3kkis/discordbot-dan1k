@@ -1,7 +1,5 @@
 const Discord = require("discord.js");
 
-//dont forget what if the user doesnt have lbxKey field.
-
 module.exports = {
     name: 'lootbox',
     description: 'Open your lootbox using a key or view item drops chances from lootbox',
@@ -17,8 +15,36 @@ module.exports = {
         if(args[0].toLowerCase() == 'open')
         {
             console.log('[LOOTBOX] Open a lootbox request.');
-            embedded.setDescription("This is currently unavailable, but your lootboxes and keys that you got will be saved for now.");
-            return message.channel.send(embedded);
+
+            var lootbox = _User.inventory.filter(item => item.name === "lootbox");
+
+            if( !lootbox.length > 0)
+            {
+                embedded.setColor('#ff4f4f')
+                    .setDescription("You don\'t have any lootboxes.");
+                return message.channel.send(embedded);
+            }
+            else
+            {
+                var keys = _User.inventory.filter(item => item.name === "key_lootbox");
+                
+                if( !keys.length > 0)
+                {
+                    embedded.setColor('#ff4f4f')
+                    .setDescription("You don\'t have any keys to open a lootbox.");
+                    return message.channel.send(embedded);
+                }
+                else
+                {
+                    var reply = _LootboxHandler.openLootbox(_User);
+                    embedded.setColor('#ae00ff')
+                        .setDescription(reply);
+                    _User.save();
+                    return message.channel.send(embedded);
+                }
+                
+                
+            }
         }
         if(args[0].toLowerCase() == 'items')
         {
@@ -26,11 +52,40 @@ module.exports = {
             var allItems = _LootboxHandler.getAllLootboxItems();
 
             var reply = "";
-            allItems.map((item,idx)=>{
-                reply += `${(idx+1)}. **${item.display}** - *${item.description}* \`${item.chance * 100}%\`\n`;
+
+            allItems.common.map((item)=>{
+                reply += `\`${item.display}\` - *${item.description}*\n`;
             });
 
-            embedded.setDescription(reply);
+            embedded.addField("Common",reply,false);
+            reply = "";
+
+            allItems.uncommon.map((item)=>{
+                reply += `\`${item.display}\` - *${item.description}*\n`;
+            });
+
+            embedded.addField("Uncommon",reply,false);
+            reply = "";
+
+            allItems.rare.map((item)=>{
+                reply += `\`${item.display}\` - *${item.description}*\n`;
+            });
+
+            embedded.addField("Rare",reply,false);
+            reply = "";
+
+            allItems.epic.map((item)=>{
+                reply += `\`${item.display}\` - *${item.description}*\n`;
+            });
+
+            embedded.addField("Epic",reply,false);
+            reply = "";
+
+            allItems.legendary.map((item)=>{
+                reply += `\`${item.display}\` - *${item.description}*\n`;
+            });
+            embedded.addField("Legendary",reply,false);
+            reply = "";
 
             return message.channel.send(embedded);
         }
