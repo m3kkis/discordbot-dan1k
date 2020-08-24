@@ -47,18 +47,20 @@ pm2 start app.js
 
 ## Commands (so far)
 * `!blackjack <amount>` play blackjack with the bot.
-* `!buy <list_item_id>` buy an item from the store.
+* `!buy <list_item_number>` buy an item from the store.
 * `!clear <amount>` clear the amount specified of messages from chat.
 * `!crime` work in crime, get highest pay but more chances to be caught.
 * `!deposit <amount|all>` deposit an amount or all of your cash to your bank.
 * `!help` display all of the available commands.
 * `!inventory` display all items in your inventory.
 * `!leaderboard` display the leaderboard of your server, higher the "networth" the higher in ranks.
-* ~~`!lootbox <open|itemlist>` open a lootbox if you have the key or view all items available in lootbox.~~ [coming soon]
+* `!lootbox <open|itemlist>` open a lootbox if you have the key or view all items available in lootbox.
 * `!money` display your current cash in pocket, bank and your networth.
 * `!rob` rob a member of your server.
+* `!sell <item_inventory_number_list>` sell an item from your inventory.
 * `!slut` medium amount of pay, also chances of being caught.
 * `!store` view whats in-store.
+* `!use <item_inventory_number_list>` Use an item from your inventory.
 * ~~`!statistics <optional:dealer|raw>`  display your stats, dealer stats and can also view your stats in raw json format~~ [removed temporarily]
 * `!withdraw <amount|all>` withdraw cash from the bank.
 * `!work` lowest payout but the safest one, will never be caught
