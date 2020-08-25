@@ -186,6 +186,9 @@ module.exports = {
                 console.log("[BLACKJACK] Embed ID " + embedID);
             });
 
+            waitForReply();
+
+            /*
             message.channel.awaitMessages(m => m.author.id == message.author.id,{ max: 1, time: 60000 }).then(collected => {
                 if (collected.first().content.toLowerCase() == 'hit') {
                     hit(player);
@@ -198,6 +201,7 @@ module.exports = {
                 console.log("[BLACKJACK] Player no answer after 60 seconds, auto-stand");
                 stand();
             });
+            */
 
         }
 
@@ -268,6 +272,9 @@ module.exports = {
                         { name:"Dealer hand", value: dealer.display + "\n\nValue: " + (dealer.score - dealer.hand[ dealer.hand.length - 1 ].Weight ), inline: true },
                     );
 
+                    waitForReply();
+
+                    /*
                     message.channel.awaitMessages(m => m.author.id == message.author.id,{ max: 1, time: 60000 }).then(collected => {
                         if (collected.first().content.toLowerCase() == 'hit') {
                             hit(player);
@@ -280,7 +287,7 @@ module.exports = {
                         console.log("[BLACKJACK] Player no answer after 60 seconds, auto-stand");
                         stand();
                     });
-
+                    */
 
                 }
 
@@ -368,6 +375,25 @@ module.exports = {
             
             _User.save().then(()=>{
                 _Bot.save();
+            });
+        }
+
+        function waitForReply(){
+            message.channel.awaitMessages(m => m.author.id == message.author.id,{ max: 1, time: 60000 }).then(collected => {
+                if (collected.first().content.toLowerCase() == 'hit') {
+                    hit(player);
+                    ShowResult(player);
+                }
+                else if (collected.first().content.toLowerCase() == 'stand') {
+                    stand();
+                }
+                else
+                {
+                    waitForReply();
+                }
+            }).catch(() => {
+                console.log("[BLACKJACK] Player no answer after 60 seconds, auto-stand");
+                stand();
             });
         }
 
