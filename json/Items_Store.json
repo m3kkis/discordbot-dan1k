@@ -3,7 +3,7 @@
         "name": "key_lootbox",
         "display": "Lootbox Key",
         "description": "The key that opens lootboxes.",
-        "value": 5000
+        "value": 3000
     },
     {
         "name": "upgrade_inventory",
