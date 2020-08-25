@@ -84,7 +84,7 @@ To add more replies to jobs such as work, slut and crime you will need to modifi
         {"reply":"You [BLURRED WORD] yourself to an old person, you earn ##"},
     ],
     "crime":[
-        {"reply":"You stole a bicycle from a child and sold it for ##"},
+        {"reply":"You stole a bicycle from a teenager and sold it for ##"},
     ]
 }
 ```
