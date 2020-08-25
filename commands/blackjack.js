@@ -389,7 +389,8 @@ module.exports = {
                 }
                 else
                 {
-                    waitForReply();
+                    stand();
+                    //waitForReply();
                 }
             }).catch(() => {
                 console.log("[BLACKJACK] Player no answer after 60 seconds, auto-stand");
