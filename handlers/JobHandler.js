@@ -3,9 +3,9 @@ var fs = require('fs');
 
 class JobHandler{
     constructor(){
-        this.workMinMax = [50,150]; 
-        this.slutMinMax = [150,300]; 
-        this.crimeMinMax = [300,600]; 
+        this.workMinMax = [100,200]; 
+        this.slutMinMax = [200,400]; 
+        this.crimeMinMax = [600,800]; 
         this.workTimeout = 5;
         this.slutTimeout = 10;
         this.slutFailChance = 0.4;
