@@ -39,7 +39,7 @@ module.exports = {
             return message.channel.send(embedded);
         }
 
-        var slotItems = [':gem:',':eggplant:',':moneybag:'];
+        var slotItems = [':gem:',':eggplant:',':moneybag:', ':poop:'];
 
         var slotOne = slotItems[Math.floor(Math.random() * slotItems.length)];
         var slotTwo = slotItems[Math.floor(Math.random() * slotItems.length)];
@@ -69,6 +69,10 @@ module.exports = {
                 _User.economy.cash += winnings
                 lootBox = true;
             }
+            else if(slotOne === ':poop:')
+            {
+                winnings = "NOTHING";
+            }
 
             result = `You **WIN** $${winnings}!`;
 
@@ -83,7 +87,7 @@ module.exports = {
         embedded.setDescription('*Get three of the same and triple your amount. If you get 3x :gem:, you also get a LOOTBOX!*')
             .addField('Your roll',`+----------------+\n+ ${slotOne} | ${slotTwo} | ${slotThree} +\n+----------------+`, true)
             .addField('Result',`${result}`, true)
-            .addField('Combo Rewards',':eggplant: :eggplant: :eggplant: = x3\n:moneybag: :moneybag: :moneybag: = x6\n:gem: :gem: :gem: = x6 + *LOOTBOX*\n', true)
+            .addField('Combo Rewards',':poop: :poop: :poop: = NOTHING\n:eggplant: :eggplant: :eggplant: = x3\n:moneybag: :moneybag: :moneybag: = x6\n:gem: :gem: :gem: = x6 + *LOOTBOX*\n', true)
 
         message.channel.send(embedded);
 
