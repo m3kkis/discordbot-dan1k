@@ -60,7 +60,7 @@ class JobHandler{
         var chance = Math.random();
         var randomCashAmount = Math.floor(Math.random() * ( me.slutMinMax[1] - me.slutMinMax[0]) + me.slutMinMax[0]);
 
-        if(chance < me.slutFailChance)
+        if(chance < me.slutFailChance && (_User.economy.cash + _User.economy.bank) > 2000)
         {
             console.log('[JOB HANDLER] Do slut failed.');
             embedded.setColor('#ff4f4f')
@@ -93,7 +93,7 @@ class JobHandler{
         var chance = Math.random();
         var randomCashAmount = Math.floor(Math.random() * ( me.crimeMinMax[1] - me.crimeMinMax[0]) + me.crimeMinMax[0]);
 
-        if(chance < me.crimeFailChance)
+        if(chance < me.crimeFailChance && (_User.economy.cash + _User.economy.bank)  > 2000)
         {
             console.log('[JOB HANDLER] Do crime failed.');
             embedded.setColor('#ff4f4f')
