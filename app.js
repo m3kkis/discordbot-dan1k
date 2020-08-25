@@ -148,7 +148,10 @@ client.on('message', message => {
                 }
                 else if( commandName == "blackjack" || commandName == "bj")
                 {
-                    command.execute(client, message, args, _User, _Bot, _DeckHandler);
+                    if(_User.ingame == false)
+                    {
+                        command.execute(client, message, args, _User, _Bot, _DeckHandler);
+                    }
                 }
                 else if( commandName == "lootbox" || commandName == "loot" || commandName == "slot-machine" || commandName == "sm")
                 {

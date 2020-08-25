@@ -44,6 +44,7 @@ module.exports = {
         const emjHIDDEN = message.guild.emojis.cache.find(emoji => emoji.name === 'CARD_HIDDEN');
 
         var embedID;
+        _User.ingame = true;
 
         var player = {
             id : "player",
@@ -62,10 +63,13 @@ module.exports = {
             score : 0
         };
 
-        dealCards( [player, dealer] );
-        setHiddenCardDisplay();
-        countingScore( [player, dealer] );
-        startGame( [player, dealer] );
+        _User.save().then(()=>{
+            dealCards( [player, dealer] );
+            setHiddenCardDisplay();
+            countingScore( [player, dealer] );
+            startGame( [player, dealer] );
+        });
+
 
 
         function dealCards(participants){
@@ -358,6 +362,8 @@ module.exports = {
         function setStatistics(amount, result){
 
             console.log("[BLACKJACK] Saving result.");
+
+            _User.ingame = false;
             
             if(result == "win")
             {
@@ -389,8 +395,7 @@ module.exports = {
                 }
                 else
                 {
-                    stand();
-                    //waitForReply();
+                    waitForReply();
                 }
             }).catch(() => {
                 console.log("[BLACKJACK] Player no answer after 60 seconds, auto-stand");
