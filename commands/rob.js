@@ -48,7 +48,7 @@ module.exports = {
                 if(_Victim)
                 {
                     console.log("[ROB] Found victim ID.");
-                    var reply = _JobHandler.doRob(message.member.user.tag, message.member.user.avatarURL(), _User, _Victim);
+                    var reply = _JobHandler.doRob(message, _User, _Victim);
 
                     _User.save().then(()=>{
                         _Victim.save();
