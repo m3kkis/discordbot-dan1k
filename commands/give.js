@@ -3,7 +3,7 @@ const User = require('../models/User');
 
 module.exports = {
     name: 'give',
-    description: 'Give cash to someone.',
+    description: 'Give cash to another user.',
     args: true,
     usage: '<user> cash <amount>',
     execute(client, message, args, _User){

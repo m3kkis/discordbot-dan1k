@@ -51,6 +51,7 @@ pm2 start app.js
 * `!clear <amount>` clear the amount specified of messages from chat.
 * `!crime` work in crime, get highest pay but more chances to be caught.
 * `!deposit <amount|all>` deposit an amount or all of your cash to your bank.
+* `!give <user> cash <amount>` give cash to another user.
 * `!help` display all of the available commands.
 * `!inventory` display all items in your inventory.
 * `!leaderboard` display the leaderboard of your server, higher the "networth" the higher in ranks.
