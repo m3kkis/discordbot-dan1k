@@ -28,7 +28,7 @@ module.exports = {
         if(_User.inventory[id] == undefined)
         {
             embedded.setColor('#ff4f4f')
-            .setDescription('That number doesn\'t exist in your inventory list');
+                .setDescription('That number doesn\'t exist in your inventory list');
 
             return message.channel.send(embedded);
         }
