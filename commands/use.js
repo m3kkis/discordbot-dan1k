@@ -5,7 +5,7 @@ module.exports = {
     description: 'Use an item from your inventory.',
     args: true,
     usage: '<inventory_item_number>',
-    execute(client, message, args, _User){
+    execute(client, message, args, _User, _DeckHandler){
 
         var embedded = new Discord.MessageEmbed();
             embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL());
@@ -70,6 +70,27 @@ module.exports = {
                     _User.economy.cash = 0;
                     
                 }
+            }
+            else if(_User.inventory[id].name == "card_next_one")
+            {
+                embedded.setColor('#03b6fc')
+                    .setDescription(`The next card is : \`[${_DeckHandler.deck[_DeckHandler.deck.length - 1].Value}]\``);
+
+                message.channel.send(embedded);
+            }
+            else if(_User.inventory[id].name == "card_next_three")
+            {
+                var nextCards = "";
+
+                for( i = 1; i < 4; i++)
+                {
+                    nextCards += "\`[" + _DeckHandler.deck[_DeckHandler.deck.length - i].Value + "]\` ";
+                }
+
+                embedded.setColor('#03b6fc')
+                    .setDescription(`The next three cards are : ${nextCards}`);
+
+                message.channel.send(embedded);
             }
             else if(_User.inventory[id].name == "card_free_slot")
             {

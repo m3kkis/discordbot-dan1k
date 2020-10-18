@@ -31,7 +31,15 @@
             "display": "[UNCOMMON] Card Debt Cleaner",
             "description": "Removes all of your debts.",
             "chance":0.3,
-            "value": 4000,
+            "value": 6000,
+            "type":"card"
+        },
+        {
+            "name": "card_next_one",
+            "display": "[UNCOMMON] Card See The Future",
+            "description": "View the next card in the deck for bj.",
+            "chance":0.3,
+            "value": 6000,
             "type":"card"
         }
     ],
@@ -49,7 +57,7 @@
             "display": "[RARE] Card Inventory Upgrade",
             "description": "Add 1 free inventory slot. (MAX 16 TOTAL SLOTS)",
             "chance":0.15,
-            "value": 6000,
+            "value": 10000,
             "type":"card"
         }
     ],
@@ -61,6 +69,14 @@
             "chance":0.05,
             "value": 8000,
             "type":"instant"
+        },
+        {
+            "name": "card_next_three",
+            "display": "[EPIC] Card See the Future x3",
+            "description": "View the next 3 cards in the deck for bj.",
+            "chance":0.05,
+            "value": 10000,
+            "type":"card"
         }
     ],
     "legendary":[

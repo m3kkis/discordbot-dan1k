@@ -146,6 +146,10 @@ client.on('message', message => {
                 {
                     command.execute(client, message, args, _User, _StoreHandler);
                 }
+                else if( commandName == "use")
+                {
+                    command.execute(client, message, args, _User, _DeckHandler);
+                }
                 else if( commandName == "blackjack" || commandName == "bj")
                 {
                     if(_User.ingame == false)
