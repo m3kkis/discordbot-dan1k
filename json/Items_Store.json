@@ -3,12 +3,18 @@
         "name": "key_lootbox",
         "display": "Lootbox Key",
         "description": "The key that opens lootboxes.",
-        "value": 3000
+        "value": 2000
     },
     {
         "name": "upgrade_inventory",
         "display": "+1 Inventory Slot",
         "description": "Increase inventory slot by 1.(MAX 16 TOTAL SLOTS)",
         "value": 10000
+    },
+    {
+        "name": "rob_protection",
+        "display": "Rob Protection",
+        "description": "Protect yourself from being robbed once.",
+        "value": 5000
     }
 ]

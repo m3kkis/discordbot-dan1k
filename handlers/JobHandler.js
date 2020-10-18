@@ -125,30 +125,41 @@ class JobHandler{
         embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL());
         var reply;
 
-        /* your networth / (their cash + your networth) */
-        var robProbability = ( _User.economy.cash + _User.economy.bank ) / ( _Victim.economy.cash + ( _User.economy.cash + _User.economy.bank ) )
-        var chance = Math.random();
-
-        if(chance < robProbability)
+        if(_Victim.rob_protection == true)
         {
-            console.log('[JOB HANDLER] Do crime failed.');
-            var randomCashAmount = Math.floor(Math.random() * ( me.crimeMinMax[1] - me.crimeMinMax[0]) + me.crimeMinMax[0]);
-            embedded.setColor('#ff4f4f')
-            reply = `You tried to rob ${_Victim.tag}, but you failed and got caught with a fine of **$${randomCashAmount}**`;
+            console.log('[JOB HANDLER] Do rob failed, victim protected.');
+            embedded.setColor('#ff4f4f');
+            reply = `You tried to rob ${_Victim.tag}, but you got bamboozled beacause he had protection turned on.`;
 
-            _User.economy.cash -= randomCashAmount;
-
+            _Victim.rob_protection = false;
         }
         else
         {
-            console.log('[JOB HANDLER] Do crime success.');
-            var randomCashAmount = Math.floor(Math.random() * ( (_Victim.economy.cash/2) - (_Victim.economy.cash/4)) + (_Victim.economy.cash/4));
-            embedded.setColor('#78de87')
+            /* your networth / (their cash + your networth) */
+            var robProbability = ( _User.economy.cash + _User.economy.bank ) / ( _Victim.economy.cash + ( _User.economy.cash + _User.economy.bank ) )
+            var chance = Math.random();
 
-            _User.economy.cash += randomCashAmount;
-            _Victim.economy.cash -= randomCashAmount;
+            if(chance < robProbability)
+            {
+                console.log('[JOB HANDLER] Do rob failed.');
+                var randomCashAmount = Math.floor(Math.random() * ( me.crimeMinMax[1] - me.crimeMinMax[0]) + me.crimeMinMax[0]);
+                embedded.setColor('#ff4f4f');
+                reply = `You tried to rob ${_Victim.tag}, but you failed and got caught with a fine of **$${randomCashAmount}**`;
 
-            reply = `You have successfully robbed ${_Victim.tag}, and stole **$${randomCashAmount}**`;
+                _User.economy.cash -= randomCashAmount;
+
+            }
+            else
+            {
+                console.log('[JOB HANDLER] Do rob success.');
+                var randomCashAmount = Math.floor(Math.random() * ( (_Victim.economy.cash/2) - (_Victim.economy.cash/4)) + (_Victim.economy.cash/4));
+                embedded.setColor('#78de87')
+
+                _User.economy.cash += randomCashAmount;
+                _Victim.economy.cash -= randomCashAmount;
+
+                reply = `You have successfully robbed ${_Victim.tag}, and stole **$${randomCashAmount}**`;
+            }
         }
 
         embedded.setDescription(reply);

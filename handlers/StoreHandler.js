@@ -62,6 +62,18 @@ class StoreHandler {
                 return reply = "Cannot upgrade inventory. Max 16 slots."; 
             }
         }
+        else if(item.name == "rob_protection"){
+            if(_User.rob_protection != true)
+            {
+                _User.rob_protection = true;
+                _User.economy.cash -= item.value;
+                return reply = "Successfully turned on rob protection.";
+            }
+            else
+            {
+                return reply = "You are already protected from being robbed."; 
+            }
+        }
         else
         {
             _User.inventory.push({
