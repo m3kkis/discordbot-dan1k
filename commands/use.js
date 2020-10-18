@@ -41,6 +41,21 @@ module.exports = {
                 
                 return message.channel.send(embedded);
             }
+            else if(_User.inventory[id].name == "card_rob_protection")
+            {
+                if( _User.rob_protection == true)
+                {
+                    embedded.setColor('#ff4f4f')
+                        .setDescription('You are already protected from rob.');
+    
+                    return message.channel.send(embedded);
+                }
+                else
+                {
+                    _User.rob_protection = true;
+                    
+                }
+            }
             else if(_User.inventory[id].name == "card_debt_cleaner")
             {
                 if( _User.economy.cash >= 0)

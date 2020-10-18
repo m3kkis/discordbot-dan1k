@@ -7,6 +7,14 @@
             "chance":0.6,
             "value": 2000,
             "type":"instant"
+        },
+        {
+            "name": "card_rob_protection",
+            "display": "[COMMON] Card Rob Protection",
+            "description": "Protect yourself from being robbed once.",
+            "chance":0.6,
+            "value": 5000,
+            "type":"card"
         }
     ],
     "uncommon":[
