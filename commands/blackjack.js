@@ -157,6 +157,7 @@ module.exports = {
             {
 
                 participants[i].score = 0;
+                participants[i].aceCount = 0;
 
                 for (var j = 0; j < participants[i].hand.length; j++)
                 {
