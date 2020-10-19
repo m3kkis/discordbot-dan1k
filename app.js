@@ -124,18 +124,17 @@ client.on('presenceUpdate', (oldPresence, newPresence) => {
     if(userRole != undefined)
     {
         console.log("[APP] Member joined has the BitchBox role.");
-        if (oldPresence.status !== newPresence.status) 
-        {
-            if (newPresence.status === "online") {
-                var embedded = new Discord.MessageEmbed();
-                var randomReplyBitchBox = repliesBitchBox[Math.floor(Math.random() * repliesBitchBox.length)];
-                var channel = member.guild.channels.cache.get(process.env.CHANNEL_MAIN_ID);
 
-                embedded.setColor('#ff69af')
-                    .setDescription(randomReplyBitchBox + "**" + member.user.tag + "**");
-                channel.send(embedded);
-            } 
-        }
+        if (newPresence.status === "online") {
+            var embedded = new Discord.MessageEmbed();
+            var randomReplyBitchBox = repliesBitchBox[Math.floor(Math.random() * repliesBitchBox.length)];
+            var channel = member.guild.channels.cache.get(process.env.CHANNEL_MAIN_ID);
+
+            embedded.setColor('#ff69af')
+                .setDescription(randomReplyBitchBox + "**" + member.user.tag + "**");
+            channel.send(embedded);
+        } 
+    
     }  
     else
     {
