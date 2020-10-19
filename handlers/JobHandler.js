@@ -8,9 +8,9 @@ class JobHandler{
         this.crimeMinMax = [600,800]; 
         this.workTimeout = 5;
         this.slutTimeout = 10;
-        this.slutFailChance = 0.4;
+        this.slutFailChance = 0.3;
         this.crimeTimeout = 15;
-        this.crimeFailChance = 0.6;
+        this.crimeFailChance = 0.5;
         this.robTimeout = 15;
         this.jsonJobSuccess;
         this.jsonJobFailed;
@@ -65,9 +65,9 @@ class JobHandler{
             console.log('[JOB HANDLER] Do slut failed.');
             embedded.setColor('#ff4f4f')
             var randomReply =  me.jsonJobFailed.slut[Math.floor((Math.random() * me.jsonJobFailed.slut.length))].reply;
-            randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
+            randomReply = randomReply.replace("##", "**$"+(randomCashAmount/1.5)+"**");
 
-            _User.economy.cash -= randomCashAmount;
+            _User.economy.cash -= (randomCashAmount/1.5);
         }
         else
         {
@@ -98,9 +98,9 @@ class JobHandler{
             console.log('[JOB HANDLER] Do crime failed.');
             embedded.setColor('#ff4f4f')
             var randomReply =  me.jsonJobFailed.crime[Math.floor((Math.random() * me.jsonJobFailed.crime.length))].reply;
-            randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
+            randomReply = randomReply.replace("##", "**$"+(randomCashAmount/1.5)+"**");
 
-            _User.economy.cash -= randomCashAmount;
+            _User.economy.cash -= (randomCashAmount/1.5);
 
         }
         else

@@ -4,7 +4,7 @@ var fs = require('fs');
 class LootboxHandler {
 
     constructor(){
-        this.dropChance = 0.05;
+        this.dropChance = 0.1;
         this.jsonLootboxItems;
         this.chanceCommon = 0.6;
         this.chanceUncommon = 0.3;
