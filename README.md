@@ -22,6 +22,7 @@ BOT_PREFIX=       // Place a prefix to start your commands
 BOT_TOKEN=        // Your bot ssecret token
 GUILD_ID=         // Your guild/server ID. Can be found by activating developers tool in discord
 DB_HOST=          // URL to your database
+CHANNEL_MAIN_ID   // ID of the Main Chat Channel
 ```
 
 ***Example***
@@ -30,6 +31,7 @@ BOT_PREFIX=!
 BOT_TOKEN= BfGeThTWwrJwr5rjRJ56tyj.wrjWrt.sSDfhtyjiMKer-QEWytqecnNety
 GUILD_ID=245687245641572468
 DB_HOST=mongodb://127.0.0.1/dan1kBot
+CHANNEL_MAIN_ID=6337368621699517390
 ```
 
 That is it, you are good to start the bot now.
@@ -44,6 +46,9 @@ or if you have PM2 installed
 ```
 pm2 start app.js
 ```
+
+## After first start up
+Check in your server roles for the role 'BitchBox'. Go into role settings and make sure you turn on the "Display role members separately from online members"
 
 ## Commands (so far)
 * `!blackjack <amount>` play blackjack! $100 minimum.

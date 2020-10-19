@@ -115,7 +115,7 @@ var repliesBitchBox = [
     'The Bitch Box loser is online! → ',
     'Welcome the asshole. → ',
     'You again? Go back to your little bitch box. → ',
-    'Image not being in the BitchBox... wow... → '
+    'Imagine not being in the BitchBox... wow... → '
 ];
 
 client.on('presenceUpdate', (oldPresence, newPresence) => {
