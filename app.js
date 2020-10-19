@@ -78,7 +78,7 @@ client.once('ready', () => {
     }
     catch(e){
         console.log("[APP] Role doesn't exists, creating role BitchBox");
-        guild.roles.create({ data: { name: 'BitchBox', color: '#ff00d8', permissions: ['CREATE_INSTANT_INVITE', 'CHANGE_NICKNAME', 'VIEW_CHANNEL', 'SEND_MESSAGES', 'SEND_TTS_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES', 'READ_MESSAGE_HISTORY', 'MENTION_EVERYONE', 'USE_EXTERNAL_EMOJIS', 'ADD_REACTIONS', 'CONNECT', 'SPEAK', 'STREAM', 'USE_VAD'] } });
+        guild.roles.create({ data: { name: 'BitchBox', color: '#ff69af', permissions: ['CREATE_INSTANT_INVITE', 'CHANGE_NICKNAME', 'VIEW_CHANNEL', 'SEND_MESSAGES', 'SEND_TTS_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES', 'READ_MESSAGE_HISTORY', 'MENTION_EVERYONE', 'USE_EXTERNAL_EMOJIS', 'ADD_REACTIONS', 'CONNECT', 'SPEAK', 'STREAM', 'USE_VAD'] } });
     }
     
 
@@ -108,6 +108,41 @@ client.once('ready', () => {
     
 });
 
+//Check if the user connected has the BitchBox role if yes then reply to chat. Also need to set up the main chat id in the .env
+var repliesBitchBox = [
+    'Well well well, if it ain\`t the Bitch Box cunt → ',
+    'Hey everyone! The bitch of the server is online → ',
+    'The Bitch Box loser is online! → ',
+    'Welcome the asshole. → ',
+    'You again? Go back to your little bitch box. → ',
+    'Image not being in the BitchBox... wow... → '
+];
+
+client.on('presenceUpdate', (oldPresence, newPresence) => {
+    var member = newPresence.member;
+    var userRole = member.roles.cache.find(r => r.name === "BitchBox")
+    if(userRole != undefined)
+    {
+        console.log("[APP] Member joined has the BitchBox role.");
+        if (oldPresence.status !== newPresence.status) 
+        {
+            if (newPresence.status === "online") {
+                var embedded = new Discord.MessageEmbed();
+                var randomReplyBitchBox = repliesBitchBox[Math.floor(Math.random() * repliesBitchBox.length)];
+                var channel = member.guild.channels.cache.get(process.env.CHANNEL_MAIN_ID);
+
+                embedded.setColor('#ff69af')
+                    .setDescription(randomReplyBitchBox + "**" + member.user.tag + "**");
+                channel.send(embedded);
+            } 
+        }
+    }  
+    else
+    {
+        console.log("[APP] Member joined is doesn\'t have the BitchBox role.");
+    }
+});
+
 //Wait for message
 client.on('message', message => {
 
@@ -118,7 +153,8 @@ client.on('message', message => {
      * ORANGE:  #ffd900
      * RED:     #ff4f4f
      * BLUE:    #03b6fc
-     * PURPLE:    #ae00ff
+     * PURPLE:  #ae00ff
+     * PINK:    #ff69af
      */
 
     if(!message.content.startsWith(prefix) || message.author.bot) return;
