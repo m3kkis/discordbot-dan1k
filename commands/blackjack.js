@@ -247,7 +247,7 @@ module.exports = {
                         .addFields(
                             { name:"Your hand", value: player.display + "\n\nValue: " + player.score, inline: true },
                             { name: '\u200B', value: '\u200B', inline: true },
-                            { name:"Dealer hand", value: dealer.display + "\n\nValue: " + (dealer.score - dealer.hand[ dealer.hand.length - 1 ].Weight ), inline: true },
+                            { name:"Dealer hand", value: dealer.displayHiddenCard + "\n\nValue: " + (dealer.score - dealer.hand[ dealer.hand.length - 1 ].Weight ), inline: true },
                         );
 
                     resetGame();
@@ -262,7 +262,7 @@ module.exports = {
                         .addFields(
                             { name:"Your hand", value: player.display + "\n\nValue: " + player.score, inline: true },
                             { name: '\u200B', value: '\u200B', inline: true },
-                            { name:"Dealer hand", value: dealer.display + "\n\nValue: " + (dealer.score - dealer.hand[ dealer.hand.length - 1 ].Weight ), inline: true },
+                            { name:"Dealer hand", value: dealer.displayHiddenCard + "\n\nValue: " + (dealer.score - dealer.hand[ dealer.hand.length - 1 ].Weight ), inline: true },
                         );
 
                     resetGame();
@@ -273,7 +273,7 @@ module.exports = {
                     embedded.addFields(
                         { name:"Your hand", value: player.display + "\n\nValue: " + player.score, inline: true },
                         { name: '\u200B', value: '\u200B', inline: true },
-                        { name:"Dealer hand", value: dealer.display + "\n\nValue: " + (dealer.score - dealer.hand[ dealer.hand.length - 1 ].Weight ), inline: true },
+                        { name:"Dealer hand", value: dealer.displayHiddenCard + "\n\nValue: " + (dealer.score - dealer.hand[ dealer.hand.length - 1 ].Weight ), inline: true },
                     );
 
                     waitForReply();
