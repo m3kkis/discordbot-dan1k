@@ -192,21 +192,6 @@ module.exports = {
 
             waitForReply();
 
-            /*
-            message.channel.awaitMessages(m => m.author.id == message.author.id,{ max: 1, time: 60000 }).then(collected => {
-                if (collected.first().content.toLowerCase() == 'hit') {
-                    hit(player);
-                    ShowResult(player);
-                }
-                else if (collected.first().content.toLowerCase() == 'stand') {
-                    stand();
-                }
-            }).catch(() => {
-                console.log("[BLACKJACK] Player no answer after 60 seconds, auto-stand");
-                stand();
-            });
-            */
-
         }
 
         function hit(participant){
@@ -247,7 +232,7 @@ module.exports = {
                         .addFields(
                             { name:"Your hand", value: player.display + "\n\nValue: " + player.score, inline: true },
                             { name: '\u200B', value: '\u200B', inline: true },
-                            { name:"Dealer hand", value: dealer.display + "\n\nValue: " + (dealer.score - dealer.hand[ dealer.hand.length - 1 ].Weight ), inline: true },
+                            { name:"Dealer hand", value: dealer.display + "\n\nValue: " + dealer.score, inline: true },
                         );
 
                     resetGame();
@@ -262,7 +247,7 @@ module.exports = {
                         .addFields(
                             { name:"Your hand", value: player.display + "\n\nValue: " + player.score, inline: true },
                             { name: '\u200B', value: '\u200B', inline: true },
-                            { name:"Dealer hand", value: dealer.display + "\n\nValue: " + (dealer.score - dealer.hand[ dealer.hand.length - 1 ].Weight ), inline: true },
+                            { name:"Dealer hand", value: dealer.display + "\n\nValue: " + dealer.score, inline: true },
                         );
 
                     resetGame();
