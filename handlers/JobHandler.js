@@ -65,9 +65,10 @@ class JobHandler{
             console.log('[JOB HANDLER] Do slut failed.');
             embedded.setColor('#ff4f4f')
             var randomReply =  me.jsonJobFailed.slut[Math.floor((Math.random() * me.jsonJobFailed.slut.length))].reply;
-            randomReply = randomReply.replace("##", "**$"+(randomCashAmount/1.5)+"**");
 
-            _User.economy.cash -= (randomCashAmount/1.5);
+            randomCashAmount = Math.floor((randomCashAmount/1.5));
+            randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
+            _User.economy.cash -= randomCashAmount;
         }
         else
         {
@@ -98,9 +99,10 @@ class JobHandler{
             console.log('[JOB HANDLER] Do crime failed.');
             embedded.setColor('#ff4f4f')
             var randomReply =  me.jsonJobFailed.crime[Math.floor((Math.random() * me.jsonJobFailed.crime.length))].reply;
-            randomReply = randomReply.replace("##", "**$"+(randomCashAmount/1.5)+"**");
 
-            _User.economy.cash -= (randomCashAmount/1.5);
+            randomCashAmount = Math.floor((randomCashAmount/1.5));
+            randomReply = randomReply.replace("##", "**$"+ randomCashAmount +"**");
+            _User.economy.cash -= randomCashAmount;
 
         }
         else
