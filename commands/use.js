@@ -177,14 +177,11 @@ module.exports = {
                         message.guild.member(victim).roles.add(role);
                         
                     }
-
-
-                    
                 }
                 else
                 {
                     embedded.setColor('#ff4f4f')
-                        .setDescription("Player name missing");
+                        .setDescription("Player name missing. Add is at the end.");
 
                     return message.channel.send(embedded);
                 }
@@ -192,7 +189,8 @@ module.exports = {
             }
 
             
-            console.log()
+            console.log(`[USE] Used **${_User.inventory[id].display}** successfully`);
+
             embedded.setColor('#78de87')
                 .setDescription(`Used **${_User.inventory[id].display}** successfully`);
 
