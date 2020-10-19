@@ -85,7 +85,6 @@ module.exports = {
             }
         }
 
-
         function setCardDisplay( participant, suit ){
 
             if(participant == "player"){
@@ -172,6 +171,7 @@ module.exports = {
                     participants[i].aceCount -= 1;
                 }
             }
+
         }
 
         function startGame(){
@@ -188,9 +188,22 @@ module.exports = {
             message.channel.send(embedded).then( sent => {
                 embedID = sent.id;
                 console.log("[BLACKJACK] Embed ID " + embedID);
+
+                if(player.score == 21)
+                {
+                    ShowResult(player);
+                }
+                else if(dealer.score == 21)
+                {
+                    ShowResult(dealer);
+                }
+                else
+                {
+                    waitForReply();
+                }
+    
             });
 
-            waitForReply();
 
         }
 
