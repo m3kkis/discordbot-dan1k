@@ -103,7 +103,7 @@ client.once('ready', () => {
         }
     });
 
-    //Create blackjack deck
+    //Create blackjack deck ewith custom number of decks
     _DeckHandler.createDeck(3);
     
 });

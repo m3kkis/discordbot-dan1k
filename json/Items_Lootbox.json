@@ -67,6 +67,14 @@
             "chance":0.15,
             "value": 10000,
             "type":"card"
+        },
+        {
+            "name": "card_shuffle_deck",
+            "display": "[RARE] Card Shuffle Deck",
+            "description": "Shuffle the deck at any time.",
+            "chance":0.15,
+            "value": 10000,
+            "type":"card"
         }
     ],
     "epic":[

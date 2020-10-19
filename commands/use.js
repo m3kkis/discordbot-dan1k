@@ -83,6 +83,13 @@ module.exports = {
             }
             else if(_User.inventory[id].name == "card_next_one")
             {
+
+                if(_DeckHandler.deck.length < 1){
+                    console.log("[USE] Not enough cards in deck.");
+                    _DeckHandler.deck = new Array();
+                    _DeckHandler.createDeck(_DeckHandler.deckAmount);
+                }
+
                 embedded.setColor('#03b6fc')
                     .setDescription(`The next card is : \`[${_DeckHandler.deck[_DeckHandler.deck.length - 1].Value}]\``);
 
@@ -90,6 +97,13 @@ module.exports = {
             }
             else if(_User.inventory[id].name == "card_next_three")
             {
+
+                if(_DeckHandler.deck.length < 3){
+                    console.log("[USE] Not enough cards in deck.");
+                    _DeckHandler.deck = new Array();
+                    _DeckHandler.createDeck(_DeckHandler.deckAmount);
+                }
+
                 var nextCards = "";
 
                 for( i = 1; i < 4; i++)
@@ -130,6 +144,16 @@ module.exports = {
                     _User.economy.cash = (_User.economy.cash * 2);
                     
                 }
+            }
+            else if(_User.inventory[id].name == "card_shuffle_deck")
+            {
+                if(_DeckHandler.deck.length == 0){
+                    console.log("[USE] Not enough cards in deck.");
+                    _DeckHandler.deck = new Array();
+                    _DeckHandler.createDeck(_DeckHandler.deckAmount);
+                }
+
+                _DeckHandler.shuffleDeck();
             }
             else if(_User.inventory[id].name == "card_bitch_box")
             {
