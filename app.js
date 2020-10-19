@@ -68,6 +68,20 @@ client.once('ready', () => {
     }
 
 
+    //Create role for Bitch Box, after that don't forget to set role as separate.
+    var role;
+    try{
+        role = guild.roles.cache.find(x => x.name === "BitchBox");
+        if(role.name == "BitchBox") {
+            console.log("[APP] Role Already Exists");
+        }
+    }
+    catch(e){
+        console.log("[APP] Role doesn't exists, creating role BitchBox");
+        guild.roles.create({ data: { name: 'BitchBox', color: '#ff00d8', permissions: ['CREATE_INSTANT_INVITE', 'CHANGE_NICKNAME', 'VIEW_CHANNEL', 'SEND_MESSAGES', 'SEND_TTS_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES', 'READ_MESSAGE_HISTORY', 'MENTION_EVERYONE', 'USE_EXTERNAL_EMOJIS', 'ADD_REACTIONS', 'CONNECT', 'SPEAK', 'STREAM', 'USE_VAD'] } });
+    }
+    
+
     //Create or find bot
     Bot.findOne({
         name: "DAN-1000"

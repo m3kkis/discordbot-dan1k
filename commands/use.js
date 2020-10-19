@@ -4,13 +4,23 @@ module.exports = {
     name: 'use',
     description: 'Use an item from your inventory.',
     args: true,
-    usage: '<inventory_item_number>',
+    usage: '<inventory_item_number> <optional: user>',
     execute(client, message, args, _User, _DeckHandler){
 
         var embedded = new Discord.MessageEmbed();
             embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL());
 
         var id = parseInt(args[0]);
+        var victim;
+
+        if(args[1] != undefined)
+        {
+            victim = args[1];
+        }
+        else
+        {
+            victim = undefined;
+        }
 
         if( isNaN(id) ) {
             
@@ -121,9 +131,68 @@ module.exports = {
                     
                 }
             }
+            else if(_User.inventory[id].name == "card_bitch_box")
+            {
+                if( victim != undefined)
+                {
+                    if( victim.substring(0,3) == '<@!')
+                    {
+                        victim = victim.replace(/[^$\w\s]/gi, '');
+                    }
+                    else
+                    {
+                        try{
+                            victim = client.users.cache.find(u => u.username === victim).id;
+                        }
+                        catch{
+                            console.log("[USE] ID of the Username provided does not exist.");
+                            embedded.setColor('#ff4f4f')
+                                .setDescription("This user doesn't exists.");
+                            return message.channel.send(embedded);
+                        }
+                    }
+
+                    victim = client.users.cache.find(u => u.id === victim);
+                    
+                    var userRole = message.guild.member(victim).roles.cache.find(r => r.name === "BitchBox")
+
+                    if(userRole != undefined)
+                    {
+                        console.log("[USE] This user has the role already.");
+                        embedded.setColor('#ff4f4f')
+                            .setDescription("This user has the role already.");
+                        return message.channel.send(embedded);
+                    }
+                    else
+                    {
+                        var role = message.guild.roles.cache.find(r => r.name === "BitchBox");
+
+                        message.guild.members.cache.forEach(member => {
+                            if(!member.roles.cache.find(r => r.name == 'BitchBox')) return;
+                            member.roles.remove(role.id).then(function() {
+                                console.log(`[USE] Removed role from user ${member.user.tag}!`);
+                            });
+                        });
+                        
+                        message.guild.member(victim).roles.add(role);
+                        
+                    }
+
+
+                    
+                }
+                else
+                {
+                    embedded.setColor('#ff4f4f')
+                        .setDescription("Player name missing");
+
+                    return message.channel.send(embedded);
+                }
+
+            }
 
             
-
+            console.log()
             embedded.setColor('#78de87')
                 .setDescription(`Used **${_User.inventory[id].display}** successfully`);
 

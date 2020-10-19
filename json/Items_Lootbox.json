@@ -15,6 +15,14 @@
             "chance":0.6,
             "value": 5000,
             "type":"card"
+        },
+        {
+            "name": "card_bitch_box",
+            "display": "[COMMON] Card Bitch Box",
+            "description": "Send a user into a bitch box and laugh at him.",
+            "chance":0.6,
+            "value": 3000,
+            "type":"card"
         }
     ],
     "uncommon":[
