@@ -41,7 +41,7 @@ module.exports = {
                 return message.channel.send(embedded);
             }
     
-            if( victim.substring(0,3) == '<@!')
+            if( victim.substring(0,2) == '<@')
             {
                 victim = victim.replace(/[^$\w\s]/gi, '');
             }

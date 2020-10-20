@@ -159,7 +159,7 @@ module.exports = {
             {
                 if( victim != undefined)
                 {
-                    if( victim.substring(0,3) == '<@!')
+                    if( victim.substring(0,2) == '<@')
                     {
                         victim = victim.replace(/[^$\w\s]/gi, '');
                     }
