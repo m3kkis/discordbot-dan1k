@@ -115,7 +115,11 @@ var repliesBitchBox = [
     'The Bitch Box loser is online! → ',
     'Welcome the asshole. → ',
     'You again? Go back to your little bitch box. → ',
-    'Imagine not being in the BitchBox... wow... → '
+    'Imagine not being in the BitchBox... wow... → ',
+    'This guy is the little bitch → ',
+    'The Bitch Box is a special little place made just for you → ',
+    'Stfu and go back into the Bitch Box → ',
+    'Hey, who you let you in the server? Go back ion the the Bitch Box → '
 ];
 
 client.on('presenceUpdate', (oldPresence, newPresence) => {
@@ -125,7 +129,7 @@ client.on('presenceUpdate', (oldPresence, newPresence) => {
     {
         console.log("[APP] Member joined has the BitchBox role.");
 
-        if (newPresence.status === "online") {
+        if (oldPresence == undefined || oldPresence.status != newPresence.status && newPresence.status == "online") {
             var embedded = new Discord.MessageEmbed();
             var randomReplyBitchBox = repliesBitchBox[Math.floor(Math.random() * repliesBitchBox.length)];
             var channel = member.guild.channels.cache.get(process.env.CHANNEL_MAIN_ID);
