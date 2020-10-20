@@ -84,7 +84,7 @@ module.exports = {
                     });
     
                     embedded.setColor('#78de87')
-                        .setDescription(`You successfully gave \`$${amount}\` to **${_Victim.tag}** `);
+                        .setDescription(`You successfully gave \`$${addCommas(amount)}\` to **${_Victim.tag}** `);
                     
                     return message.channel.send(embedded);
     
@@ -104,6 +104,18 @@ module.exports = {
             embedded.setColor('#ff4f4f')
                 .setDescription("Make sure you wrote give command in the following order \`<user> cash <amount>\`");
             return message.channel.send(embedded);
+        }
+
+        function addCommas(num){
+
+            var numToCommafy = num.toString();
+            var numCommafied = '';
+        
+            for (var i = numToCommafy.length; i > 0; i -= 3) {
+                numCommafied = numToCommafy.slice(Math.max(i - 3, 0), i) + (numCommafied ? ',' + numCommafied : '');
+            }
+            
+            return numCommafied;
         }
     }
 }

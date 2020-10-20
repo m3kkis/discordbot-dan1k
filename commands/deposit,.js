@@ -17,7 +17,7 @@ module.exports = {
             {
                 console.log("[DEPOSIT] 0 in cash.");
                 embedded.setColor('#ff4f4f')
-                    .setDescription(`❌ You have **$0** in cash`)
+                    .setDescription(`❌ You have \`$0\` in cash`)
                 return message.channel.send(embedded);
             }
 
@@ -30,7 +30,7 @@ module.exports = {
             _User.save();
 
             embedded.setColor('#78de87')
-                .setDescription(`✅ Deposited **$${tempCash}** to your bank!`)
+                .setDescription(`✅ Deposited \`$${addCommas(tempCash)}\` to your bank!`)
             return message.channel.send(embedded);
 
         }
@@ -56,7 +56,7 @@ module.exports = {
                 _User.save();
     
                 embedded.setColor('#78de87')
-                    .setDescription(`✅ Deposited **$${amount}** to your bank!`)
+                    .setDescription(`✅ Deposited \`$${addCommas(amount)}\` to your bank!`)
                 return message.channel.send(embedded);
             }
             else
@@ -66,6 +66,18 @@ module.exports = {
                     .setDescription(`❌ Can't deposit to bank, not enough cash`)
                 return message.channel.send(embedded);
             }
+        }
+
+        function addCommas(num){
+
+            var numToCommafy = num.toString();
+            var numCommafied = '';
+        
+            for (var i = numToCommafy.length; i > 0; i -= 3) {
+                numCommafied = numToCommafy.slice(Math.max(i - 3, 0), i) + (numCommafied ? ',' + numCommafied : '');
+            }
+            
+            return numCommafied;
         }
     }
 }

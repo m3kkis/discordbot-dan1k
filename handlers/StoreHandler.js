@@ -23,7 +23,7 @@ class StoreHandler {
         var me = this;
         var reply = "";
         me.jsonStoreItems.map(function (item,idx) {
-            reply += `${(idx+1)}. **${item.display}** ($${item.value}): *${item.description}*\n`;
+            reply += `${(idx+1)}. **${item.display}** ($${addCommas(item.value)}): *${item.description}*\n`;
         });
         return reply;
     }
@@ -92,5 +92,17 @@ class StoreHandler {
 
     }
 
+}
+
+function addCommas(num){
+
+    var numToCommafy = num.toString();
+    var numCommafied = '';
+
+    for (var i = numToCommafy.length; i > 0; i -= 3) {
+        numCommafied = numToCommafy.slice(Math.max(i - 3, 0), i) + (numCommafied ? ',' + numCommafied : '');
+    }
+    
+    return numCommafied;
 }
 module.exports = StoreHandler;

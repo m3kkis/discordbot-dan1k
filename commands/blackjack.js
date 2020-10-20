@@ -32,7 +32,7 @@ module.exports = {
         if( amount < 100 ) {
             
             embedded.setColor('#ff4f4f')
-                .setDescription('Minimum $100 is required to play blackjack.');
+                .setDescription('Minimum \`$100\` is required to play blackjack.');
 
             return message.channel.send(embedded);
         }

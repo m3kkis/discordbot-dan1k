@@ -18,7 +18,7 @@ module.exports = {
             var reply = "";
             var usedInv = 0;
             _User.inventory.map((item, idx) => {
-                reply += `${idx+1}. **${item.display}** - *${item.description}*\n \`Sell value: $${(item.value/2)}\`\n`;
+                reply += `${idx+1}. **${item.display}** - *${item.description}*\n \`Sell value: $${addCommas( (item.value/2) )}\`\n`;
                 usedInv++;
             });
             
@@ -32,6 +32,18 @@ module.exports = {
             embedded.setDescription(`Inventory size: [ 0/${_User.inventorySize}]`)
                 .addField('Your Inventory','*- Empty -*',true);
             return message.channel.send(embedded);
+        }
+
+        function addCommas(num){
+
+            var numToCommafy = num.toString();
+            var numCommafied = '';
+        
+            for (var i = numToCommafy.length; i > 0; i -= 3) {
+                numCommafied = numToCommafy.slice(Math.max(i - 3, 0), i) + (numCommafied ? ',' + numCommafied : '');
+            }
+            
+            return numCommafied;
         }
         
     }

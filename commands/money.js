@@ -12,10 +12,22 @@ module.exports = {
         embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
             .setColor('#03b6fc')
             .addFields(
-                { name:"Cash", value: "$" + _User.economy.cash, inline: true },
-                { name: 'Bank', value: "$" + _User.economy.bank, inline: true },
-                { name:"Net Worth", value: "$" + (_User.economy.cash + _User.economy.bank), inline: true },
-            )
+                { name:"Cash", value: "\`$" + addCommas(_User.economy.cash) + "\`"},
+                { name:"Bank", value: "\`$" + addCommas(_User.economy.bank) + "\`"},
+                { name:"Net Worth", value: "\`$" + addCommas( (_User.economy.cash + _User.economy.bank)) + "\`"},
+            );
+
+        function addCommas(num){
+
+            var numToCommafy = num.toString();
+            var numCommafied = '';
+        
+            for (var i = numToCommafy.length; i > 0; i -= 3) {
+                numCommafied = numToCommafy.slice(Math.max(i - 3, 0), i) + (numCommafied ? ',' + numCommafied : '');
+            }
+            
+            return numCommafied;
+        }
 
         return message.channel.send(embedded);
     

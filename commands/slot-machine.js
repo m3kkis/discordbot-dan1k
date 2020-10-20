@@ -34,7 +34,7 @@ module.exports = {
         if( amount < 50 ) {
             
             embedded.setColor('#ff4f4f')
-                .setDescription('Minimum $50 is required to play slot machine.');
+                .setDescription('Minimum \`$50\` is required to play slot machine.');
 
             return message.channel.send(embedded);
         }
@@ -99,7 +99,7 @@ module.exports = {
                 var embedded = new Discord.MessageEmbed();
                 embedded.setColor('#ffd900')
                     .setAuthor(message.member.user.tag, message.member.user.avatarURL())
-                    .setDescription("Your inventory is full, you will receive $500 instead of a lootbox!");
+                    .setDescription("Your inventory is full, you will receive \`$500\` instead of a lootbox!");
                 message.channel.send(embedded);
                 
                 _User.economy.cash += 500;

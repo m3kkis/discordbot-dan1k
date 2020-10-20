@@ -32,12 +32,25 @@ module.exports = {
             });
 
             arrAllUser.map( (user, index) => {
-                fieldsToAdd += "**" + (index+1) + ".** " + user.tag + " • \`$" + user.score + "\`\n"
+                fieldsToAdd += "**" + (index+1) + ".** " + user.tag + " • \`$" + addCommas(user.score) + "\`\n"
             });
 
             embedded.addField("Leaderboard",fieldsToAdd,true);
 
             return message.channel.send(embedded);
         });
+
+        function addCommas(num){
+
+            var numToCommafy = num.toString();
+            var numCommafied = '';
+        
+            for (var i = numToCommafy.length; i > 0; i -= 3) {
+                numCommafied = numToCommafy.slice(Math.max(i - 3, 0), i) + (numCommafied ? ',' + numCommafied : '');
+            }
+            
+            return numCommafied;
+        }
+        
     }
 }

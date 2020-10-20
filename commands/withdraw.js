@@ -17,7 +17,7 @@ module.exports = {
             {
                 console.log("[WITHDRAW] 0 in the bank.");
                 embedded.setColor('#ff4f4f')
-                    .setDescription(`❌ You have **$0** in the bank`)
+                    .setDescription(`❌ You have \`$0\` in the bank`)
                 return message.channel.send(embedded);
             }
 
@@ -30,7 +30,7 @@ module.exports = {
             _User.save();
 
             embedded.setColor('#78de87')
-                .setDescription(`✅ Withdrew **$${tempCash}** from your bank!`)
+                .setDescription(`✅ Withdrew \`$${addCommas(tempCash)}\` from your bank!`)
             return message.channel.send(embedded);
         }
         else
@@ -56,7 +56,7 @@ module.exports = {
                 _User.save();
                 
                 embedded.setColor('#78de87')
-                    .setDescription(`✅ Withdrew **$${amount}** from your bank!`)
+                    .setDescription(`✅ Withdrew \`$${addCommas(amount)}\` from your bank!`)
                 return message.channel.send(embedded);
             }
             else
@@ -66,6 +66,18 @@ module.exports = {
                     .setDescription(`❌ Can't withdraw that amount from bank`)
                 return message.channel.send(embedded);
             }
+        }
+
+        function addCommas(num){
+
+            var numToCommafy = num.toString();
+            var numCommafied = '';
+        
+            for (var i = numToCommafy.length; i > 0; i -= 3) {
+                numCommafied = numToCommafy.slice(Math.max(i - 3, 0), i) + (numCommafied ? ',' + numCommafied : '');
+            }
+            
+            return numCommafied;
         }
 
     }

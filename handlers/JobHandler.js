@@ -42,7 +42,7 @@ class JobHandler{
         var randomReply =  me.jsonJobSuccess.work[Math.floor((Math.random() * me.jsonJobSuccess.work.length))].reply;
         var randomCashAmount = Math.floor(Math.random() * ( me.workMinMax[1] - me.workMinMax[0]) + me.workMinMax[0]);
         
-        randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
+        randomReply = randomReply.replace("##", "\`$"+randomCashAmount+"\`");
 
         _User.economy.cash += randomCashAmount;
 
@@ -67,7 +67,7 @@ class JobHandler{
             var randomReply =  me.jsonJobFailed.slut[Math.floor((Math.random() * me.jsonJobFailed.slut.length))].reply;
 
             randomCashAmount = Math.floor((randomCashAmount/1.5));
-            randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
+            randomReply = randomReply.replace("##", "\`$"+randomCashAmount+"\`");
             _User.economy.cash -= randomCashAmount;
         }
         else
@@ -75,7 +75,7 @@ class JobHandler{
             console.log('[JOB HANDLER] Do slut success.');
             embedded.setColor('#78de87')
             var randomReply =  me.jsonJobSuccess.slut[Math.floor((Math.random() * me.jsonJobSuccess.slut.length))].reply;
-            randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
+            randomReply = randomReply.replace("##", "\`$"+randomCashAmount+"\`");
 
             _User.economy.cash += randomCashAmount;
         }
@@ -101,7 +101,7 @@ class JobHandler{
             var randomReply =  me.jsonJobFailed.crime[Math.floor((Math.random() * me.jsonJobFailed.crime.length))].reply;
 
             randomCashAmount = Math.floor((randomCashAmount/1.5));
-            randomReply = randomReply.replace("##", "**$"+ randomCashAmount +"**");
+            randomReply = randomReply.replace("##", "\`$"+ randomCashAmount +"\`");
             _User.economy.cash -= randomCashAmount;
 
         }
@@ -110,7 +110,7 @@ class JobHandler{
             console.log('[JOB HANDLER] Do crime success.');
             embedded.setColor('#78de87')
             var randomReply =  me.jsonJobSuccess.crime[Math.floor((Math.random() * me.jsonJobSuccess.crime.length))].reply;
-            randomReply = randomReply.replace("##", "**$"+randomCashAmount+"**");
+            randomReply = randomReply.replace("##", "\`$"+randomCashAmount+"\`");
 
             _User.economy.cash += randomCashAmount;
         }
@@ -146,7 +146,7 @@ class JobHandler{
                 console.log('[JOB HANDLER] Do rob failed.');
                 var randomCashAmount = Math.floor(Math.random() * ( me.crimeMinMax[1] - me.crimeMinMax[0]) + me.crimeMinMax[0]);
                 embedded.setColor('#ff4f4f');
-                reply = `You tried to rob ${_Victim.tag}, but you failed and got caught with a fine of **$${randomCashAmount}**`;
+                reply = `You tried to rob ${_Victim.tag}, but you failed and got caught with a fine of \`$${randomCashAmount}\``;
 
                 _User.economy.cash -= randomCashAmount;
 
@@ -160,7 +160,7 @@ class JobHandler{
                 _User.economy.cash += randomCashAmount;
                 _Victim.economy.cash -= randomCashAmount;
 
-                reply = `You have successfully robbed ${_Victim.tag}, and stole **$${randomCashAmount}**`;
+                reply = `You have successfully robbed ${_Victim.tag}, and stole \`$${addCommas(randomCashAmount)}\``;
             }
         }
 
@@ -170,4 +170,17 @@ class JobHandler{
     }
 
 }
+
+function addCommas(num){
+
+    var numToCommafy = num.toString();
+    var numCommafied = '';
+
+    for (var i = numToCommafy.length; i > 0; i -= 3) {
+        numCommafied = numToCommafy.slice(Math.max(i - 3, 0), i) + (numCommafied ? ',' + numCommafied : '');
+    }
+    
+    return numCommafied;
+}
+
 module.exports=JobHandler;

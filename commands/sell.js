@@ -39,13 +39,26 @@ module.exports = {
             
 
             embedded.setColor('#78de87')
-                .setDescription(`Sold ${_User.inventory[id].display} successfully for **$${(_User.inventory[id].value/2)}**`);
+                .setDescription(`Sold ${_User.inventory[id].display} successfully for \`$${addCommas( (_User.inventory[id].value/2) ) }\``);
 
             _User.inventory.splice(id,1);
             
             _User.save();
 
             return message.channel.send(embedded);
+        }
+
+
+        function addCommas(num){
+
+            var numToCommafy = num.toString();
+            var numCommafied = '';
+        
+            for (var i = numToCommafy.length; i > 0; i -= 3) {
+                numCommafied = numToCommafy.slice(Math.max(i - 3, 0), i) + (numCommafied ? ',' + numCommafied : '');
+            }
+            
+            return numCommafied;
         }
 
     }
