@@ -355,8 +355,23 @@ module.exports = {
             }
             else if(result == "loss")
             {
-                _User.economy.cash -= amount;
-                _Bot.bank += amount;
+                if(_User.bj_insurance == true)
+                {
+                    
+                    _User.bj_insurance = false;
+                    _User.economy.cash -= Math.floor(amount/2);
+                    _Bot.bank += Math.floor(amount/2);
+
+                    var embeddedInsurance = new Discord.MessageEmbed();
+                    embeddedInsurance.setColor('#03b6fc')
+                        .setDescription(`Luck you, you were insured. You lose \`$${Math.floor(amount/2)}\` instead of \`$${amount}\``)
+                    message.channel.send(embeddedInsurance)
+                }
+                else
+                {
+                    _User.economy.cash -= amount;
+                    _Bot.bank += amount;
+                }
             }
             else if(result == "push")
             {

@@ -8,6 +8,7 @@ const userSchema = new Schema(
     username: { type: String },
     ingame: { type: Boolean, default: false },
     rob_protection: { type: Boolean, default: false },
+    bj_insurance: { type: Boolean, default: false },
     inventorySize: { type: Number, default: 5 },
     inventory: { type: Array, default: [] },
     economy: {

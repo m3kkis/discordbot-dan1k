@@ -3,9 +3,9 @@
         {
             "name": "instant_cash_common",
             "display": "[COMMON] Cash Reward",
-            "description": "$2000 added to your cash.",
+            "description": "$4000 added to your cash.",
             "chance":0.6,
-            "value": 2000,
+            "value": 4000,
             "type":"instant"
         },
         {
@@ -13,7 +13,7 @@
             "display": "[COMMON] Card Rob Protection",
             "description": "Protect yourself from being robbed once.",
             "chance":0.6,
-            "value": 5000,
+            "value": 4000,
             "type":"card"
         },
         {
@@ -21,7 +21,7 @@
             "display": "[COMMON] Card Bitch Box",
             "description": "Send a user into a bitch box and laugh at him.",
             "chance":0.6,
-            "value": 3000,
+            "value": 4000,
             "type":"card"
         }
     ],
@@ -29,9 +29,9 @@
         {
             "name": "instant_cash_uncommon",
             "display": "[UNCOMMON] Cash Reward",
-            "description": "$4000 added to your cash.",
+            "description": "$6000 added to your cash.",
             "chance":0.3,
-            "value": 4000,
+            "value": 6000,
             "type":"instant"
         },
         {
@@ -49,15 +49,23 @@
             "chance":0.3,
             "value": 6000,
             "type":"card"
+        },
+        {
+            "name": "card_shuffle_deck",
+            "display": "[UNCOMMON] Card Shuffle Deck",
+            "description": "Shuffle the deck at any time.",
+            "chance":0.15,
+            "value": 6000,
+            "type":"card"
         }
     ],
     "rare":[
         {
             "name": "instant_cash_rare",
             "display": "[RARE] Cash Reward",
-            "description": "$6000 added to your cash.",
+            "description": "$8000 added to your cash.",
             "chance":0.15,
-            "value": 6000,
+            "value": 8000,
             "type":"instant"
         },
         {
@@ -65,15 +73,15 @@
             "display": "[RARE] Card Inventory Upgrade",
             "description": "Add 1 free inventory slot. (MAX 16 TOTAL SLOTS)",
             "chance":0.15,
-            "value": 10000,
+            "value": 8000,
             "type":"card"
         },
         {
-            "name": "card_shuffle_deck",
-            "display": "[RARE] Card Shuffle Deck",
-            "description": "Shuffle the deck at any time.",
+            "name": "card_bj_insurance",
+            "display": "[RARE] Card BJ Insurance",
+            "description": "Active until next loss, you get back half the amount you lost.",
             "chance":0.15,
-            "value": 10000,
+            "value": 8000,
             "type":"card"
         }
     ],
@@ -81,9 +89,9 @@
         {
             "name": "instant_cash_epic",
             "display": "[EPIC] Cash Reward",
-            "description": "$8000 added to your cash.",
+            "description": "$10000 added to your cash.",
             "chance":0.05,
-            "value": 8000,
+            "value": 10000,
             "type":"instant"
         },
         {
@@ -99,9 +107,9 @@
         {
             "name": "instant_cash_legendary",
             "display": "[LEGENDARY] Cash Reward",
-            "description": "$16000 added to your cash.",
+            "description": "$20000 added to your cash.",
             "chance":0.01,
-            "value": 16000,
+            "value": 20000,
             "type":"instant"
         },
         {
@@ -109,7 +117,7 @@
             "display": "[LEGENDARY] Card Double Cash",
             "description": "Double your cash. (Not bank)",
             "chance":0.01,
-            "value": 16000,
+            "value": 20000,
             "type":"card"
         }
     ]

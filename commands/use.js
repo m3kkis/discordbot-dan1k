@@ -155,6 +155,21 @@ module.exports = {
 
                 _DeckHandler.shuffleDeck();
             }
+            else if(_User.inventory[id].name == "card_bj_insurance")
+            {
+                if( _User.bj_insurance == true)
+                {
+                    embedded.setColor('#ff4f4f')
+                        .setDescription('You are already insured for blackjack loss.');
+    
+                    return message.channel.send(embedded);
+                }
+                else
+                {
+                    _User.bj_insurance = true;
+                    
+                }
+            }
             else if(_User.inventory[id].name == "card_bitch_box")
             {
                 if( victim != undefined)
