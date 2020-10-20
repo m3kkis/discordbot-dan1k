@@ -10,6 +10,7 @@ module.exports = {
 
         var embedded = new Discord.MessageEmbed();
         embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
+            .setThumbnail('https://raw.githubusercontent.com/m3kkis/discordbot-dan1k/master/img/inventory.jpg')
             .setColor('#03b6fc')
         
         

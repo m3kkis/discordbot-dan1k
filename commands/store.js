@@ -12,6 +12,7 @@ module.exports = {
         var embedded = new Discord.MessageEmbed();
         embedded.setColor('#03b6fc')
             .setAuthor(message.member.user.tag, message.member.user.avatarURL())
+            .setThumbnail('https://raw.githubusercontent.com/m3kkis/discordbot-dan1k/master/img/store.jpg')
             .setDescription("To buy an item type `!buy <list_id_of_item>`.\n *example:* `!buy 1` ")
             .addField("Store Items",_StoreHandler.displayAllStoreItems(),true);
 
