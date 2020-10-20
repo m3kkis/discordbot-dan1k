@@ -45,6 +45,7 @@ class LootboxHandler {
         var me = this;
         var embedded = new Discord.MessageEmbed();
         embedded.setColor('#ae00ff')
+            .setThumbnail('https://raw.githubusercontent.com/m3kkis/discordbot-dan1k/master/img/box_closed.jpg')
             .setAuthor(message.member.user.tag, message.member.user.avatarURL())
             .setDescription("*...You found a **LOOTBOX** !*");
 

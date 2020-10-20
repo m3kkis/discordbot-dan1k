@@ -38,6 +38,7 @@ module.exports = {
                 {
                     var reply = _LootboxHandler.openLootbox(_User);
                     embedded.setColor('#ae00ff')
+                        .setThumbnail('https://raw.githubusercontent.com/m3kkis/discordbot-dan1k/master/img/box_open.jpg')
                         .setDescription(reply);
                     _User.save();
                     return message.channel.send(embedded);
