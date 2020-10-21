@@ -51,7 +51,8 @@ module.exports = {
             hand : new Array(),
             aceCount : 0,
             display : "",
-            score : 0
+            score : 0,
+            instantWin : false
         };
 
         var dealer = {
@@ -192,6 +193,7 @@ module.exports = {
 
                 if(player.score == 21)
                 {
+                    player.instantWin = true;
                     ShowResult(player);
                 }
                 else if(dealer.score == 21)
@@ -331,15 +333,16 @@ module.exports = {
 
             console.log("[BLACKJACK] Resetting game");
 
-            player.hand = new Array(),
-            player.aceCount = 0,
-            player.display = "",
-            player.score = 0
+            player.hand = new Array();
+            player.aceCount = 0;
+            player.display = "";
+            player.score = 0;
+            player.instantWin = false;
         
-            dealer.hand = new Array(),
-            dealer.aceCount = 0,
-            dealer.display = "",
-            dealer.score = 0
+            dealer.hand = new Array();
+            dealer.aceCount = 0;
+            dealer.display = "";
+            dealer.score = 0;
             
         }
 
@@ -351,7 +354,16 @@ module.exports = {
             
             if(result == "win")
             {
-                _User.economy.cash += amount;
+                if(player.instantWin == true)
+                {
+                    amount = amount * 1.5;
+                    _User.economy.cash += amount;
+                }
+                else
+                {
+                    _User.economy.cash += amount;
+                }
+
             }
             else if(result == "loss")
             {
