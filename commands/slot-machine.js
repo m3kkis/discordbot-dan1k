@@ -31,15 +31,15 @@ module.exports = {
             return message.channel.send(embedded);
         }
 
-        if( amount < 50 ) {
+        if( amount < 75 ) {
             
             embedded.setColor('#ff4f4f')
-                .setDescription('Minimum \`$50\` is required to play slot machine.');
+                .setDescription('Minimum \`$75\` is required to play slot machine.');
 
             return message.channel.send(embedded);
         }
 
-        var slotItems = [':gem:',':eggplant:',':moneybag:', ':poop:'];
+        var slotItems = [':gem:',':moneybag:', ':poop:'];
 
         var slotOne = slotItems[Math.floor(Math.random() * slotItems.length)];
         var slotTwo = slotItems[Math.floor(Math.random() * slotItems.length)];
@@ -53,20 +53,15 @@ module.exports = {
             embedded.setColor('#78de87');
             var winnings;
 
-            if(slotOne === ':eggplant:')
-            {   
-                winnings = (amount*3);
-                _User.economy.cash += winnings;
-            }
-            else if(slotOne === ':moneybag:')
+            if(slotOne === ':moneybag:')
             {
-                winnings = (amount*6);
-                _User.economy.cash += winnings
+                winnings = (amount*2);
+                _User.economy.cash += winnings;
             }
             else if(slotOne === ':gem:')
             {
-                winnings = (amount*6);
-                _User.economy.cash += winnings
+                winnings = (amount*2);
+                _User.economy.cash += winnings;
                 lootBox = true;
             }
             else if(slotOne === ':poop:')
@@ -74,7 +69,7 @@ module.exports = {
                 winnings = "NOTHING";
             }
 
-            result = `You **WIN** $${winnings}!`;
+            result = `You **WIN** \`$${winnings}\`!`;
 
         }
         else
@@ -84,10 +79,10 @@ module.exports = {
             result = 'Try again next time!';
         }
 
-        embedded.setDescription('*Get three of the same and triple your amount. If you get 3x :gem:, you also get a LOOTBOX!*')
+        embedded.setDescription('*Get three of the same and double your amount. If you get 3x :gem:, you also get a LOOTBOX!*')
             .addField('Your roll',`+----------------+\n+ ${slotOne} | ${slotTwo} | ${slotThree} +\n+----------------+`, true)
             .addField('Result',`${result}`, true)
-            .addField('Combo Rewards',':poop: :poop: :poop: = NOTHING\n:eggplant: :eggplant: :eggplant: = x3\n:moneybag: :moneybag: :moneybag: = x6\n:gem: :gem: :gem: = x6 + *LOOTBOX*\n', true)
+            .addField('Combo Rewards',':poop: :poop: :poop: = x2\n:moneybag: :moneybag: :moneybag: = x3\n:gem: :gem: :gem: = x3 + *LOOTBOX*\n', true)
 
         message.channel.send(embedded);
 
