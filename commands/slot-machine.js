@@ -60,8 +60,7 @@ module.exports = {
             }
             else if(slotOne === ':gem:')
             {
-                winnings = (amount*2);
-                _User.economy.cash += winnings;
+                winnings = "LOOTBOX";
                 lootBox = true;
             }
             else if(slotOne === ':poop:')
@@ -79,10 +78,10 @@ module.exports = {
             result = 'Try again next time!';
         }
 
-        embedded.setDescription('*Get three of the same and double your amount. If you get 3x :gem:, you also get a LOOTBOX!*')
+        embedded.setDescription('*Get three of the same and double your amount. If you get 3x :gem:, you get a LOOTBOX!*')
             .addField('Your roll',`+----------------+\n+ ${slotOne} | ${slotTwo} | ${slotThree} +\n+----------------+`, true)
             .addField('Result',`${result}`, true)
-            .addField('Combo Rewards',':poop: :poop: :poop: = NOTHING\n:moneybag: :moneybag: :moneybag: = x2\n:gem: :gem: :gem: = x2 + *LOOTBOX*\n', true)
+            .addField('Combo Rewards',':poop: :poop: :poop: = NOTHING\n:moneybag: :moneybag: :moneybag: = x2\n:gem: :gem: :gem: = *LOOTBOX*\n', true)
 
         message.channel.send(embedded);
 
