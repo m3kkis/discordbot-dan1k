@@ -48,7 +48,8 @@ pm2 start app.js
 ```
 
 ## After first start up
-Check in your server roles for the role "BitchBox". Go into role settings and make sure you turn on the "Display role members separately from online members"
+Check in your server roles for the role "BitchBox". Go into role settings and make sure you turn on the "Display role members separately from online members".
+Depending on your roles, the BitchBox role needs to be pretty high in your current role lineup. It needs high levels of permisisons.
 
 ## Commands (so far)
 * `!blackjack <amount>` play blackjack! $100 minimum.
