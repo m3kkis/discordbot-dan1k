@@ -82,7 +82,7 @@ module.exports = {
         embedded.setDescription('*Get three of the same and double your amount. If you get 3x :gem:, you also get a LOOTBOX!*')
             .addField('Your roll',`+----------------+\n+ ${slotOne} | ${slotTwo} | ${slotThree} +\n+----------------+`, true)
             .addField('Result',`${result}`, true)
-            .addField('Combo Rewards',':poop: :poop: :poop: = x2\n:moneybag: :moneybag: :moneybag: = x3\n:gem: :gem: :gem: = x3 + *LOOTBOX*\n', true)
+            .addField('Combo Rewards',':poop: :poop: :poop: = NOTHING\n:moneybag: :moneybag: :moneybag: = x2\n:gem: :gem: :gem: = x2 + *LOOTBOX*\n', true)
 
         message.channel.send(embedded);
 
