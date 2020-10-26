@@ -31,10 +31,10 @@ module.exports = {
             return message.channel.send(embedded);
         }
 
-        if( amount < 75 ) {
+        if( amount < 100 ) {
             
             embedded.setColor('#ff4f4f')
-                .setDescription('Minimum \`$75\` is required to play slot machine.');
+                .setDescription('Minimum \`$100\` is required to play slot machine.');
 
             return message.channel.send(embedded);
         }
