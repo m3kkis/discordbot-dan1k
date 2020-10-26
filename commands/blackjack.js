@@ -356,7 +356,7 @@ module.exports = {
             {
                 if(player.instantWin == true)
                 {
-                    amount = amount * 1.5;
+                    amount = Math.floor(amount * 1.5);
                     _User.economy.cash += amount;
                 }
                 else
