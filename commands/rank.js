@@ -31,7 +31,15 @@ module.exports = {
             });
 
             arrAllUser.map( (user, index) => {
-                fieldsToAdd += "**" + (index+1) + ".** " + user.tag + " • Lvl **" + user.level + "** - *" + _XpHandler.getExperienceRank(user.level)+ "*\n"
+                
+                if(index == 0)
+                { 
+                    fieldsToAdd += ":crown: " + user.tag + " • Lvl **" + user.level + "** - *" + _XpHandler.getExperienceRank(user.level)+ "*\n"
+                }
+                else
+                {
+                    fieldsToAdd += "**" + (index+1) + ".** " + user.tag + " • Lvl **" + user.level + "** - *" + _XpHandler.getExperienceRank(user.level)+ "*\n"
+                }
             });
 
             embedded.addField("Ranks",fieldsToAdd,true);

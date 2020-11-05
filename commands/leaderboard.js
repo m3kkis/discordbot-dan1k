@@ -32,7 +32,16 @@ module.exports = {
             });
 
             arrAllUser.map( (user, index) => {
-                fieldsToAdd += "**" + (index+1) + ".** " + user.tag + " • \`$" + addCommas(user.score) + "\`\n"
+
+                if(index == 0)
+                { 
+                    fieldsToAdd += ":crown: " + user.tag + " • \`$" + addCommas(user.score) + "\`\n"
+                }
+                else
+                {
+                    fieldsToAdd += "**" + (index+1) + ".** " + user.tag + " • \`$" + addCommas(user.score) + "\`\n"
+                }
+                
             });
 
             embedded.addField("Leaderboard",fieldsToAdd,true);
