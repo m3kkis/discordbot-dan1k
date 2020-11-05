@@ -61,6 +61,7 @@ Depending on your roles, the BitchBox role needs to be pretty high in your curre
 * `!help` display all of the available commands.
 * `!inventory` display all items in your inventory.
 * `!leaderboard` display the leaderboard of your server, higher the "networth" the higher in ranks.
+* `!level` display your current level and progression.
 * `!lootbox <open|itemlist>` open a lootbox if you have the key or view all items available in lootbox.
 * `!money` display your current cash in pocket, bank and your networth.
 * `!rob` rob a member of your server.
@@ -75,7 +76,8 @@ Depending on your roles, the BitchBox role needs to be pretty high in your curre
 
 ### Notes
 For now there aren't any config file to set up the games
-* All timing for jobs can be modified ion the `JobHandler.js`
+* This bot DB is set by default to `dan1kBot` and you can find the collection `users` and `bots`.
+* All timing for jobs can be modified ion the `JobHandler.js`.
 * For blackjack you can add more decks default is 3 but can be changed where the `new DeckHandler()` is being called. 
 * Blackjack minimum is 100 but can be change to anyhting in `blackjack.js`
 * Robbing someone will use `Your networth / ( Victim cash + Your networth )` as the probability chance of successful rob.
