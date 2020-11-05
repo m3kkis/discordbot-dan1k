@@ -197,6 +197,8 @@ class JobHandler extends XpHandler{
             reply = `You tried to rob ${_Victim.tag}, but you got bamboozled beacause he had protection turned on.`;
 
             _Victim.rob_protection = false;
+
+            embedded.setDescription(reply);
         }
         else
         {
@@ -213,6 +215,8 @@ class JobHandler extends XpHandler{
 
                 _User.economy.cash -= randomCashAmount;
 
+                embedded.setDescription(reply);
+
             }
             else
             {
@@ -224,10 +228,27 @@ class JobHandler extends XpHandler{
                 _Victim.economy.cash -= randomCashAmount;
 
                 reply = `You have successfully robbed ${_Victim.tag}, and stole \`$${addCommas(randomCashAmount)}\``;
+
+                embedded.setDescription(reply);
+
+                /* XP */
+                var jsonExp = me.giveExperiencePoints(_User,'crime');
+
+                if(jsonExp.levelUp == true)
+                {
+                    embedded.addFields(
+                        { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true },
+                        { name: 'Congratulation!', value: `You leveled up.`,  inline: true }
+                    )
+                }
+                else
+                {
+                    embedded.addFields(
+                        { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true }
+                    )
+                }
             }
         }
-
-        embedded.setDescription(reply);
 
         return embedded;
     }
