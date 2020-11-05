@@ -49,7 +49,24 @@ class XpHandler {
             var extraPoints = userPoints - reqPointsLevelUp;
             _User.experience.points = extraPoints;
             _User.experience.level += 1;
-            boolLevelUp = true
+            boolLevelUp = true;
+
+            /* GIVE LOOTBOX */
+            if(_User.inventory.length >= _User.inventorySize)
+            {
+                _User.economy.cash += 500;
+            }
+            else
+            {
+                _User.inventory.push({
+                    "name":"lootbox",
+                    "display":"Lootbox",
+                    "description":"Open with a key and get surprise gift!",
+                    "value":1000,
+                    "source":"drop"
+                });
+            }
+
         }
         else
         {

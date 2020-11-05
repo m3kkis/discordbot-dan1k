@@ -61,7 +61,7 @@ class JobHandler extends XpHandler{
         {
             embedded.addFields(
                 { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true },
-                { name: 'Congratulation!', value: `You leveled up.`,  inline: true }
+                { name: 'Congratulation!', value: `You leveled up. Here's a lootbox or \`500$\` if your inventory is full`,  inline: true }
             )
         }
         else
@@ -112,7 +112,7 @@ class JobHandler extends XpHandler{
             {
                 embedded.addFields(
                     { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true },
-                    { name: 'Congratulation!', value: `You leveled up.`,  inline: true }
+                    { name: 'Congratulation!', value: `You leveled up. Here's a lootbox or \`500$\` if your inventory is full`,  inline: true }
                 )
             }
             else
@@ -167,7 +167,7 @@ class JobHandler extends XpHandler{
             {
                 embedded.addFields(
                     { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true },
-                    { name: 'Congratulation!', value: `You leveled up.`,  inline: true }
+                    { name: 'Congratulation!', value: `You leveled up. Here's a lootbox or \`500$\` if your inventory is full`,  inline: true }
                 )
             }
             else
@@ -238,7 +238,7 @@ class JobHandler extends XpHandler{
                 {
                     embedded.addFields(
                         { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true },
-                        { name: 'Congratulation!', value: `You leveled up.`,  inline: true }
+                        { name: 'Congratulation!', value: `You leveled up. Here's a lootbox or \`500$\` if your inventory is full`,  inline: true }
                     )
                 }
                 else
