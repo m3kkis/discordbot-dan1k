@@ -6,7 +6,7 @@ module.exports = {
     args: true,
     usage: '<amount>',
     aliases: ['bj'],
-    execute(client, message, args, _User, _Bot, _DeckHandler){
+    execute(client, message, args, _User, _Bot, _DeckHandler, _XpHandler){
 
         var amount = parseInt(args[0]);
 
@@ -237,6 +237,8 @@ module.exports = {
             embedded.fields = [];
             embedded.setFooter( 'Remaining cards: ' + _DeckHandler.countRemainingCards() );
 
+            var boolWin = false;
+
             if(participant.id == "player"){
 
                 if( player.score > 21 ){
@@ -257,6 +259,8 @@ module.exports = {
                 else if( player.score == 21 ){
 
                     setStatistics(amount, 'win');
+
+                    boolWin = true;
 
                     embedded.setColor('#78de87')
                         .setDescription('Result: Win')
@@ -295,6 +299,8 @@ module.exports = {
 
                     setStatistics(amount, 'win');
 
+                    boolWin = true;
+
                     embedded.setColor('#78de87')
                         .setDescription('Result: Win')
                 }
@@ -309,6 +315,8 @@ module.exports = {
 
                     setStatistics(amount, 'win');
 
+                    boolWin = true;
+
                     embedded.setColor('#78de87')
                         .setDescription('Result: Win')
                 }
@@ -322,6 +330,26 @@ module.exports = {
 
                 resetGame();
             }
+
+            if(boolWin == true){
+                /* XP */
+                var jsonExp = _XpHandler.giveExperiencePoints(_User,'bj');
+
+                if(jsonExp.levelUp == true)
+                {
+                    embedded.addFields(
+                        { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true },
+                        { name: 'Congratulation!', value: `You leveled up.`,  inline: true }
+                    )
+                }
+                else
+                {
+                    embedded.addFields(
+                        { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true }
+                    )
+                }
+            }
+
             
             message.channel.messages.fetch(embedID).then(msg => {
                 if (msg) msg.edit(embedded);

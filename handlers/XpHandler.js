@@ -12,6 +12,7 @@ class XpHandler {
     }
 
     giveExperiencePoints(_User,jobType){
+        console.log("[XP] Giving out XP");
         var me = this;
         var xp = 0;
         var userPoints = _User.experience.points;
@@ -43,6 +44,7 @@ class XpHandler {
 
         if(userPoints >= reqPointsLevelUp)
         {
+            console.log("[XP] Level UP!");
             var extraPoints = userPoints - reqPointsLevelUp;
             _User.experience.points = extraPoints;
             _User.experience.level += 1;
@@ -50,6 +52,7 @@ class XpHandler {
         }
         else
         {
+            console.log("[XP] Gave XP");
             _User.experience.points = userPoints;
         }
 

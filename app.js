@@ -214,7 +214,7 @@ client.on('message', message => {
                 {
                     if(_User.ingame == false)
                     {
-                        command.execute(client, message, args, _User, _Bot, _DeckHandler);
+                        command.execute(client, message, args, _User, _Bot, _DeckHandler, _XpHandler);
                     }
                 }
                 else if( commandName == "lootbox" || commandName == "loot" || commandName == "slot-machine" || commandName == "sm")
