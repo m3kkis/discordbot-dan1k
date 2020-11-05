@@ -35,6 +35,8 @@ module.exports = {
         }
         strProgressBar += "]"
 
+        embedded.setDescription( "*" + _XpHandler.getExperienceRank(_User.experience.level) + "*" );
+
         embedded.addFields(
             { name: 'Level', value: _User.experience.level, inline: true  },
             { name: 'Progress', value: strProgressBar, inline: true },
