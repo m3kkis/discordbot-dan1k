@@ -1,8 +1,12 @@
 const Discord = require("discord.js");
+const XpHandler = require('./XpHandler.js')
 var fs = require('fs');
 
-class JobHandler{
+class JobHandler extends XpHandler{
     constructor(){
+
+        super();
+
         this.workMinMax = [100,200]; 
         this.slutMinMax = [200,400]; 
         this.crimeMinMax = [600,800]; 
@@ -39,14 +43,35 @@ class JobHandler{
         embedded.setColor('#78de87')
             .setAuthor(message.member.user.tag, message.member.user.avatarURL())
 
+
+        /* WORK */
+        
         var randomReply =  me.jsonJobSuccess.work[Math.floor((Math.random() * me.jsonJobSuccess.work.length))].reply;
         var randomCashAmount = Math.floor(Math.random() * ( me.workMinMax[1] - me.workMinMax[0]) + me.workMinMax[0]);
         
         randomReply = randomReply.replace("##", "\`$"+randomCashAmount+"\`");
 
         _User.economy.cash += randomCashAmount;
-
         embedded.setDescription(randomReply);
+
+        /* XP */
+        var jsonExp = me.giveExperiencePoints(_User,'work');
+
+        if(jsonExp.levelUp == true)
+        {
+            embedded.addFields(
+                { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true },
+                { name: 'Congratulation!', value: `You leveled up.`,  inline: true }
+            )
+        }
+        else
+        {
+            embedded.addFields(
+                { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true }
+            )
+        }
+
+
         return embedded;
     }
 
@@ -57,6 +82,7 @@ class JobHandler{
         var embedded = new Discord.MessageEmbed();
         embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
 
+        /* SLUT*/
         var chance = Math.random();
         var randomCashAmount = Math.floor(Math.random() * ( me.slutMinMax[1] - me.slutMinMax[0]) + me.slutMinMax[0]);
 
@@ -78,6 +104,24 @@ class JobHandler{
             randomReply = randomReply.replace("##", "\`$"+randomCashAmount+"\`");
 
             _User.economy.cash += randomCashAmount;
+
+            /* XP */
+            var jsonExp = me.giveExperiencePoints(_User,'slut');
+
+            if(jsonExp.levelUp == true)
+            {
+                embedded.addFields(
+                    { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true },
+                    { name: 'Congratulation!', value: `You leveled up.`,  inline: true }
+                )
+            }
+            else
+            {
+                embedded.addFields(
+                    { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true }
+                )
+            }
+
         }
 
         embedded.setDescription(randomReply);
@@ -90,6 +134,8 @@ class JobHandler{
 
         var embedded = new Discord.MessageEmbed();
         embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
+
+        /* CRIME */
 
         var chance = Math.random();
         var randomCashAmount = Math.floor(Math.random() * ( me.crimeMinMax[1] - me.crimeMinMax[0]) + me.crimeMinMax[0]);
@@ -113,6 +159,23 @@ class JobHandler{
             randomReply = randomReply.replace("##", "\`$"+randomCashAmount+"\`");
 
             _User.economy.cash += randomCashAmount;
+
+            /* XP */
+            var jsonExp = me.giveExperiencePoints(_User,'crime');
+
+            if(jsonExp.levelUp == true)
+            {
+                embedded.addFields(
+                    { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true },
+                    { name: 'Congratulation!', value: `You leveled up.`,  inline: true }
+                )
+            }
+            else
+            {
+                embedded.addFields(
+                    { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true }
+                )
+            }
         }
 
         embedded.setDescription(randomReply);

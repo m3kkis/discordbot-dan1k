@@ -27,6 +27,9 @@ _JobHandler.loadJsonFiles();
 const DeckHandler = require('./handlers/DeckHandler.js');
 var _DeckHandler = new DeckHandler();
 
+const XpHandler = require('./handlers/XpHandler.js');
+var _XpHandler = new XpHandler();
+
 //Set files in /commands as your commands
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 for(const file of commandFiles){
@@ -199,6 +202,10 @@ client.on('message', message => {
                 {
                     command.execute(client, message, args, _User, _StoreHandler);
                 }
+                else if(commandName == "level" || commandName == "lvl" || commandName == "xp")
+                {
+                    command.execute(client, message, args, _User, _XpHandler);
+                }
                 else if( commandName == "use")
                 {
                     command.execute(client, message, args, _User, _DeckHandler);
@@ -212,7 +219,7 @@ client.on('message', message => {
                 }
                 else if( commandName == "lootbox" || commandName == "loot" || commandName == "slot-machine" || commandName == "sm")
                 {
-                    command.execute(client, message, args, _User, _LootboxHandler);
+                    command.execute(client, message, args, _User, _LootboxHandler, _XpHandler);
                 }
                 else if( commandName == "work" || commandName == "slut" || commandName == "crime" || commandName == "rob")
                 {

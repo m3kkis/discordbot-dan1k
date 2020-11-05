@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 var fs = require('fs');
 
-//change this to store handler
 class StoreHandler {
 
     constructor(){

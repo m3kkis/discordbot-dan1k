@@ -6,6 +6,10 @@ const userSchema = new Schema(
     dsid: { type: String },
     tag: { type: String },
     username: { type: String },
+    experience: {
+        level:{ type: Number, default: 1 },
+        points:{ type: Number, default: 0 }
+    },
     ingame: { type: Boolean, default: false },
     rob_protection: { type: Boolean, default: false },
     bj_insurance: { type: Boolean, default: false },

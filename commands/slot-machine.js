@@ -6,7 +6,7 @@ module.exports = {
     args: true,
     usage: '<amount>',
     aliases: ['sm'],
-    execute(client, message, args, _User, _LootboxHandler){
+    execute(client, message, args, _User, _LootboxHandler, _XpHandler){
 
         console.log("[SLOT MACHINE] Playing slot-machine.");
 
@@ -47,11 +47,13 @@ module.exports = {
 
         var result;
         var lootBox = false;
+        var boolWin = false;
 
         if(slotOne === slotTwo && slotOne === slotThree)
         {
             embedded.setColor('#78de87');
             var winnings;
+            boolWin = true;
 
             if(slotOne === ':moneybag:')
             {
@@ -82,6 +84,26 @@ module.exports = {
             .addField('Your roll',`+----------------+\n+ ${slotOne} | ${slotTwo} | ${slotThree} +\n+----------------+`, true)
             .addField('Result',`${result}`, true)
             .addField('Combo Rewards',':poop: :poop: :poop: = NOTHING\n:moneybag: :moneybag: :moneybag: = x2\n:gem: :gem: :gem: = *LOOTBOX*\n', true)
+
+        if(boolWin == true)
+        {
+            /* XP */
+            var jsonExp = _XpHandler.giveExperiencePoints(_User,'sm');
+
+            if(jsonExp.levelUp == true)
+            {
+                embedded.addFields(
+                    { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true },
+                    { name: 'Congratulation!', value: `You leveled up.`,  inline: true }
+                )
+            }
+            else
+            {
+                embedded.addFields(
+                    { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true }
+                )
+            }
+        }
 
         message.channel.send(embedded);
 
