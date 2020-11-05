@@ -9,6 +9,8 @@ module.exports = {
     aliases: ['xp','lvl'],
     execute(client, message, args, _User, _XpHandler){
 
+        console.log("[LEVEL] Showing Level Info.");
+
         var embedded = new Discord.MessageEmbed();
         embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
             .setColor('#03b6fc')
@@ -32,9 +34,6 @@ module.exports = {
             }
         }
         strProgressBar += "]"
-
-
-
 
         embedded.addFields(
             { name: 'Level', value: _User.experience.level, inline: true  },

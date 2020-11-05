@@ -7,6 +7,7 @@ class XpHandler {
     }
 
     calculateTotalPointsRequired(currentLevel){
+        console.log("[XP] Calculating XP Required");
         var result = Math.pow((currentLevel + (currentLevel - 1)) + 1, 2);
         return Math.floor(result);
     }
