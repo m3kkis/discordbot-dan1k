@@ -78,7 +78,56 @@ class XpHandler {
         return {points:xp, levelUp: boolLevelUp};
     }
 
-    getExperienceRank(){
+    getExperienceRank(currentLevel){
+
+        var rankTitle;
+
+        if(currentLevel > 0 && currentLevel <= 9)
+        {
+            rankTitle = 'Newbie';
+        }
+        else if(currentLevel >= 10 && currentLevel <= 19)
+        {
+            rankTitle = 'Amateur';
+        }
+        else if(currentLevel >= 20 && currentLevel <= 29)
+        {
+            rankTitle = 'Skilled';
+        }
+        else if(currentLevel >= 30 && currentLevel <= 39)
+        {
+            rankTitle = 'Experienced';
+        }
+        else if(currentLevel >= 40 && currentLevel <= 49)
+        {
+            rankTitle = 'Professional';
+        }
+        else if(currentLevel >= 50 && currentLevel <= 59)
+        {
+            rankTitle = 'Expert';
+        }
+        else if(currentLevel >= 60 && currentLevel <= 69)
+        {
+            rankTitle = 'Champion';
+        }
+        else if(currentLevel >= 70 && currentLevel <= 79)
+        {
+            rankTitle = 'Elite';
+        }
+        else if(currentLevel >= 80 && currentLevel <= 89)
+        {
+            rankTitle = 'Supreme';
+        }
+        else if(currentLevel >= 90 && currentLevel <= 99)
+        {
+            rankTitle = 'Master';
+        }
+        else if(currentLevel >= 100)
+        {
+            rankTitle = 'Legend';
+        }
+
+        return rankTitle;
 
     }
 }

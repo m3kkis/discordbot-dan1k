@@ -64,6 +64,7 @@ Depending on your roles, the BitchBox role needs to be pretty high in your curre
 * `!level` display your current level and progression.
 * `!lootbox <open|itemlist>` open a lootbox if you have the key or view all items available in lootbox.
 * `!money` display your current cash in pocket, bank and your networth.
+* `!rank` display all players levels ranked.
 * `!rob` rob a member of your server.
 * `!sell <item_inventory_number_list>` sell an item from your inventory.
 * `!slot-machine <amount>` play the slot machine! $50 minimum.

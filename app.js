@@ -202,7 +202,7 @@ client.on('message', message => {
                 {
                     command.execute(client, message, args, _User, _StoreHandler);
                 }
-                else if(commandName == "level" || commandName == "lvl" || commandName == "xp")
+                else if(commandName == "rank" || commandName == "level" || commandName == "lvl" || commandName == "xp")
                 {
                     command.execute(client, message, args, _User, _XpHandler);
                 }
