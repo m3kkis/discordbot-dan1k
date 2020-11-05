@@ -34,10 +34,10 @@ class XpHandler {
                 xp = Math.floor(Math.pow(_User.experience.level,1)*8);
                 break;
             case 'bj':
-                xp = Math.floor(Math.pow(_User.experience.level,1)*6);
+                xp = Math.floor(Math.pow(_User.experience.level,1)*4);
                 break;
             case 'sm':
-                xp = Math.floor(Math.pow(_User.experience.level,1));
+                xp = Math.floor(Math.pow(_User.experience.level,1)*2);
                 break;
         }
 
@@ -76,6 +76,10 @@ class XpHandler {
 
 
         return {points:xp, levelUp: boolLevelUp};
+    }
+
+    getExperienceRank(){
+
     }
 }
 
