@@ -22,7 +22,7 @@ class StoreHandler {
         var me = this;
         var reply = "";
         me.jsonStoreItems.map(function (item,idx) {
-            reply += `${(idx+1)}. **${item.display}** ($${addCommas(item.value)}): *${item.description}*\n`;
+            reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(item.value)}\` : *${item.description}*\n`;
         });
         return reply;
     }
@@ -71,6 +71,66 @@ class StoreHandler {
             else
             {
                 return reply = "You are already protected from being robbed."; 
+            }
+        }
+        else if(item.name == "transport_bicycle"){
+            if(_User.travel.transportation.hasBicycle != true)
+            {
+                _User.travel.transportation.hasBicycle = true;
+                _User.economy.cash -= item.value;
+                return reply = "Successfully bought a bicycle.";
+            }
+            else
+            {
+                return reply = "You already own a bicycle."; 
+            }
+        }
+        else if(item.name == "transport_car"){
+            if(_User.travel.transportation.hasCar != true)
+            {
+                _User.travel.transportation.hasCar = true;
+                _User.economy.cash -= item.value;
+                return reply = "Successfully bought a car.";
+            }
+            else
+            {
+                return reply = "You already own a car."; 
+            }
+        }
+        else if(item.name == "transport_boat"){
+            if(_User.travel.transportation.hasBoat != true)
+            {
+                _User.travel.transportation.hasBoat = true;
+                _User.economy.cash -= item.value;
+                return reply = "Successfully bought a boat.";
+            }
+            else
+            {
+                return reply = "You already own a boat."; 
+            }
+        }
+        else if(item.name == "transport_helicopter"){
+            if(_User.travel.transportation.hasHelicopter != true)
+            {
+                _User.travel.transportation.hasHelicopter = true;
+                _User.economy.cash -= item.value;
+                return reply = "Successfully bought a helicopter.";
+            }
+            else
+            {
+                return reply = "You already own a helicopter."; 
+            }
+        }
+        else if(item.name == "transport_portalgun"){
+            if(_User.travel.transportation.hasPortalGun != true)
+            {
+                _User.travel.transportation.hasPortalGun = true;
+                _User.economy.cash -= item.value;
+                return reply = "Successfully bought a portal gun.";
+            }
+            else
+            {
+                return reply = "You already own a portal gun."; 
             }
         }
         else

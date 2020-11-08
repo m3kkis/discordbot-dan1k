@@ -16,5 +16,35 @@
         "display": "Rob Protection",
         "description": "Protect yourself from being robbed once.",
         "value": 5000
+    },
+    {
+        "name": "transport_bicycle",
+        "display": "Bicycle",
+        "description": "Leg day! Travel in 4min, no costs per travel.",
+        "value": 400
+    },
+    {
+        "name": "transport_car",
+        "display": "Car",
+        "description": "Faster than a lawn mower! Travel in 3min but costs $10 for fuel each travel.",
+        "value": 35000
+    },
+    {
+        "name": "transport_boat",
+        "display": "Boat",
+        "description": "Make Aquaman jealous! Travel in 2min but costs $200 for fuel each travel.",
+        "value": 150000
+    },
+    {
+        "name": "transport_helicopter",
+        "display": "Helicopter",
+        "description": "Forget traffic! Travel in 1min but costs $500 for fuel each travel.",
+        "value": 640000
+    },
+    {
+        "name": "transport_portalgun",
+        "display": "Portal Gun",
+        "description": "The cake is a lie! Travel instantly, no costs per travel.",
+        "value": 1000000
     }
 ]

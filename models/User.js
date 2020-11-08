@@ -15,6 +15,18 @@ const userSchema = new Schema(
     bj_insurance: { type: Boolean, default: false },
     inventorySize: { type: Number, default: 5 },
     inventory: { type: Array, default: [] },
+    travel:{
+        location: { type: String, default: 'city' },
+        isTraveling: { type: Boolean, default: false },
+        last_updated: { type: Number, default: 0 },
+        transportation: {
+            hasBicycle: { type: Boolean, default: false },
+            hasCar: { type: Boolean, default: false },
+            hasBoat: { type: Boolean, default: false },
+            hasHelicopter: { type: Boolean, default: false },
+            hasPortalGun: { type: Boolean, default: false }
+        }
+    },
     economy: {
         cash: { type: Number, default: 1000 },
         bank: { type: Number, default: 1000 },

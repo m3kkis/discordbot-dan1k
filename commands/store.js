@@ -1,7 +1,5 @@
 const Discord = require("discord.js");
 
-//dont forget what if the user doesnt have lbxKey field.
-
 module.exports = {
     name: 'store',
     description: 'View whats in-store!',
@@ -13,8 +11,8 @@ module.exports = {
         embedded.setColor('#03b6fc')
             .setAuthor(message.member.user.tag, message.member.user.avatarURL())
             .setThumbnail('https://raw.githubusercontent.com/m3kkis/discordbot-dan1k/master/img/store.jpg')
-            .setDescription("To buy an item type `!buy <list_id_of_item>`.\n *example:* `!buy 1` ")
-            .addField("Store Items",_StoreHandler.displayAllStoreItems(),true);
+            .setDescription(`To buy an item type \`${process.env.BOT_PREFIX}buy <list_id_of_item>\`.\n **Must be in the City**. *Example:* \`${process.env.BOT_PREFIX}buy 1\``)
+            .addField("***- STORE ITEMS -***",_StoreHandler.displayAllStoreItems(),true);
 
         
         return message.channel.send(embedded);
