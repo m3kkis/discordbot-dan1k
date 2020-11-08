@@ -7,7 +7,7 @@ module.exports = {
     args: false,
     aliases: ['loc'],
     usage: '<optional:list>',
-    execute(client, message, args, _User, _StoreHandler){
+    execute(client, message, args, _User){
 
         var embedded = new Discord.MessageEmbed();
         embedded.setColor('#03b6fc')
