@@ -62,6 +62,7 @@ Depending on your roles, the BitchBox role needs to be pretty high in your curre
 * `!inventory` display all items in your inventory.
 * `!leaderboard` display the leaderboard of your server, higher the "networth" the higher in ranks.
 * `!level` display your current level and progression.
+* `!location <optional: list>` display your current location and player nearby, optional: display information of all locations.
 * `!lootbox <open|itemlist>` open a lootbox if you have the key or view all items available in lootbox.
 * `!money` display your current cash in pocket, bank and your networth.
 * `!rank` display all players levels ranked.
