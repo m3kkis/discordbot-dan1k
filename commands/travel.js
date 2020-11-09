@@ -24,6 +24,9 @@ module.exports = {
         var strDestination = args[0].toLowerCase();
         var strTransportMethod;
 
+        var d = new Date();
+        var n = d.getTime();
+
         if(strDestination == "city" || strDestination == "casino")
         {
             console.log("[TRAVEL] Player trying to travel to " + strDestination);
@@ -39,6 +42,9 @@ module.exports = {
                         console.log("[TRAVEL] Player traveling by" + strTransportMethod);
     
                         _User.travel.location = strDestination;
+                        _User.travel.last_updated = n;
+                        _User.travel.last_method = strTransportMethod;
+                        _User.travel.isTraveling = true;
     
                         embedded.setColor('#78de87')
                                 .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive instantly*`);
@@ -62,6 +68,9 @@ module.exports = {
                             
                             _User.travel.location = strDestination;
                             _User.economy.cash -= fuelPrice.helicopter;
+                            _User.travel.last_updated = n;
+                            _User.travel.last_method = strTransportMethod;
+                            _User.travel.isTraveling = true;
     
                             embedded.setColor('#78de87')
                                     .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive in 1 minute*`);
@@ -92,6 +101,9 @@ module.exports = {
                             
                             _User.travel.location = strDestination;
                             _User.economy.cash -= fuelPrice.boat;
+                            _User.travel.last_updated = n;
+                            _User.travel.last_method = strTransportMethod;
+                            _User.travel.isTraveling = true;
     
                             embedded.setColor('#78de87')
                                     .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive in 2 minutes*`);
@@ -123,6 +135,9 @@ module.exports = {
 
                             _User.travel.location = strDestination;
                             _User.economy.cash -= fuelPrice.car;
+                            _User.travel.last_updated = n;
+                            _User.travel.last_method = strTransportMethod;
+                            _User.travel.isTraveling = true;
     
                             embedded.setColor('#78de87')
                                     .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive in 3 minutes*`);
@@ -152,6 +167,9 @@ module.exports = {
                         console.log("[TRAVEL] Player traveling by " + strTransportMethod);
     
                         _User.travel.location = strDestination;
+                        _User.travel.last_updated = n;
+                        _User.travel.last_method = strTransportMethod;
+                        _User.travel.isTraveling = true;
     
                         embedded.setColor('#78de87')
                                 .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive in 4 minutes*`);
@@ -170,6 +188,9 @@ module.exports = {
                     console.log("[TRAVEL] Player traveling by " + strTransportMethod);
 
                     _User.travel.location = strDestination;
+                    _User.travel.last_updated = n;
+                    _User.travel.last_method = strTransportMethod;
+                    _User.travel.isTraveling = true;
 
                     embedded.setColor('#78de87')
                             .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive in 5 minutes*`);
@@ -192,6 +213,9 @@ module.exports = {
                     console.log("[TRAVEL] Player traveling by " + strTransportMethod);
 
                     _User.travel.location = strDestination;
+                    _User.travel.last_updated = n;
+                    _User.travel.last_method = strTransportMethod;
+                    _User.travel.isTraveling = true;
 
                     embedded.setColor('#78de87')
                             .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive instantly*`);
@@ -205,6 +229,9 @@ module.exports = {
 
                         _User.travel.location = strDestination;
                         _User.economy.cash -= fuelPrice.helicopter;
+                        _User.travel.last_updated = n;
+                        _User.travel.last_method = strTransportMethod;
+                        _User.travel.isTraveling = true;
 
                         embedded.setColor('#78de87')
                                 .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive in 1 minute*`);
@@ -226,6 +253,9 @@ module.exports = {
 
                         _User.travel.location = strDestination;
                         _User.economy.cash -= fuelPrice.boat;
+                        _User.travel.last_updated = n;
+                        _User.travel.last_method = strTransportMethod;
+                        _User.travel.isTraveling = true;
 
                         embedded.setColor('#78de87')
                                 .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive in 2 minutes*`);
@@ -247,6 +277,9 @@ module.exports = {
                         
                         _User.travel.location = strDestination;
                         _User.economy.cash -= fuelPrice.car;
+                        _User.travel.last_updated = n;
+                        _User.travel.last_method = strTransportMethod;
+                        _User.travel.isTraveling = true;
 
                         embedded.setColor('#78de87')
                                 .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive in 3 minutes*`);
@@ -266,6 +299,9 @@ module.exports = {
                     console.log("[TRAVEL] Player traveling by " + strTransportMethod);
 
                     _User.travel.location = strDestination;
+                    _User.travel.last_updated = n;
+                    _User.travel.last_method = strTransportMethod;
+                    _User.travel.isTraveling = true;
 
                     embedded.setColor('#78de87')
                             .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive in 4 minutes*`);
@@ -277,6 +313,9 @@ module.exports = {
                     console.log("[TRAVEL] Player traveling by " + strTransportMethod);
 
                     _User.travel.location = strDestination;
+                    _User.travel.last_updated = n;
+                    _User.travel.last_method = strTransportMethod;
+                    _User.travel.isTraveling = true;
 
                     embedded.setColor('#78de87')
                             .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive in 5 minutes*`);

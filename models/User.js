@@ -19,6 +19,7 @@ const userSchema = new Schema(
         location: { type: String, default: 'city' },
         isTraveling: { type: Boolean, default: false },
         last_updated: { type: Number, default: 0 },
+        last_method: { type: String },
         transportation: {
             hasBicycle: { type: Boolean, default: false },
             hasCar: { type: Boolean, default: false },
