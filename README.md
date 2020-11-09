@@ -73,7 +73,6 @@ Depending on your roles, the BitchBox role needs to be pretty high in your curre
 * `!slut` medium amount of pay, also chances of being caught.
 * `!store` view whats in-store.
 * `!use <item_inventory_number_list>` Use an item from your inventory.
-* ~~`!statistics <optional:dealer|raw>`  display your stats, dealer stats and can also view your stats in raw json format~~ [removed temporarily]
 * `!withdraw <amount|all>` withdraw cash from the bank.
 * `!work` lowest payout but the safest one, will never be caught
 

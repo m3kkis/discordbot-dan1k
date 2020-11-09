@@ -7,6 +7,8 @@ module.exports = {
     usage: '',
     execute(client, message, args, _User){
 
+        console.log("[ME] Displaying info about.");
+
         var embedded = new Discord.MessageEmbed();
         embedded.setColor('#03b6fc')
             .setAuthor(message.member.user.tag, message.member.user.avatarURL())

@@ -15,6 +15,8 @@ module.exports = {
         
         if(args[0] != undefined && args[0].toLowerCase() == "list")
         {
+            console.log("[LOCATION] Displaying location list.");
+
             embedded.setDescription(`You can travel to any of these location listed by using the command \`${process.env.BOT_PREFIX}travel <location>\``)
                     .addFields(
                         { name: ':cityscape: City', value: '*Main area where you can work at different jobs, buy and sell at the store, withdraw and deposit your money at the bank.*' },
@@ -27,6 +29,8 @@ module.exports = {
         }
         else
         {
+            console.log("[LOCATION] Displaying curent location.");
+
             var jsonLocEmoji = {
                 "city":":cityscape:",
                 "casino":":slot_machine:",
