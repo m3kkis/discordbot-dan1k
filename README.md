@@ -72,6 +72,7 @@ Depending on your roles, the BitchBox role needs to be pretty high in your curre
 * `!slot-machine <amount>` play the slot machine! $50 minimum.
 * `!slut` medium amount of pay, also chances of being caught.
 * `!store` view whats in-store.
+* `!travel` travel to another location either by walking or other method of transport bought from store.
 * `!use <item_inventory_number_list>` Use an item from your inventory.
 * `!withdraw <amount|all>` withdraw cash from the bank.
 * `!work` lowest payout but the safest one, will never be caught
