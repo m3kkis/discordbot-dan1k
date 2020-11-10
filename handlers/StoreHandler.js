@@ -17,12 +17,31 @@ class StoreHandler {
         });
     }
 
-    displayAllStoreItems(){
+    displayAllStoreItems(invLevel){
         console.log('[STORE HANDLER] Display all store items');
         var me = this;
         var reply = "";
         me.jsonStoreItems.map(function (item,idx) {
-            reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(item.value)}\` : *${item.description}*\n`;
+            if(item.name == "upgrade_inventory")
+            {
+                if(invLevel == 16)
+                {
+                    reply += `~~**${(idx+1)}. ${item.display}** \`MAXED OUT\` : *${item.description}*~~\n`;
+                }
+                else
+                {
+                    var lvlDiff = invLevel - 4;
+                    var finalPrice = item.value * Math.pow(lvlDiff,2);
+    
+                    reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(finalPrice)}\` : *${item.description}*\n`;
+                }
+
+            }
+            else
+            {
+                reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(item.value)}\` : *${item.description}*\n`;
+            }
+            
         });
         return reply;
     }
@@ -52,8 +71,11 @@ class StoreHandler {
         {
             if(_User.inventorySize < 16)
             {
+                var lvlDiff = _User.inventorySize - 4;
+                var finalPrice = item.value * Math.pow(lvlDiff,2);
+
                 _User.inventorySize += 1;
-                _User.economy.cash -= item.value;
+                _User.economy.cash -= finalPrice;
                 return reply = "Successfully upgraded inventory slot";
             }
             else

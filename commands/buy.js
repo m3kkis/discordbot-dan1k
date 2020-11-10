@@ -50,23 +50,54 @@ module.exports = {
             }
             else
             {
-                if(_StoreHandler.jsonStoreItems[id].value > _User.economy.cash)
+                if(_StoreHandler.jsonStoreItems[id].name == "upgrade_inventory")
                 {
-                    embedded.setColor('#ff4f4f')
-                        .setDescription('You can\'t afford that item.');
-    
-                    return message.channel.send(embedded);
+
+                    var lvlDiff = _User.inventorySize - 4;
+                    var finalPrice = _StoreHandler.jsonStoreItems[id].value * Math.pow(lvlDiff,2);
+
+                    if(finalPrice > _User.economy.cash)
+                    {
+                        embedded.setColor('#ff4f4f')
+                            .setDescription('You can\'t afford that item.');
+        
+                        return message.channel.send(embedded);
+                    }
+                    else
+                    {
+                        var reply = _StoreHandler.buyItem(id, _User);
+        
+                        embedded.setColor('#78de87')
+                            .setDescription(reply);
+            
+                        _User.save();
+            
+                        return message.channel.send(embedded);
+                    }
+
                 }
                 else
                 {
-                    var reply = _StoreHandler.buyItem(id, _User);
-    
-                    embedded.setColor('#78de87')
-                        .setDescription(reply);
+
+                    if(_StoreHandler.jsonStoreItems[id].value > _User.economy.cash)
+                    {
+                        embedded.setColor('#ff4f4f')
+                            .setDescription('You can\'t afford that item.');
         
-                    _User.save();
+                        return message.channel.send(embedded);
+                    }
+                    else
+                    {
+                        var reply = _StoreHandler.buyItem(id, _User);
         
-                    return message.channel.send(embedded);
+                        embedded.setColor('#78de87')
+                            .setDescription(reply);
+            
+                        _User.save();
+            
+                        return message.channel.send(embedded);
+                    }
+
                 }
             }
         }

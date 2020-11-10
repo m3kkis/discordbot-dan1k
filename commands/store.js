@@ -12,7 +12,7 @@ module.exports = {
             .setAuthor(message.member.user.tag, message.member.user.avatarURL())
             .setThumbnail('https://raw.githubusercontent.com/m3kkis/discordbot-dan1k/master/img/store.jpg')
             .setDescription(`To buy an item type \`${process.env.BOT_PREFIX}buy <list_id_of_item>\`.\n **Must be in the City**. *Example:* \`${process.env.BOT_PREFIX}buy 1\``)
-            .addField("***- STORE ITEMS -***",_StoreHandler.displayAllStoreItems(),true);
+            .addField("***- STORE ITEMS -***",_StoreHandler.displayAllStoreItems(_User.inventorySize),true);
 
         
         return message.channel.send(embedded);
