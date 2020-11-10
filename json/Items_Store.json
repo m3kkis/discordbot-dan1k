@@ -44,7 +44,7 @@
     {
         "name": "transport_portalgun",
         "display": "Portal Gun",
-        "description": "The cake is a lie! Travel instantly, no costs per travel.",
+        "description": "The cake is a lie! Travel instantly but costs $50,000 for energy each travel.",
         "value": 1000000
     }
 ]

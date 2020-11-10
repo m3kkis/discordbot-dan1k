@@ -18,7 +18,8 @@ module.exports = {
         var fuelPrice = {
             "car" : 10,
             "boat" : 200,
-            "helicopter" : 500
+            "helicopter" : 500,
+            "portal": 50000
         };
 
         var strDestination = args[0].toLowerCase();
@@ -31,6 +32,13 @@ module.exports = {
         {
             console.log("[TRAVEL] Player trying to travel to " + strDestination);
 
+            if( _User.travel.location == strDestination) {
+                embedded.setColor('#ff4f4f')
+                    .setDescription('You are already in the **' + strDestination.toUpperCase() + '**');
+    
+                return message.channel.send(embedded);
+            }
+
             if(args[1] != undefined){
 
                 strTransportMethod = args[1].toLowerCase();
@@ -38,25 +46,35 @@ module.exports = {
                 if(strTransportMethod == "portal"){
 
                     if(_User.travel.transportation.hasPortalGun){
+    
+                        if( _User.economy.cash >= fuelPrice.portal)
+                        {
+                            console.log("[TRAVEL] Player traveling by" + strTransportMethod);
+                            
+                            _User.travel.location = strDestination;
+                            _User.economy.cash -= fuelPrice.portal;
+                            _User.travel.last_updated = n;
+                            _User.travel.last_method = strTransportMethod;
+                            _User.travel.isTraveling = true;
+    
+                            embedded.setColor('#78de87')
+                                    .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive instantly*`);
+                        }
+                        else
+                        {
+                            console.log("[TRAVEL] Travel failed. Need to pay for energy.");
 
-                        console.log("[TRAVEL] Player traveling by" + strTransportMethod);
-    
-                        _User.travel.location = strDestination;
-                        _User.travel.last_updated = n;
-                        _User.travel.last_method = strTransportMethod;
-                        _User.travel.isTraveling = true;
-    
-                        embedded.setColor('#78de87')
-                                .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive instantly*`);
+                            embedded.setColor('#ff4f4f')
+                                    .setDescription(`You need \`$${fuelPrice.portal}\` in cash for energy to teleport using the portal gun.`);
+                        }
                     }
                     else
                     {
                         console.log("[TRAVEL] Travel failed. Need to pay for travel method.");
 
                         embedded.setColor('#ff4f4f')
-                                .setDescription(`You need to buy the Portal Gun to travel by portal.`);
+                                .setDescription(`You need to buy a portal gun first to be able to travel with it.`);
                     }
-
                 }
                 else if(strTransportMethod == "helicopter"){
 
@@ -80,7 +98,7 @@ module.exports = {
                             console.log("[TRAVEL] Travel failed. Need to pay for fuel.");
 
                             embedded.setColor('#ff4f4f')
-                                    .setDescription(`You need \`${fuelPrice.helicopter}\` in cash for fuel to fly the helicopter.`);
+                                    .setDescription(`You need \`$${fuelPrice.helicopter}\` in cash for fuel to fly the helicopter.`);
                         }
                     }
                     else
@@ -113,7 +131,7 @@ module.exports = {
                             console.log("[TRAVEL] Travel failed. Need to pay for fuel.");
 
                             embedded.setColor('#ff4f4f')
-                                    .setDescription(`You need \`${fuelPrice.boat}\` in cash for fuel to pilot the boat.`);
+                                    .setDescription(`You need \`$${fuelPrice.boat}\` in cash for fuel to pilot the boat.`);
                         }
                     }
                     else
@@ -147,7 +165,7 @@ module.exports = {
                             console.log("[TRAVEL] Travel failed. Need to pay for fuel.");
 
                             embedded.setColor('#ff4f4f')
-                                    .setDescription(`You need \`${fuelPrice.car}\` in cash for fuel to drive the car.`);
+                                    .setDescription(`You need \`$${fuelPrice.car}\` in cash for fuel to drive the car.`);
                         }
     
                     }
@@ -210,15 +228,26 @@ module.exports = {
                 if(_User.travel.transportation.hasPortalGun){
                     strTransportMethod = "portal";
 
-                    console.log("[TRAVEL] Player traveling by " + strTransportMethod);
+                    if( _User.economy.cash >= fuelPrice.portal)
+                    {
+                        console.log("[TRAVEL] Player traveling by " + strTransportMethod);
 
-                    _User.travel.location = strDestination;
-                    _User.travel.last_updated = n;
-                    _User.travel.last_method = strTransportMethod;
-                    _User.travel.isTraveling = true;
+                        _User.travel.location = strDestination;
+                        _User.economy.cash -= fuelPrice.portal;
+                        _User.travel.last_updated = n;
+                        _User.travel.last_method = strTransportMethod;
+                        _User.travel.isTraveling = true;
 
-                    embedded.setColor('#78de87')
-                            .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive instantly*`);
+                        embedded.setColor('#78de87')
+                                .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive instantly*`);
+                    }
+                    else
+                    {
+                        console.log("[TRAVEL] Travel failed. Need to pay for energy.");
+
+                        embedded.setColor('#ff4f4f')
+                                .setDescription(`You need \`$${fuelPrice.portal}\` in cash for energy to teleport using the portal gun.`);
+                    }
                 }
                 else if(_User.travel.transportation.hasHelicopter){
                     strTransportMethod = "helicopter";
@@ -241,7 +270,7 @@ module.exports = {
                         console.log("[TRAVEL] Travel failed. Need to pay for fuel.");
 
                         embedded.setColor('#ff4f4f')
-                                .setDescription(`You need \`${fuelPrice.helicopter}\` in cash for fuel to fly the helicopter.`);
+                                .setDescription(`You need \`$${fuelPrice.helicopter}\` in cash for fuel to fly the helicopter.`);
                     }
                 }
                 else if(_User.travel.transportation.hasBoat){
@@ -265,7 +294,7 @@ module.exports = {
                         console.log("[TRAVEL] Travel failed. Need to pay for fuel.");
 
                         embedded.setColor('#ff4f4f')
-                                .setDescription(`You need \`${fuelPrice.boat}\` in cash for fuel to pilot the boat.`);
+                                .setDescription(`You need \`$${fuelPrice.boat}\` in cash for fuel to pilot the boat.`);
                     }
                 }
                 else if(_User.travel.transportation.hasCar){
@@ -289,7 +318,7 @@ module.exports = {
                         console.log("[TRAVEL] Travel failed. Need to pay for fuel.");
 
                         embedded.setColor('#ff4f4f')
-                                .setDescription(`You need \`${fuelPrice.car}\` in cash for fuel to drive the car.`);
+                                .setDescription(`You need \`$${fuelPrice.car}\` in cash for fuel to drive the car.`);
                     }
 
                 }
