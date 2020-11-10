@@ -30,6 +30,15 @@ var _DeckHandler = new DeckHandler();
 const XpHandler = require('./handlers/XpHandler.js');
 var _XpHandler = new XpHandler();
 
+var objTravelMethodTime = {
+    "portal" : 0,
+    "helicopter" : 1,
+    "boat" : 2,
+    "car" : 3,
+    "bicycle" : 4,
+    "walk" : 5
+}
+
 //Set files in /commands as your commands
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 for(const file of commandFiles){
@@ -197,142 +206,120 @@ client.on('message', message => {
         {
             console.log("[APP] User found.");
 
-            try {
-
-                switch(commandName){
-                    case "blackjack":
-                    case "bj":
-
-                        if(_User.ingame == false)
-                        {
-                            command.execute(client, message, args, _User, _Bot, _DeckHandler, _XpHandler);
-                        }
-
-                        break;
-                    case "buy":
-
-                        command.execute(client, message, args, _User, _StoreHandler);
-
-                        break;
-                    case "crime":
-
-                        command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
-
-                        break;
-                    case "deposit":
-                    case "dep":
-
-                        command.execute(client, message, args, _User);
-
-                        break;
-                    case "give":
-
-                        command.execute(client, message, args, _User);
-
-                        break;
-                    case "inventory":
-                    case "inv":
-
-                        command.execute(client, message, args, _User);
-
-                        break;
-                    case "leaderboard":
-                    case "lb":
-
-                        command.execute(client, message, args, _User);
-
-                        break;
-                    case "level":
-                    case "lvl":
-
-                        command.execute(client, message, args, _User, _XpHandler);
-
-                        break;
-                    case "location":
-                    case "loc":
-
-                        command.execute(client, message, args, _User, _XpHandler);
-
-                        break;
-                    case "lootbox":
-                    case "loot":
-
-                        command.execute(client, message, args, _User, _LootboxHandler, _XpHandler);
-
-                        break;
-                    case "me":
-
-                        command.execute(client, message, args, _User);
-
-                        break;
-                    case "money":
-                    case "bal":
-
-                        command.execute(client, message, args, _User);
-
-                        break;
-                    case "rank":
-                    case "xp":
-
-                        command.execute(client, message, args, _User, _XpHandler);
-
-                        break;
-                    case "rob":
-
-                        command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
-
-                        break;
-                    case "sell":
-
-                        command.execute(client, message, args, _User);
-
-                        break;
-                    case "slot-machine":
-                    case "sm":
-
-                        command.execute(client, message, args, _User, _LootboxHandler, _XpHandler);
-
-                        break;
-                    case "slut":
-
-                        command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
-
-                        break;
-                    case "store":
-
-                        command.execute(client, message, args, _User, _StoreHandler);
-
-                        break;
-                    case "travel":
-
-                        command.execute(client, message, args, _User);
-
-                        break;
-                    case "use":
-
-                        command.execute(client, message, args, _User);
-
-                        break;
-                    case "withdraw":
-                    case "with":
-
-                        command.execute(client, message, args, _User);
-
-                        break;
-                    case "work":
-
-                        command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
-
-                        break;
-                    default:
-                        command.execute(client, message, args, _User);
-
+            if(_User.travel.isTraveling)
+            {
+                if( 
+                    commandName == "help" || 
+                    commandName == "inventory" || commandName == "inv" ||
+                    commandName == "leaderboard" || commandName == "lb" ||
+                    commandName == "level" ||
+                    commandName == "lootbox" || commandName == "loot" ||
+                    commandName == "me" ||
+                    commandName == "money" || commandName == "bal" ||
+                    commandName == "rank" || commandName == "xp" ||
+                    commandName == "store" ||
+                    commandName == "use" 
+                )
+                {
+                    executeCommand();
                 }
+                else
+                {
+                    var d = new Date();
+                    var n = d.getTime();
 
-            } 
-            catch (error) {
-                console.error(error);
-                message.reply('There was an error trying to execute that command!');
+                    var timeLimit = objTravelMethodTime[_User.travel.last_method] * (1000 * 60);
+                    var timeDifference = n - _User.travel.last_updated;
+
+                    if( timeDifference > timeLimit )
+                    {
+                        _User.travel.last_updated = n;
+                        _User.travel.isTraveling = false;
+
+                        _User.save(function(){
+                            executeCommand();
+                        });
+                    }
+                    else
+                    {
+                        var embedded = new Discord.MessageEmbed();
+                        embedded.setColor('#ff4f4f')
+                            .setAuthor(message.member.user.tag, message.member.user.avatarURL())
+                            .setDescription(`You are currently traveling to the **${_User.travel.location.toUpperCase()}** by ***${_User.travel.last_method.toUpperCase()}***, cannot use commands until you arrive in ` + convertToMinutes(timeLimit - timeDifference));
+                        return message.channel.send(embedded);
+                    }
+
+                    function convertToMinutes(timestamp) {
+                        var min = Math.floor(timestamp / 60000);
+                        var sec = ((timestamp % 60000) / 1000).toFixed(0);
+                        return min + ":" + (sec < 10 ? '0' : '') + sec;
+                    }
+                }
+            }
+            else
+            {
+                executeCommand();
+            }
+
+
+            /** Execute Command */
+            function executeCommand(){
+                try{
+                    switch(commandName){
+                        case "blackjack":
+                        case "bj":
+                            if(_User.ingame == false)
+                            {
+                                command.execute(client, message, args, _User, _Bot, _DeckHandler, _XpHandler);
+                            }
+                            break;
+                        case "buy":
+                            command.execute(client, message, args, _User, _StoreHandler);
+                            break;
+                        case "crime":
+                            command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
+                            break;
+                        case "level":
+                        case "lvl":
+                            command.execute(client, message, args, _User, _XpHandler);
+                            break;
+                        case "location":
+                        case "loc":
+                            command.execute(client, message, args, _User, _XpHandler);
+                            break;
+                        case "lootbox":
+                        case "loot":
+                            command.execute(client, message, args, _User, _LootboxHandler, _XpHandler);
+                            break;
+                        case "rank":
+                        case "xp":
+                            command.execute(client, message, args, _User, _XpHandler);
+                            break;
+                        case "rob":
+                            command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
+                            break;
+                        case "slot-machine":
+                        case "sm":
+                            command.execute(client, message, args, _User, _LootboxHandler, _XpHandler);
+                            break;
+                        case "slut":
+                            command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
+                            break;
+                        case "store":
+                            command.execute(client, message, args, _User, _StoreHandler);
+                            break;
+                        case "work":
+                            command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
+                            break;
+                        default:
+                            command.execute(client, message, args, _User);
+
+                    }
+                } 
+                catch (error) {
+                    console.error(error);
+                    message.reply('There was an error trying to execute that command!');
+                }
             }
         }
         else
