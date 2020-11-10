@@ -76,19 +76,27 @@ module.exports = {
                 if(_Victim)
                 {
                     console.log("[GIVE] Found victim ID.");
-    
-                    _User.economy.cash -= amount;
-                    _User.save().then(()=>{
-                        _Victim.economy.cash += amount;
-                        _Victim.save();
-                    });
-    
-                    embedded.setColor('#78de87')
-                        .setDescription(`You successfully gave \`$${addCommas(amount)}\` to **${_Victim.tag}** `);
-                    
-                    return message.channel.send(embedded);
-    
-    
+
+                    if( _User.travel.location != _Victim.travel.location ) {
+                        embedded.setColor('#ff4f4f')
+                            .setDescription('You must be in the same location to give items to another player.');
+            
+                        return message.channel.send(embedded);
+                    }
+                    else
+                    {
+                        _User.economy.cash -= amount;
+                        _User.save().then(()=>{
+                            _Victim.economy.cash += amount;
+                            _Victim.save();
+                        });
+        
+                        embedded.setColor('#78de87')
+                            .setDescription(`You successfully gave \`$${addCommas(amount)}\` to **${_Victim.tag}** `);
+                        
+                        return message.channel.send(embedded);
+
+                    }
                 }
                 else
                 {

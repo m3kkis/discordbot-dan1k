@@ -7,6 +7,15 @@ module.exports = {
     usage: '',
     execute(client, message, args, _User, _JobHandler, _LootboxHandler){
 
+        if( _User.travel.location != "city" ) {
+            var embedded = new Discord.MessageEmbed();
+            embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
+                .setColor('#ff4f4f')
+                .setDescription('You must be in the **CITY** to be a slut.');
+
+            return message.channel.send(embedded);
+        }
+
         var d = new Date();
         var n = d.getTime();
 

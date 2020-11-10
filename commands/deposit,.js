@@ -11,6 +11,13 @@ module.exports = {
         var embedded = new Discord.MessageEmbed();
         embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL());
 
+        if( _User.travel.location != "city" ) {
+            embedded.setColor('#ff4f4f')
+                    .setDescription('You must be in the **CITY** to deposit cash.');
+
+            return message.channel.send(embedded);
+        }
+
         if(args[0].toLowerCase() == "all")
         {
             if(_User.economy.cash <= 0)

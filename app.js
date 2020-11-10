@@ -198,37 +198,137 @@ client.on('message', message => {
             console.log("[APP] User found.");
 
             try {
-                if( commandName == "store" || commandName == "buy" )
-                {
-                    command.execute(client, message, args, _User, _StoreHandler);
+
+                switch(commandName){
+                    case "blackjack":
+                    case "bj":
+
+                        if(_User.ingame == false)
+                        {
+                            command.execute(client, message, args, _User, _Bot, _DeckHandler, _XpHandler);
+                        }
+
+                        break;
+                    case "buy":
+
+                        command.execute(client, message, args, _User, _StoreHandler);
+
+                        break;
+                    case "crime":
+
+                        command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
+
+                        break;
+                    case "deposit":
+                    case "dep":
+
+                        command.execute(client, message, args, _User);
+
+                        break;
+                    case "give":
+
+                        command.execute(client, message, args, _User);
+
+                        break;
+                    case "inventory":
+                    case "inv":
+
+                        command.execute(client, message, args, _User);
+
+                        break;
+                    case "leaderboard":
+                    case "lb":
+
+                        command.execute(client, message, args, _User);
+
+                        break;
+                    case "level":
+                    case "lvl":
+
+                        command.execute(client, message, args, _User, _XpHandler);
+
+                        break;
+                    case "location":
+                    case "loc":
+
+                        command.execute(client, message, args, _User, _XpHandler);
+
+                        break;
+                    case "lootbox":
+                    case "loot":
+
+                        command.execute(client, message, args, _User, _LootboxHandler, _XpHandler);
+
+                        break;
+                    case "me":
+
+                        command.execute(client, message, args, _User);
+
+                        break;
+                    case "money":
+                    case "bal":
+
+                        command.execute(client, message, args, _User);
+
+                        break;
+                    case "rank":
+                    case "xp":
+
+                        command.execute(client, message, args, _User, _XpHandler);
+
+                        break;
+                    case "rob":
+
+                        command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
+
+                        break;
+                    case "sell":
+
+                        command.execute(client, message, args, _User);
+
+                        break;
+                    case "slot-machine":
+                    case "sm":
+
+                        command.execute(client, message, args, _User, _LootboxHandler, _XpHandler);
+
+                        break;
+                    case "slut":
+
+                        command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
+
+                        break;
+                    case "store":
+
+                        command.execute(client, message, args, _User, _StoreHandler);
+
+                        break;
+                    case "travel":
+
+                        command.execute(client, message, args, _User);
+
+                        break;
+                    case "use":
+
+                        command.execute(client, message, args, _User);
+
+                        break;
+                    case "withdraw":
+                    case "with":
+
+                        command.execute(client, message, args, _User);
+
+                        break;
+                    case "work":
+
+                        command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
+
+                        break;
+                    default:
+                        command.execute(client, message, args, _User);
+
                 }
-                else if(commandName == "rank" || commandName == "level" || commandName == "lvl" || commandName == "xp")
-                {
-                    command.execute(client, message, args, _User, _XpHandler);
-                }
-                else if( commandName == "use")
-                {
-                    command.execute(client, message, args, _User, _DeckHandler);
-                }
-                else if( commandName == "blackjack" || commandName == "bj")
-                {
-                    if(_User.ingame == false)
-                    {
-                        command.execute(client, message, args, _User, _Bot, _DeckHandler, _XpHandler);
-                    }
-                }
-                else if( commandName == "lootbox" || commandName == "loot" || commandName == "slot-machine" || commandName == "sm")
-                {
-                    command.execute(client, message, args, _User, _LootboxHandler, _XpHandler);
-                }
-                else if( commandName == "work" || commandName == "slut" || commandName == "crime" || commandName == "rob")
-                {
-                    command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
-                }
-                else
-                {
-                    command.execute(client, message, args, _User);
-                }
+
             } 
             catch (error) {
                 console.error(error);

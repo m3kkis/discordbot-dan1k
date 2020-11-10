@@ -11,6 +11,14 @@ module.exports = {
         var embedded = new Discord.MessageEmbed();
         embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL());
 
+        if( _User.travel.location != "city" || _User.travel.location != "casino" ) {
+        
+            embedded.setColor('#ff4f4f')
+                .setDescription('You must be in the **CITY** or at the **CASINO** to withdraw cash.');
+
+            return message.channel.send(embedded);
+        }
+
         if(args[0].toLowerCase() == "all")
         {
             if(_User.economy.bank <= 0)

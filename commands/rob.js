@@ -48,14 +48,23 @@ module.exports = {
                 if(_Victim)
                 {
                     console.log("[ROB] Found victim ID.");
-                    var reply = _JobHandler.doRob(message, _User, _Victim);
 
-                    _User.save().then(()=>{
-                        _Victim.save();
-                    });
-                    
-                    return message.channel.send(reply);
-
+                    if( _User.travel.location != _Victim.travel.location ) {
+                        embedded.setColor('#ff4f4f')
+                            .setDescription('You must be in the same location to give items to another player.');
+            
+                        return message.channel.send(embedded);
+                    }
+                    else
+                    {
+                        var reply = _JobHandler.doRob(message, _User, _Victim);
+    
+                        _User.save().then(()=>{
+                            _Victim.save();
+                        });
+                        
+                        return message.channel.send(reply);
+                    }
 
                 }
                 else

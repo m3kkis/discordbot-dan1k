@@ -21,9 +21,8 @@ module.exports = {
                     .addFields(
                         { name: ':cityscape: City', value: '*Main area where you can work at different jobs, buy and sell at the store, withdraw and deposit your money at the bank.*' },
                         { name: ':slot_machine: Casino', value: '*What happens at the casino, stays at the casino. Gamble your life savings away with blackjack or slot machines!*'},
-                        { name: ':crossed_swords: Arena', value: '*Coming Soon...*'},
-                        { name: ':hospital: Hospital', value: '*Coming Soon...*'},
-                        { name: ':muscle: Gym', value: '*Coming Soon...*'},
+                        { name: ':lock: Prison', value: '*Be a good citizen of discord or else a police officer will stop you  and you will end up here.*'},
+                        { name: ':rice_scene: Farm', value: '*Farm your resources, legal or illegal. Just don\'t get caught.*'},
                     )
             return message.channel.send(embedded);
         }

@@ -27,7 +27,7 @@ module.exports = {
         var d = new Date();
         var n = d.getTime();
 
-        if(strDestination == "city" || strDestination == "casino")
+        if(strDestination == "city" || strDestination == "casino" || strDestination == "prison" || strDestination == "farm")
         {
             console.log("[TRAVEL] Player trying to travel to " + strDestination);
 

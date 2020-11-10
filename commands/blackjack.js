@@ -13,6 +13,14 @@ module.exports = {
         var embedded = new Discord.MessageEmbed();
         embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL());
 
+        if( _User.travel.location != "casino" ) {
+            
+            embedded.setColor('#ff4f4f')
+                .setDescription('You must be in the **CASINO** to play blackjack.');
+
+            return message.channel.send(embedded);
+        }
+
         if( isNaN(amount) ) {
             
             embedded.setColor('#ff4f4f')
