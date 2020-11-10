@@ -9,19 +9,27 @@
             "type":"instant"
         },
         {
-            "name": "card_rob_protection",
-            "display": "[COMMON] Card Rob Protection",
-            "description": "Protect yourself from being robbed once.",
-            "chance":0.6,
-            "value": 4000,
-            "type":"card"
-        },
-        {
             "name": "card_bitch_box",
             "display": "[COMMON] Card Bitch Box",
             "description": "Send a user into a bitch box and laugh at him.",
             "chance":0.6,
             "value": 4000,
+            "type":"card"
+        },
+        {
+            "name": "card_debt_cleaner",
+            "display": "[COMMON] Card Debt Cleaner",
+            "description": "Removes all of your debts.",
+            "chance":0.6,
+            "value": 6000,
+            "type":"card"
+        },
+        {
+            "name": "card_shuffle_deck",
+            "display": "[UNCOMMON] Card Shuffle Deck",
+            "description": "Shuffle the deck at any time.",
+            "chance":0.6,
+            "value": 6000,
             "type":"card"
         }
     ],
@@ -35,11 +43,11 @@
             "type":"instant"
         },
         {
-            "name": "card_debt_cleaner",
-            "display": "[UNCOMMON] Card Debt Cleaner",
-            "description": "Removes all of your debts.",
+            "name": "card_rob_protection",
+            "display": "[UNCOMMON] Card Rob Protection",
+            "description": "Protect yourself from being robbed once.",
             "chance":0.3,
-            "value": 6000,
+            "value": 4000,
             "type":"card"
         },
         {
@@ -47,14 +55,6 @@
             "display": "[UNCOMMON] Card See The Future",
             "description": "View the next card in the deck for bj.",
             "chance":0.3,
-            "value": 6000,
-            "type":"card"
-        },
-        {
-            "name": "card_shuffle_deck",
-            "display": "[UNCOMMON] Card Shuffle Deck",
-            "description": "Shuffle the deck at any time.",
-            "chance":0.15,
             "value": 6000,
             "type":"card"
         }
@@ -69,17 +69,18 @@
             "type":"instant"
         },
         {
-            "name": "card_free_slot",
-            "display": "[RARE] Card Inventory Upgrade",
-            "description": "Add 1 free inventory slot. (MAX 16 TOTAL SLOTS)",
-            "chance":0.15,
-            "value": 8000,
-            "type":"card"
-        },
-        {
             "name": "card_bj_insurance",
             "display": "[RARE] Card BJ Insurance",
             "description": "Active until next loss, you get back half the amount you lost.",
+            "chance":0.15,
+            "value": 8000,
+            "type":"card"
+        }
+        ,
+        {
+            "name": "card_teleport",
+            "display": "[RARE] Card Teleport",
+            "description": "Teleport yourself to another location.",
             "chance":0.15,
             "value": 8000,
             "type":"card"
@@ -93,6 +94,14 @@
             "chance":0.05,
             "value": 10000,
             "type":"instant"
+        },
+        {
+            "name": "card_free_slot",
+            "display": "[EPIC] Card Inventory Upgrade",
+            "description": "Add 1 free inventory slot. (MAX 16 TOTAL SLOTS)",
+            "chance":0.05,
+            "value": 10000,
+            "type":"card"
         },
         {
             "name": "card_next_three",

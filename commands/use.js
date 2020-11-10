@@ -12,10 +12,25 @@ module.exports = {
 
         var id = parseInt(args[0]);
         var victim;
+        var strDestination;
 
         if(args[1] != undefined)
         {
-            victim = args[1];
+            if(
+                args[1].toLowerCase() == "city" ||
+                args[1].toLowerCase() == "casino" ||
+                args[1].toLowerCase() == "prison" ||
+                args[1].toLowerCase() == "farm"
+            )
+            {
+                strDestination = args[1].toLowerCase();
+                victim = undefined;
+            }
+            else
+            {
+                victim = args[1];
+            }
+            
         }
         else
         {
@@ -169,6 +184,22 @@ module.exports = {
                     _User.bj_insurance = true;
                     
                 }
+            }
+            else if(_User.inventory[id].name == "card_teleport")
+            {
+
+                if(strDestination == _User.travel.location)
+                {
+                    embedded.setColor('#ff4f4f')
+                        .setDescription('You are already located in the **' + strDestination.toUpperCase() + '**');
+    
+                    return message.channel.send(embedded);
+                }
+                else
+                {
+                    _User.travel.location = strDestination;
+                }
+
             }
             else if(_User.inventory[id].name == "card_bitch_box")
             {
