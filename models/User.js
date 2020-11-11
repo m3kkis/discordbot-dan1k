@@ -44,6 +44,9 @@ const userSchema = new Schema(
         },
         rob:{
             last_updated: { type: Number, default: 0 },
+        },
+        harvest:{
+            last_updated: { type: Number, default: 0 },
         }
     }
 });

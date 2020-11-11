@@ -16,6 +16,7 @@ class JobHandler extends XpHandler{
         this.crimeTimeout = 15;
         this.crimeFailChance = 0.5;
         this.robTimeout = 15;
+        this.harvestTimeout = 720;
         this.jsonJobSuccess;
         this.jsonJobFailed;
     }
@@ -73,6 +74,65 @@ class JobHandler extends XpHandler{
 
 
         return embedded;
+    }
+
+    doHarvest(message, _User){
+        console.log('[JOB HANDLER] Do harvest success.');
+        var me = this;
+
+        var embedded = new Discord.MessageEmbed();
+        embedded.setColor('#78de87')
+            .setAuthor(message.member.user.tag, message.member.user.avatarURL())
+
+        /* HARVEST */
+        var randomNbr = Math.floor(Math.random() * 2);
+        var arrHarvestItems = [
+            {
+                "name" : "harvest_drugs",
+                "display" : "Bag of drugs ",
+                "description" : "Sell this to make extra cash.",
+                "value" : 10000,
+                "source" :"farm"
+            },
+            {
+                "name" : "harvest_crops",
+                "display" : "Crate of crops ",
+                "description" : "Sell this to make extra cash.",
+                "value" : 5000,
+                "source" :"farm"
+            }
+        ]
+        var randomItem = arrHarvestItems[randomNbr];
+        _User.inventory.push(randomItem);
+
+        var reply =  "You have successfully harvested plants.";
+
+        embedded.setDescription(reply);
+
+        /* XP */
+        var jsonExp = me.giveExperiencePoints(_User,'harvest');
+
+        if(jsonExp.levelUp == true)
+        {
+            embedded.addFields(
+                { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true },
+                { name: 'Congratulation!', value: `You leveled up. Here's a lootbox or \`500$\` if your inventory is full`,  inline: true }
+            )
+        }
+        else
+        {
+            embedded.addFields(
+                { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true }
+            )
+        }
+
+        var jsonReply = {
+            "type": randomItem.display,
+            "embd": embedded
+        }
+
+
+        return jsonReply;
     }
 
     doSlut(message, _User){
@@ -190,64 +250,77 @@ class JobHandler extends XpHandler{
         embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL());
         var reply;
 
-        if(_Victim.rob_protection == true)
+        if(_Victim.travel.isTaveling == true)
         {
-            console.log('[JOB HANDLER] Do rob failed, victim protected.');
-            embedded.setColor('#ff4f4f');
-            reply = `You tried to rob ${_Victim.tag}, but you got bamboozled beacause he had protection turned on.`;
 
-            _Victim.rob_protection = false;
-
-            embedded.setDescription(reply);
-        }
-        else
-        {
-            /* your networth / (their cash + your networth) */
-            var robProbability = ( _User.economy.cash + _User.economy.bank ) / ( _Victim.economy.cash + ( _User.economy.cash + _User.economy.bank ) )
-            var chance = Math.random();
-
-            if(chance < robProbability)
+            if(_Victim.rob_protection == true)
             {
-                console.log('[JOB HANDLER] Do rob failed.');
-                var randomCashAmount = Math.floor(Math.random() * ( me.crimeMinMax[1] - me.crimeMinMax[0]) + me.crimeMinMax[0]);
+                console.log('[JOB HANDLER] Do rob failed, victim protected.');
                 embedded.setColor('#ff4f4f');
-                reply = `You tried to rob ${_Victim.tag}, but you failed and got caught with a fine of \`$${randomCashAmount}\``;
+                reply = `You tried to rob ${_Victim.tag}, but you got bamboozled beacause he had protection turned on.`;
 
-                _User.economy.cash -= randomCashAmount;
+                _Victim.rob_protection = false;
 
                 embedded.setDescription(reply);
-
             }
             else
             {
-                console.log('[JOB HANDLER] Do rob success.');
-                var randomCashAmount = Math.floor(Math.random() * ( (_Victim.economy.cash/2) - (_Victim.economy.cash/4)) + (_Victim.economy.cash/4));
-                embedded.setColor('#78de87')
+                /* your networth / (their cash + your networth) */
+                var robProbability = ( _User.economy.cash + _User.economy.bank ) / ( _Victim.economy.cash + ( _User.economy.cash + _User.economy.bank ) )
+                var chance = Math.random();
 
-                _User.economy.cash += randomCashAmount;
-                _Victim.economy.cash -= randomCashAmount;
-
-                reply = `You have successfully robbed ${_Victim.tag}, and stole \`$${addCommas(randomCashAmount)}\``;
-
-                embedded.setDescription(reply);
-
-                /* XP */
-                var jsonExp = me.giveExperiencePoints(_User,'crime');
-
-                if(jsonExp.levelUp == true)
+                if(chance < robProbability)
                 {
-                    embedded.addFields(
-                        { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true },
-                        { name: 'Congratulation!', value: `You leveled up. Here's a lootbox or \`500$\` if your inventory is full`,  inline: true }
-                    )
+                    console.log('[JOB HANDLER] Do rob failed.');
+                    var randomCashAmount = Math.floor(Math.random() * ( me.crimeMinMax[1] - me.crimeMinMax[0]) + me.crimeMinMax[0]);
+                    embedded.setColor('#ff4f4f');
+                    reply = `You tried to rob ${_Victim.tag}, but you failed and got caught with a fine of \`$${randomCashAmount}\``;
+
+                    _User.economy.cash -= randomCashAmount;
+
+                    embedded.setDescription(reply);
+
                 }
                 else
                 {
-                    embedded.addFields(
-                        { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true }
-                    )
+                    console.log('[JOB HANDLER] Do rob success.');
+                    var randomCashAmount = Math.floor(Math.random() * ( (_Victim.economy.cash/2) - (_Victim.economy.cash/4)) + (_Victim.economy.cash/4));
+                    embedded.setColor('#78de87')
+
+                    _User.economy.cash += randomCashAmount;
+                    _Victim.economy.cash -= randomCashAmount;
+
+                    reply = `You have successfully robbed ${_Victim.tag}, and stole \`$${addCommas(randomCashAmount)}\``;
+
+                    embedded.setDescription(reply);
+
+                    /* XP */
+                    var jsonExp = me.giveExperiencePoints(_User,'crime');
+
+                    if(jsonExp.levelUp == true)
+                    {
+                        embedded.addFields(
+                            { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true },
+                            { name: 'Congratulation!', value: `You leveled up. Here's a lootbox or \`500$\` if your inventory is full`,  inline: true }
+                        )
+                    }
+                    else
+                    {
+                        embedded.addFields(
+                            { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true }
+                        )
+                    }
                 }
             }
+
+        }
+        else
+        {
+            console.log('[JOB HANDLER] Do rob failed, victim is traveling.');
+            embedded.setColor('#ff4f4f');
+            reply = `Can\t rob a person while the person is traveling.`;
+
+            embedded.setDescription(reply);
         }
 
         return embedded;

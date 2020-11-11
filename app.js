@@ -174,6 +174,9 @@ client.on('message', message => {
 
     if(!message.content.startsWith(prefix) || message.author.bot) return;
 
+    if(message.channel instanceof Discord.DMChannel) return message.reply('Can\'t reply to bot through DM. I blocked it because... This tends to... crash the bot...'); // BLOCK DM REPLIES OR ELSE IT WILL CRASH BOT!
+
+
     const embedded = new Discord.MessageEmbed();
     embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL());
 
@@ -309,6 +312,9 @@ client.on('message', message => {
                             command.execute(client, message, args, _User, _StoreHandler);
                             break;
                         case "work":
+                            command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
+                            break;
+                        case "harvest":
                             command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
                             break;
                         default:
