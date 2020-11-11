@@ -58,6 +58,7 @@ Depending on your roles, the BitchBox role needs to be pretty high in your curre
 * `!crime` work in crime, get highest pay but more chances to be caught.
 * `!deposit <amount|all>` deposit an amount or all of your cash to your bank.
 * `!give <user> cash <amount>` give cash to another user.
+* `!harvest` Harvest either legal or illegal plants. Sell them for extra cash! But don\'t get caught by police.
 * `!help` display all of the available commands.
 * `!inventory` display all items in your inventory.
 * `!leaderboard` display the leaderboard of your server, higher the "networth" the higher in ranks.
