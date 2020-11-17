@@ -130,8 +130,8 @@ var repliesBitchBox = [
     'Imagine not being in the BitchBox... wow... → ',
     'This guy is the little bitch → ',
     'The Bitch Box is a special little place made just for you → ',
-    'Stfu and go back into the Bitch Box → ',
-    'Hey, who you let you in the server? Go back ion the the Bitch Box → '
+    'STFU and go back into the Bitch Box → ',
+    'Hey, who you let you in the server? Go back into the Bitch Box → '
 ];
 
 client.on('presenceUpdate', (oldPresence, newPresence) => {
