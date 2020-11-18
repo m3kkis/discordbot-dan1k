@@ -7,6 +7,7 @@ class JobHandler extends XpHandler{
 
         super();
 
+        // All in minutes
         this.workMinMax = [100,200]; 
         this.slutMinMax = [200,400]; 
         this.crimeMinMax = [600,800]; 

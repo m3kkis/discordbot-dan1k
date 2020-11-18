@@ -5,6 +5,11 @@ const botSchema = new Schema(
 {
     name: { type: String, default: "DAN-1000" },
     bank: { type: Number, default: 0 },
+    election: {
+        mayor: { type: String, default: ""},
+        last_updated: { type: Number, default: 0},
+        inProgress: { type: Boolean, default: false }
+    }
 });
 
 const Bot = mongoose.model('bot', botSchema);

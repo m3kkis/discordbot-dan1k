@@ -279,6 +279,13 @@ client.on('message', message => {
                         case "buy":
                             command.execute(client, message, args, _User, _StoreHandler);
                             break;
+                        case "election":
+                        case "ele":
+                            if(_Bot.election.inProgress == false)
+                            {
+                                command.execute(client, message, args, _User, _Bot);
+                            }
+                            break;
                         case "crime":
                             command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
                             break;
