@@ -16,6 +16,15 @@ module.exports = {
             return message.channel.send(embedded);
         }
 
+        if( _User.isMayor == true) {
+            var embedded = new Discord.MessageEmbed();
+            embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
+                .setColor('#ff4f4f')
+                .setDescription('A mayor cannot be a slut.');
+
+            return message.channel.send(embedded);
+        }
+
         var d = new Date();
         var n = d.getTime();
 
