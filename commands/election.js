@@ -29,7 +29,7 @@ module.exports = {
                     var randomCandidateTwo;
                     var currentMayor = undefined;
 
-                    var VOTE_TIME = 10; // in seconds
+                    var VOTE_TIME = 120; // in seconds
 
                     _ColUsers.map(function (user) {
                         if(user.experience.level >= 10 && user.tag != _Bot.election.mayor )

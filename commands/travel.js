@@ -92,7 +92,10 @@ module.exports = {
                             console.log("[TRAVEL] Player traveling by" + strTransportMethod);
                             
                             _User.travel.location = strDestination;
-                            _User.economy.cash -= fuelPrice.helicopter;
+                            if(_User.isMayor != true)
+                            {
+                                _User.economy.cash -= fuelPrice.helicopter;
+                            }
                             _User.travel.last_updated = n;
                             _User.travel.last_method = strTransportMethod;
                             _User.travel.isTraveling = true;
@@ -256,7 +259,7 @@ module.exports = {
                                 .setDescription(`You need \`$${fuelPrice.portal}\` in cash for energy to teleport using the portal gun.`);
                     }
                 }
-                else if(_User.travel.transportation.hasHelicopter){
+                else if(_User.travel.transportation.hasHelicopter || _User.isMayor == true){
                     strTransportMethod = "helicopter";
 
                     if( _User.economy.cash >= fuelPrice.helicopter)
@@ -264,7 +267,10 @@ module.exports = {
                         console.log("[TRAVEL] Player traveling by " + strTransportMethod);
 
                         _User.travel.location = strDestination;
-                        _User.economy.cash -= fuelPrice.helicopter;
+                        if(_User.isMayor != true)
+                        {
+                            _User.economy.cash -= fuelPrice.helicopter;
+                        }
                         _User.travel.last_updated = n;
                         _User.travel.last_method = strTransportMethod;
                         _User.travel.isTraveling = true;
