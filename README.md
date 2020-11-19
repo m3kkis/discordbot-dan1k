@@ -59,6 +59,7 @@ Same applies to the Mayor and Police role.
 * `!crime` work in crime, get highest pay but more chances to be caught.
 * `!deposit <amount|all>` deposit an amount or all of your cash to your bank.
 * `!election` Vote for a mayor of your server. Lasts 7 days before can revote.
+* `!fire` Fire a Police Officer. Only mayor can do this in the townhall.
 * `!give <user> cash <amount>` give cash to another user.
 * `!harvest` Harvest either legal or illegal plants. Sell them for extra cash! But don\'t get caught by police.
 * `!help` display all of the available commands.
@@ -69,6 +70,7 @@ Same applies to the Mayor and Police role.
 * `!lootbox <open|itemlist>` open a lootbox if you have the key or view all items available in lootbox.
 * `!me` Display other hidden information about yourself.
 * `!money` display your current cash in pocket, bank and your networth.
+* `!promote <name>` Promote a player to Police Officer. Only mayor can use this in the townhall.
 * `!rank` display all players levels ranked.
 * `!rob` rob a member of your server.
 * `!sell <item_inventory_number_list>` sell an item from your inventory.

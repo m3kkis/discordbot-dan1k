@@ -104,6 +104,19 @@ client.once('ready', () => {
         console.log("[APP] Role doesn't exists, creating role Mayor");
         guild.roles.create({ data: { name: 'Mayor', color: '#a16e00', permissions: ['CREATE_INSTANT_INVITE', 'CHANGE_NICKNAME', 'VIEW_CHANNEL', 'SEND_MESSAGES', 'SEND_TTS_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES', 'READ_MESSAGE_HISTORY', 'MENTION_EVERYONE', 'USE_EXTERNAL_EMOJIS', 'ADD_REACTIONS', 'CONNECT', 'SPEAK', 'STREAM', 'USE_VAD'] } });
     }
+
+    //Create role for Police, after that don't forget to set role as separate.
+
+    try{
+        var rolePO = guild.roles.cache.find(x => x.name === "Police");
+        if(rolePO.name == "Police") {
+            console.log("[APP] Police Role Already Exists");
+        }
+    }
+    catch(e){
+        console.log("[APP] Role doesn't exists, creating role Police");
+        guild.roles.create({ data: { name: 'Police', color: '#3849ff', permissions: ['CREATE_INSTANT_INVITE', 'CHANGE_NICKNAME', 'VIEW_CHANNEL', 'SEND_MESSAGES', 'SEND_TTS_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES', 'READ_MESSAGE_HISTORY', 'MENTION_EVERYONE', 'USE_EXTERNAL_EMOJIS', 'ADD_REACTIONS', 'CONNECT', 'SPEAK', 'STREAM', 'USE_VAD'] } });
+    }
     
 
     //Create or find bot
@@ -176,12 +189,14 @@ client.on('message', message => {
     /**
      * COLORS USED:
      * 
-     * GREEN:   #78de87
-     * ORANGE:  #ffd900
-     * RED:     #ff4f4f
-     * BLUE:    #03b6fc
-     * PURPLE:  #ae00ff
-     * PINK:    #ff69af
+     * GREEN:       #78de87
+     * ORANGE:      #ffd900
+     * RED:         #ff4f4f
+     * BLUE:        #03b6fc
+     * PURPLE:      #ae00ff
+     * PINK:        #ff69af
+     * DARKBLUE:    #031cfc
+     * POLICEBLUE:  #3849ff
      */
 
     if(!message.content.startsWith(prefix) || message.author.bot) return;

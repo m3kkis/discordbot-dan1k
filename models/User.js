@@ -14,6 +14,7 @@ const userSchema = new Schema(
     rob_protection: { type: Boolean, default: false },
     bj_insurance: { type: Boolean, default: false },
     isMayor: { type: Boolean, default: false },
+    isPolice: { type: Boolean, default: false },
     inventorySize: { type: Number, default: 5 },
     inventory: { type: Array, default: [] },
     travel:{
