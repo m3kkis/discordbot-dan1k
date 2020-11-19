@@ -78,7 +78,8 @@ Depending on your roles, the BitchBox role needs to be pretty high in your curre
 * `!travel` travel to another location either by walking or other method of transport bought from store.
 * `!use <item_inventory_number_list>` Use an item from your inventory.
 * `!withdraw <amount|all>` withdraw cash from the bank.
-* `!work` lowest payout but the safest one, will never be caught
+* `!work` lowest payout but the safest one, will never be caught.
+* `!wtb` Remind people who is in the bitchbox.
 
 ### Notes
 For now there aren't any config file to set up the games
