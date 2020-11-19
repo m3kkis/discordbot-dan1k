@@ -35,7 +35,7 @@ module.exports = {
             return message.channel.send(embedded);
         }
 
-        if(chance < 0.5)
+        if(chance < 0.1)
         {
 
             var role = message.guild.roles.cache.find(r => r.name === "BitchBox");
