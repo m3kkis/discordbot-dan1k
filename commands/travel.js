@@ -28,13 +28,20 @@ module.exports = {
         var d = new Date();
         var n = d.getTime();
 
-        if(strDestination == "city" || strDestination == "casino" || strDestination == "prison" || strDestination == "farm")
+        if(strDestination == "city" || strDestination == "casino" || strDestination == "prison" || strDestination == "farm" || strDestination == "townhall")
         {
             console.log("[TRAVEL] Player trying to travel to " + strDestination);
 
             if( _User.travel.location == strDestination) {
                 embedded.setColor('#ff4f4f')
                     .setDescription('You are already in the **' + strDestination.toUpperCase() + '**');
+    
+                return message.channel.send(embedded);
+            }
+
+            if( _User.isMayor == false && strDestination == "townhall") {
+                embedded.setColor('#ff4f4f')
+                    .setDescription('Only the mayor can travel to the **' + strDestination.toUpperCase() + '**');
     
                 return message.channel.send(embedded);
             }

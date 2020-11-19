@@ -9,7 +9,8 @@ const botSchema = new Schema(
         mayor: { type: String, default: ""},
         last_updated: { type: Number, default: 0},
         inProgress: { type: Boolean, default: false }
-    }
+    },
+    tax_last_updated : { type: Number, default: 0}
 });
 
 const Bot = mongoose.model('bot', botSchema);

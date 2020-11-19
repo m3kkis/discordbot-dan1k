@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const moment = require("moment");
 
 module.exports = {
     name: 'harvest',
@@ -17,8 +18,7 @@ module.exports = {
             return message.channel.send(embedded);
         }
 
-        var d = new Date();
-        var n = d.getTime();
+        var n = moment().valueOf();
 
         var timeLimit = _JobHandler.harvestTimeout * (1000 * 60);
         var timeDifference = n - _User.jobs.harvest.last_updated;
@@ -49,27 +49,9 @@ module.exports = {
             var embedded = new Discord.MessageEmbed();
             embedded.setColor('#ff4f4f')
                 .setAuthor(message.member.user.tag, message.member.user.avatarURL())
-                .setDescription("You cannot harvest for the next " + convertToHours(timeLimit - timeDifference));
+                .setDescription("You cannot harvest for the next " + moment.utc(timeLimit - timeDifference).format('HH:mm:ss'));
             return message.channel.send(embedded);
         }
         
-        /*
-        function convertToMinutes(timestamp) {
-            var min = Math.floor(timestamp / 60000);
-            var sec = ((timestamp % 60000) / 1000).toFixed(0);
-            return min + ":" + (sec < 10 ? '0' : '') + sec;
-        }
-        */
-
-        function convertToHours(timestamp){
-            var date = new Date(timestamp);
-            var hours = date.getHours();
-            var min = "0" + date.getMinutes();
-            var sec = "0" + date.getSeconds();
-            var formattedTime = hours + ':' + min.substr(-2) + ':' + sec.substr(-2);
-            return formattedTime;
-        }
-        
-
     }
 }

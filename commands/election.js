@@ -13,7 +13,7 @@ module.exports = {
         var embedded = new Discord.MessageEmbed();
 
         var n = moment().valueOf();
-        var timeLimit =  7 * (((60 * 1000) * 60) * 24);
+        var timeLimit =  7 * (((60 * 1000) * 60) * 24); // 7 days
         var timeDifference = n - _Bot.election.last_updated;
  
         if( timeDifference > timeLimit )
@@ -30,8 +30,6 @@ module.exports = {
                     var currentMayor = undefined;
 
                     var VOTE_TIME = 10; // in seconds
-
-                    console.log("000");
 
                     _ColUsers.map(function (user) {
                         if(user.experience.level >= 10 && user.tag != _Bot.election.mayor )
@@ -110,12 +108,12 @@ module.exports = {
                             .addField(randomCandidateOne, 'React Eggplant :eggplant: to vote.', true)
                             .addField(randomCandidateTwo, 'React Cucumber :cucumber: to vote.', true)
                     
-                    console.log("111");
+
 
                     message.channel.send(embedded).then(msg => {
-                        console.log("222");
+
                         msg.react(`🍆`).then(() => msg.react('🥒'));
-                        console.log("333");
+
 
                         const filter = (reaction, user) => {
 
@@ -259,7 +257,7 @@ module.exports = {
         {
             embedded.setColor('#ff4f4f')
                     .setAuthor(message.member.user.tag, message.member.user.avatarURL())
-                    .setDescription("You cannot start an election. The mayor still has until " + moment(_Bot.election.last_updated + timeLimit).format('MMMM Do YYYY, h:mm:ss a'));
+                    .setDescription("You cannot start an election. The mayor still has until " + moment(_Bot.election.last_updated + timeLimit).format('MMMM Do YYYY, hh:mm:ss'));
 
             return message.channel.send(embedded);
         }

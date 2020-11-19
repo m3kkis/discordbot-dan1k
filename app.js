@@ -318,6 +318,9 @@ client.on('message', message => {
                         case "store":
                             command.execute(client, message, args, _User, _StoreHandler);
                             break;
+                        case "tax":
+                            command.execute(client, message, args, _User, _Bot);
+                            break;
                         case "work":
                             command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
                             break;

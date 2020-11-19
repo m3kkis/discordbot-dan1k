@@ -23,6 +23,7 @@ module.exports = {
                         { name: ':slot_machine: Casino', value: '*What happens at the casino, stays at the casino. Gamble your life savings away with blackjack or slot machines!*'},
                         { name: ':lock: Prison', value: '*Be a good citizen of discord or else a police officer will stop you  and you will end up here.*'},
                         { name: ':rice_scene: Farm', value: '*Farm your resources, legal or illegal. Just don\'t get caught.*'},
+                        { name: ':classical_building: Townhall', value: '*Only the mayor can be at the townhall to feel safe and secure to do his stuff.*'},
                     )
             return message.channel.send(embedded);
         }
@@ -33,6 +34,7 @@ module.exports = {
             var jsonLocEmoji = {
                 "city":":cityscape:",
                 "casino":":slot_machine:",
+                "townhall":":classical_building:",
             };
 
             embedded.setDescription(`You are currently in the ${jsonLocEmoji[_User.travel.location]} **${_User.travel.location.toUpperCase()}**`)

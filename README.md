@@ -57,6 +57,7 @@ Depending on your roles, the BitchBox role needs to be pretty high in your curre
 * `!clear <amount>` clear the amount specified of messages from chat.
 * `!crime` work in crime, get highest pay but more chances to be caught.
 * `!deposit <amount|all>` deposit an amount or all of your cash to your bank.
+* `!election` Vote for a mayor of your server. Lasts 7 days before can revote.
 * `!give <user> cash <amount>` give cash to another user.
 * `!harvest` Harvest either legal or illegal plants. Sell them for extra cash! But don\'t get caught by police.
 * `!help` display all of the available commands.
@@ -73,6 +74,7 @@ Depending on your roles, the BitchBox role needs to be pretty high in your curre
 * `!slot-machine <amount>` play the slot machine! $50 minimum.
 * `!slut` medium amount of pay, also chances of being caught.
 * `!store` view whats in-store.
+* `!tax <percentage>` collect tax from your fellow peers. Only the mayor can do so and only once a week.
 * `!travel` travel to another location either by walking or other method of transport bought from store.
 * `!use <item_inventory_number_list>` Use an item from your inventory.
 * `!withdraw <amount|all>` withdraw cash from the bank.
