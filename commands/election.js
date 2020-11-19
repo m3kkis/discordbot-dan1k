@@ -13,9 +13,9 @@ module.exports = {
         var embedded = new Discord.MessageEmbed();
 
         var n = moment().valueOf();
-        var timeLimit =  7 * (((60 * 1000) * 60) * 24); // 7 days
+        var timeLimit = 7 * (((60 * 1000) * 60) * 24); // 7 days
         var timeDifference = n - _Bot.election.last_updated;
- 
+
         if( timeDifference > timeLimit )
         {
             _Bot.election.inProgress = true;
@@ -66,6 +66,9 @@ module.exports = {
                         });
                         
                         var winner = client.users.cache.find(user => user.id === _ColUsers[pos].dsid)
+
+                        addMayorRole(winner);
+
                         embedded.setColor("#78de87")
                                 .setTitle(`★${arrAllUser[0]} WINS★`)
                                 .setDescription("Congratulations! You are now the new mayor.")
@@ -73,7 +76,7 @@ module.exports = {
                             
                         return message.channel.send(embedded);
                     }
-                    else if( arrAllUser.length < 1 )
+                    else if( arrAllUser.length < 0 )
                     {
                         console.log("[ELECTION] No available candidates")
 
@@ -104,7 +107,7 @@ module.exports = {
                 
                     embedded.setColor('#031cfc')
                             .setTitle('★★★ ELECTION ★★★')
-                            .setDescription('Click on one of the emojis below to vote or react to this message with an emoji to give your vote for the next mayor! Only players with minimum level 10 will be able to become a mayor.\n\n***IMPORTANT:*** *__Only your first vote counts!__*')
+                            .setDescription('Click on one of the emojis below to vote or react to this message with an emoji to give your vote for the next mayor! Only players with minimum level 10 will be able to become a mayor.\n\n***IMPORTANT:*** \n*__• Only your first vote counts!__*\n*__• 2 minutes to vote__*\n*__• BUG: Discord on phone, vote not working __*')
                             .addField(randomCandidateOne, 'React Eggplant :eggplant: to vote.', true)
                             .addField(randomCandidateTwo, 'React Cucumber :cucumber: to vote.', true)
                     
@@ -176,12 +179,17 @@ module.exports = {
                                 _Bot.save().then(()=>{
                                     _ColUsers[pos].isMayor = true;
                                     _ColUsers[pos].save().then(()=>{
-                                        _ColUsers[posMayor].isMayor = false;
-                                        _ColUsers[posMayor].save();
+                                        if(currentMayor != "" && currentMayor != undefined)
+                                        {
+                                            _ColUsers[posMayor].isMayor = false;
+                                            _ColUsers[posMayor].save();
+                                        }
                                     });
                                 });
                                 
-                                var winner = client.users.cache.find(user => user.id === _ColUsers[pos].dsid)
+                                var winner = client.users.cache.find(user => user.id === _ColUsers[pos].dsid);
+
+                                addMayorRole(winner);
 
                                 embedded.setColor("#78de87")
                                         .setTitle(`★${randomCandidateOne} WINS★`)
@@ -209,12 +217,18 @@ module.exports = {
                                 _Bot.save().then(()=>{
                                     _ColUsers[pos].isMayor = true;
                                     _ColUsers[pos].save().then(()=>{
-                                        _ColUsers[posMayor].isMayor = false;
-                                        _ColUsers[posMayor].save();
+                                        if(currentMayor != "" && currentMayor != undefined)
+                                        {
+                                            _ColUsers[posMayor].isMayor = false;
+                                            _ColUsers[posMayor].save();
+                                        }
                                     });
                                 });
 
-                                var winner = client.users.cache.find(user => user.id === _ColUsers[pos].dsid)
+                                var winner = client.users.cache.find(user => user.id === _ColUsers[pos].dsid);
+
+                                addMayorRole(winner);
+
                                 embedded.setColor("#78de87")
                                         .setTitle(`★${randomCandidateTwo} WINS★`)
                                         .setDescription("Congratulations! You are now the new mayor.")
@@ -260,6 +274,33 @@ module.exports = {
                     .setDescription("You cannot start an election. The mayor still has until " + moment(_Bot.election.last_updated + timeLimit).format('MMMM Do YYYY, hh:mm:ss'));
 
             return message.channel.send(embedded);
+        }
+
+        function addMayorRole(user){
+
+            var victim = user;
+                    
+            var userRole = message.guild.member(victim).roles.cache.find(r => r.name === "Mayor")
+
+            if(userRole != undefined)
+            {
+                console.log("[USE] This user has the mayor role already.");
+            }
+            else
+            {
+                var role = message.guild.roles.cache.find(r => r.name === "Mayor");
+
+                message.guild.members.cache.forEach(member => {
+                    if(!member.roles.cache.find(r => r.name == 'Mayor')) return;
+                    member.roles.remove(role.id).then(function() {
+                        console.log(`[USE] Removed mayor role from user ${member.user.tag}!`);
+                    });
+                });
+                
+                message.guild.member(victim).roles.add(role);
+                
+            }
+
         }
     }
 }

@@ -18,6 +18,15 @@ module.exports = {
             return message.channel.send(embedded);
         }
 
+        if( _User.isMayor == true) {
+            var embedded = new Discord.MessageEmbed();
+            embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
+                .setColor('#ff4f4f')
+                .setDescription('A mayor cannot harvest crops.');
+
+            return message.channel.send(embedded);
+        }
+
         var n = moment().valueOf();
 
         var timeLimit = _JobHandler.harvestTimeout * (1000 * 60);

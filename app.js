@@ -81,16 +81,28 @@ client.once('ready', () => {
 
 
     //Create role for Bitch Box, after that don't forget to set role as separate.
-    var role;
     try{
-        role = guild.roles.cache.find(x => x.name === "BitchBox");
-        if(role.name == "BitchBox") {
-            console.log("[APP] Role Already Exists");
+        roleBB = guild.roles.cache.find(x => x.name === "BitchBox");
+        if(roleBB.name == "BitchBox") {
+            console.log("[APP] BitchBox Role Already Exists");
         }
     }
     catch(e){
         console.log("[APP] Role doesn't exists, creating role BitchBox");
         guild.roles.create({ data: { name: 'BitchBox', color: '#ff69af', permissions: ['CREATE_INSTANT_INVITE', 'CHANGE_NICKNAME', 'VIEW_CHANNEL', 'SEND_MESSAGES', 'SEND_TTS_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES', 'READ_MESSAGE_HISTORY', 'MENTION_EVERYONE', 'USE_EXTERNAL_EMOJIS', 'ADD_REACTIONS', 'CONNECT', 'SPEAK', 'STREAM', 'USE_VAD'] } });
+    }
+
+    //Create role for Mayor, after that don't forget to set role as separate.
+
+    try{
+        var roleMA = guild.roles.cache.find(x => x.name === "Mayor");
+        if(roleMA.name == "Mayor") {
+            console.log("[APP] Mayor Role Already Exists");
+        }
+    }
+    catch(e){
+        console.log("[APP] Role doesn't exists, creating role Mayor");
+        guild.roles.create({ data: { name: 'Mayor', color: '#a16e00', permissions: ['CREATE_INSTANT_INVITE', 'CHANGE_NICKNAME', 'VIEW_CHANNEL', 'SEND_MESSAGES', 'SEND_TTS_MESSAGES', 'EMBED_LINKS', 'ATTACH_FILES', 'READ_MESSAGE_HISTORY', 'MENTION_EVERYONE', 'USE_EXTERNAL_EMOJIS', 'ADD_REACTIONS', 'CONNECT', 'SPEAK', 'STREAM', 'USE_VAD'] } });
     }
     
 

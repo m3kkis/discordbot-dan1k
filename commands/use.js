@@ -251,7 +251,7 @@ module.exports = {
                 else
                 {
                     embedded.setColor('#ff4f4f')
-                        .setDescription("Player name missing. Add is at the end.");
+                        .setDescription("Player name missing. Add it at the end.");
 
                     return message.channel.send(embedded);
                 }
