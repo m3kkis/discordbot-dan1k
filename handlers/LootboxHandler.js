@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const moment = require("moment")
 var fs = require('fs');
 
 class LootboxHandler {
@@ -104,8 +105,20 @@ class LootboxHandler {
 
         if(randomItem.type == "instant")
         {
-            _User.economy.cash += randomItem.value;
-            reply = `You got a **${randomItem.display}** - ${randomItem.description}\n*It will by applied to your account instantly. Enjoy!*`;
+            if(randomItem.name == "card_go_to_prison")
+            {
+                var n = moment().valueOf();
+                _User.arrest.isArrested = true;
+                _User.arrest.last_updated = n;
+                _User.travel.location = "prison";
+                reply = `You got a **${randomItem.display}** - ${randomItem.description}\n*It will by applied to you instantly. Sorry!*`;
+            }
+            else
+            {
+                _User.economy.cash += randomItem.value;
+                reply = `You got a **${randomItem.display}** - ${randomItem.description}\n*It will by applied to your account instantly. Enjoy!*`;
+            }
+
             return reply;
         }
         else if(randomItem.type == "card")

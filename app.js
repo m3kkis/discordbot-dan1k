@@ -250,6 +250,7 @@ client.on('message', message => {
                     commandName == "me" ||
                     commandName == "money" || commandName == "bal" ||
                     commandName == "rank" || commandName == "xp" ||
+                    commandName == "location" || commandName == "loc" ||
                     commandName == "store" ||
                     commandName == "use" ||
                     commandName == "bail" 

@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const moment = require("moment");
 
 module.exports = {
     name: 'use',
@@ -185,6 +186,22 @@ module.exports = {
                     
                 }
             }
+            else if(_User.inventory[id].name == "card_jail_pass")
+            {
+                if( _User.arrest.isArrested == false)
+                {
+                    embedded.setColor('#ff4f4f')
+                        .setDescription('You are currently not under arrest.');
+    
+                    return message.channel.send(embedded);
+                }
+                else
+                {
+                    var n = moment().valueOf();
+                    _User.arrest.isArrested = false;
+                    _User.arrest.last_updated = n;
+                }
+            }
             else if(_User.inventory[id].name == "card_teleport")
             {
 
@@ -193,6 +210,20 @@ module.exports = {
                     embedded.setColor('#ff4f4f')
                         .setDescription('You are already located in the **' + strDestination.toUpperCase() + '**');
     
+                    return message.channel.send(embedded);
+                }
+                else if(_User.travel.isTraveling)
+                {
+                    embedded.setColor('#ff4f4f')
+                            .setDescription('You are currently traveling already.');
+
+                    return message.channel.send(embedded);
+                }
+                else if(_User.arrest.isArrested)
+                {
+                    embedded.setColor('#ff4f4f')
+                            .setDescription('You are under arrest and can\'t teleport out.');
+
                     return message.channel.send(embedded);
                 }
                 else

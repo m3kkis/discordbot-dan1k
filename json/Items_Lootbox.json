@@ -75,8 +75,15 @@
             "chance":0.15,
             "value": 8000,
             "type":"card"
-        }
-        ,
+        },
+        {
+            "name": "card_go_to_prison",
+            "display": "[RARE] Go to Prison",
+            "description": "UNLUCKY YOU... You go to prison!",
+            "chance":0.15,
+            "value": 8000,
+            "type":"instant"
+        },
         {
             "name": "card_teleport",
             "display": "[RARE] Card Teleport",
@@ -107,6 +114,14 @@
             "name": "card_next_three",
             "display": "[EPIC] Card See the Future x3",
             "description": "View the next 3 cards in the deck for bj.",
+            "chance":0.05,
+            "value": 10000,
+            "type":"card"
+        },
+        {
+            "name": "card_jail_pass",
+            "display": "[EPIC] Jail Pass",
+            "description": "Get out of prison instantly without any fees.",
             "chance":0.05,
             "value": 10000,
             "type":"card"
