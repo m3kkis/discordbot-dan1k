@@ -73,6 +73,7 @@ Same applies to the Mayor and Police role.
 * `!promote <name>` Promote a player to Police Officer. Only mayor can use this in the townhall.
 * `!rank` display all players levels ranked.
 * `!rob` rob a member of your server.
+* `!search <name>` Search a players inventory. Must be in same location.
 * `!sell <item_inventory_number_list>` sell an item from your inventory.
 * `!slot-machine <amount>` play the slot machine! $50 minimum.
 * `!slut` medium amount of pay, also chances of being caught.
