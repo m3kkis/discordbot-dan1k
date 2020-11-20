@@ -107,11 +107,18 @@ class LootboxHandler {
         {
             if(randomItem.name == "card_go_to_prison")
             {
-                var n = moment().valueOf();
-                _User.arrest.isArrested = true;
-                _User.arrest.last_updated = n;
-                _User.travel.location = "prison";
-                reply = `You got a **${randomItem.display}** - ${randomItem.description}\n*It will by applied to you instantly. Sorry!*`;
+                if(_User.isMayor == true || _User.isPolice == true)
+                {
+                    reply = `You got a **${randomItem.display}** - ${randomItem.description}\n*Because you are either a Mayor or a Police Office, **you are safe and NOT going to prison!***`;
+                }
+                else
+                {
+                    var n = moment().valueOf();
+                    _User.arrest.isArrested = true;
+                    _User.arrest.last_updated = n;
+                    _User.travel.location = "prison";
+                    reply = `You got a **${randomItem.display}** - ${randomItem.description}\n*It will by applied to you instantly. Sorry!*`;
+                }
             }
             else
             {
