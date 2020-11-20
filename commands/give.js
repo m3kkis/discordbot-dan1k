@@ -108,7 +108,103 @@ module.exports = {
                 
             });
         }
-        else{
+        else if(giveType == 'item')
+        {
+            var pos = amount - 1;
+
+            if( isNaN(pos) ) {
+            
+                embedded.setColor('#ff4f4f')
+                    .setDescription('That doesn\'t seem to be a valid NUMBER.');
+    
+                return message.channel.send(embedded);
+            }
+
+            if(_User.inventory[pos] == undefined)
+            {
+                embedded.setColor('#ff4f4f')
+                        .setDescription('You don\'t have an item in slot **#'+ (pos+1) +'**');
+
+                return message.channel.send(embedded);
+            }
+
+            if( victim.substring(0,2) == '<@')
+            {
+                victim = victim.replace(/[^$\w\s]/gi, '');
+            }
+            else
+            {
+                try{
+                    victim = client.users.cache.find(u => u.username === victim).id;
+                }
+                catch{
+                    console.log("[GIVE] ID of the Username provided does not exist.");
+                    embedded.setColor('#ff4f4f')
+                        .setDescription("This user doesn't exists.");
+                    return message.channel.send(embedded);
+                }
+                
+            }
+    
+            if(_User.dsid == victim) {
+    
+                embedded.setColor('#ff4f4f')
+                    .setDescription('Can\'t give item to yourself.');
+    
+                return message.channel.send(embedded);
+    
+            }
+
+            User.findOne({
+                dsid: victim
+            }).then( _Victim => {
+    
+                if(_Victim)
+                {
+                    console.log("[GIVE] Found victim ID.");
+
+                    if( _User.travel.location != _Victim.travel.location ) {
+                        embedded.setColor('#ff4f4f')
+                            .setDescription('You must be in the same location to give items to another player.');
+            
+                        return message.channel.send(embedded);
+                    }
+                    else if(_Victim.inventory.length >= _Victim.inventorySize){
+                        embedded.setColor('#ff4f4f')
+                            .setDescription('The person you are trying to give has inventory full.');
+            
+                        return message.channel.send(embedded);
+                    }
+                    else
+                    {
+
+                        var itemToGive = _User.inventory[pos];
+                        _User.inventory.splice(pos,1);
+                        _User.save().then(()=>{
+                            _Victim.inventory.push(itemToGive);
+                            _Victim.save();
+                        });
+        
+                        embedded.setColor('#78de87')
+                            .setDescription(`You successfully gave *${itemToGive.display}* to **${_Victim.tag}** `);
+                        
+                        return message.channel.send(embedded);
+                    }
+                }
+                else
+                {
+                    console.log("[GIVE] DSID does not exist.");
+                    embedded.setColor('#ff4f4f')
+                        .setDescription("This user doesn't exists.");
+                    return message.channel.send(embedded);
+                }
+                
+            });
+
+
+        }
+        else
+        {
             embedded.setColor('#ff4f4f')
                 .setDescription("Make sure you wrote give command in the following order \`<user> cash <amount>\`");
             return message.channel.send(embedded);
