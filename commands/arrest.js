@@ -1,9 +1,10 @@
 const Discord = require("discord.js");
+const moment = require("moment");
 const User = require('../models/User'); 
 
 module.exports = {
-    name: 'search',
-    description: 'Search a players inventory. Must be in same location.',
+    name: 'arrest',
+    description: 'Arrest a player and send them to prison.',
     args: true,
     usage: '<name>',
     execute(client, message, args, _User){
@@ -13,7 +14,7 @@ module.exports = {
             var embedded = new Discord.MessageEmbed();
             embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
                 .setColor('#ff4f4f')
-                .setDescription('Only a Police Officer can search a player\'s inventory.');
+                .setDescription('Only a Police Officer can arrest a player.');
 
             return message.channel.send(embedded);
         }
@@ -34,7 +35,7 @@ module.exports = {
                 victim = client.users.cache.find(u => u.username === victim).id;
             }
             catch{
-                console.log("[SEARCH] ID of the Username provided does not exist.");
+                console.log("[ARREST] ID of the Username provided does not exist.");
                 embedded.setColor('#ff4f4f')
                     .setDescription("This user doesn't exists.");
                 return message.channel.send(embedded);
@@ -48,54 +49,51 @@ module.exports = {
 
             if(_Victim)
             {
-                console.log("[SEARCH] Found victim ID.");
+                console.log("[ARREST] Found victim ID.");
 
-                if( _Victim.travel.isTraveling == true ) {
+                if( _Victim.arrest.isArrested == true ) {
                     embedded.setColor('#ff4f4f')
-                        .setDescription('You cannot search the user because he is currently in travel.');
+                        .setDescription('The user is already arrested.');
+        
+                    return message.channel.send(embedded);
+                }
+                else if( _Victim.isMayor == true ) {
+                    embedded.setColor('#ff4f4f')
+                        .setDescription('You cannot arrest a mayor.');
+        
+                    return message.channel.send(embedded);
+                }
+                else if( _Victim.travel.isTraveling == true ) {
+                    embedded.setColor('#ff4f4f')
+                        .setDescription('You cannot arrest the user because he is currently in travel.');
         
                     return message.channel.send(embedded);
                 }
                 else if( _User.travel.location != _Victim.travel.location ) {
                     embedded.setColor('#ff4f4f')
-                        .setDescription('You must be in the same location to search a player\'s inventory.');
+                            .setDescription('You must be in the same location to arrest a player.');
         
                     return message.channel.send(embedded);
                 }
                 else
                 {
+                    var n = moment().valueOf();
 
-                    if(_Victim.inventory != undefined && _Victim.inventory.length > 0)
-                    {
-                        var reply = "";
-                        var usedInv = 0;
-                        _Victim.inventory.map((item, idx) => {
-                            reply += `${idx+1}. **${item.display}**\n`;
-                            usedInv++;
-                        });
-                        
-                        embedded.setDescription(`Search results.`)
-                            .setColor('#3849ff')
-                            .addField("Cash",`\`$${addCommas(_Victim.economy.cash)}\``)
-                            .addField(_Victim.tag + '\'s Inventory',reply,true);
+                    _Victim.travel.location = "prison";
+                    _Victim.arrest.isArrested = true;
+                    _Victim.arrest.last_updated = n;
 
-                        return message.channel.send(embedded);
-                    }
-                    else
-                    {
-                        embedded.setDescription(`Search results.`)
-                            .setColor('#3849ff')
-                            .addField("Cash",`\`$${addCommas(_Victim.economy.cash)}\``,true)
-                            .addField(_Victim.tag + '\'s Inventory','*- Empty -*');
-                        return message.channel.send(embedded);
-                    }
-                    
+                    _Victim.save();
+
+                    embedded.setColor('#3849ff')
+                        .setDescription(`You have arrested **${_Victim.tag}**`);
+                    return message.channel.send(embedded);
                 }
  
             }
             else
             {
-                console.log("[SEARCH] DSID does not exist.");
+                console.log("[ARREST] DSID does not exist.");
                 embedded.setColor('#ff4f4f')
                     .setDescription("This user doesn't exists.");
                 return message.channel.send(embedded);

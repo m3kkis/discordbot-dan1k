@@ -35,6 +35,7 @@ module.exports = {
                 "city":":cityscape:",
                 "casino":":slot_machine:",
                 "townhall":":classical_building:",
+                "prison":":lock:"
             };
 
             embedded.setDescription(`You are currently in the ${jsonLocEmoji[_User.travel.location]} **${_User.travel.location.toUpperCase()}**`)

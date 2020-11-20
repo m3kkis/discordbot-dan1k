@@ -15,6 +15,10 @@ const userSchema = new Schema(
     bj_insurance: { type: Boolean, default: false },
     isMayor: { type: Boolean, default: false },
     isPolice: { type: Boolean, default: false },
+    arrest:{ 
+        isArrested:{ type: Boolean, default: false },
+        last_updated: { type: Number, default: 0 },
+    },
     inventorySize: { type: Number, default: 5 },
     inventory: { type: Array, default: [] },
     travel:{

@@ -151,7 +151,7 @@ module.exports = {
 
                             var totalVotes = countEggplant + countCucumber;
 
-                            if(totalVotes < 1){
+                            if(totalVotes < 2){
                                 //NOT ENOUGH VOTES
                                 console.log("[ELECTION] NOT ENOUGH VOTES");
                                 _Bot.election.inProgress = false;

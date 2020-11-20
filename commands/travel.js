@@ -52,17 +52,20 @@ module.exports = {
 
                 if(strTransportMethod == "portal"){
 
-                    if(_User.travel.transportation.hasPortalGun){
+                    if(_User.travel.transportation.hasPortalGun || _User.isPolice == true){
     
-                        if( _User.economy.cash >= fuelPrice.portal)
+                        if( _User.economy.cash >= fuelPrice.portal || _User.isPolice == true )
                         {
                             console.log("[TRAVEL] Player traveling by" + strTransportMethod);
                             
                             _User.travel.location = strDestination;
-                            _User.economy.cash -= fuelPrice.portal;
+                            if(_User.isPolice != true)
+                            {
+                                _User.economy.cash -= fuelPrice.portal;
+                            }
                             _User.travel.last_updated = n;
                             _User.travel.last_method = strTransportMethod;
-                            _User.travel.isTraveling = true;
+                            _User.travel.isTraveling = false;
     
                             embedded.setColor('#78de87')
                                     .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive instantly*`);
@@ -85,9 +88,9 @@ module.exports = {
                 }
                 else if(strTransportMethod == "helicopter"){
 
-                    if(_User.travel.transportation.hasHelicopter){
+                    if(_User.travel.transportation.hasHelicopter || _User.isMayor == true){
     
-                        if( _User.economy.cash >= fuelPrice.helicopter)
+                        if( _User.economy.cash >= fuelPrice.helicopter || _User.isMayor == true)
                         {
                             console.log("[TRAVEL] Player traveling by" + strTransportMethod);
                             
@@ -235,18 +238,21 @@ module.exports = {
             }
             else
             {
-                if(_User.travel.transportation.hasPortalGun){
+                if(_User.travel.transportation.hasPortalGun || _User.isPolice == true){
                     strTransportMethod = "portal";
 
-                    if( _User.economy.cash >= fuelPrice.portal)
+                    if( _User.economy.cash >= fuelPrice.portal || _User.isPolice == true)
                     {
                         console.log("[TRAVEL] Player traveling by " + strTransportMethod);
 
                         _User.travel.location = strDestination;
-                        _User.economy.cash -= fuelPrice.portal;
+                        if(_User.isPolice != true)
+                        {
+                            _User.economy.cash -= fuelPrice.portal;
+                        }
                         _User.travel.last_updated = n;
                         _User.travel.last_method = strTransportMethod;
-                        _User.travel.isTraveling = true;
+                        _User.travel.isTraveling = false;
 
                         embedded.setColor('#78de87')
                                 .setDescription(`You are now traveling to the ${jsonLocEmoji[strDestination] + " **" + strDestination.toUpperCase() + "** by **" + strTransportMethod.toUpperCase() + "**"}.\n*You will arrive instantly*`);
@@ -262,7 +268,7 @@ module.exports = {
                 else if(_User.travel.transportation.hasHelicopter || _User.isMayor == true){
                     strTransportMethod = "helicopter";
 
-                    if( _User.economy.cash >= fuelPrice.helicopter)
+                    if( _User.economy.cash >= fuelPrice.helicopter || _User.isMayor == true)
                     {
                         console.log("[TRAVEL] Player traveling by " + strTransportMethod);
 

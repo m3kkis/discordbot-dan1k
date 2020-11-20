@@ -49,7 +49,13 @@ module.exports = {
                 {
                     console.log("[ROB] Found victim ID.");
 
-                    if( _User.travel.location != _Victim.travel.location ) {
+                    if( _Victim.travel.isTraveling == true ) {
+                        embedded.setColor('#ff4f4f')
+                            .setDescription('You cannot rob the user because he is currently in travel.');
+            
+                        return message.channel.send(embedded);
+                    }
+                    else if( _User.travel.location != _Victim.travel.location ) {
                         embedded.setColor('#ff4f4f')
                             .setDescription('You must be in the same location to give items to another player.');
             
