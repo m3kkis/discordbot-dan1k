@@ -41,65 +41,175 @@ module.exports = {
         }
         else
         {
-            if(_User.inventory.length >= _User.inventorySize)
+            if(_StoreHandler.jsonStoreItems[id].name == "upgrade_inventory")
             {
-                embedded.setColor('#ff4f4f')
-                .setDescription('Your inventory is full');
+
+                var lvlDiff = _User.inventorySize - 4;
+                var finalPrice = _StoreHandler.jsonStoreItems[id].value * Math.pow(lvlDiff,2);
+
+                if(finalPrice > _User.economy.cash)
+                {
+                    embedded.setColor('#ff4f4f')
+                        .setDescription('You can\'t afford that item.');
     
-                return message.channel.send(embedded);
+                    return message.channel.send(embedded);
+                }
+                else
+                {
+                    var reply = _StoreHandler.buyItem(id, _User);
+    
+                    embedded.setColor('#78de87')
+                        .setDescription(reply);
+        
+                    _User.save();
+        
+                    return message.channel.send(embedded);
+                }
+
             }
             else
             {
-                if(_StoreHandler.jsonStoreItems[id].name == "upgrade_inventory")
+
+                if(_StoreHandler.jsonStoreItems[id].value > _User.economy.cash)
                 {
-
-                    var lvlDiff = _User.inventorySize - 4;
-                    var finalPrice = _StoreHandler.jsonStoreItems[id].value * Math.pow(lvlDiff,2);
-
-                    if(finalPrice > _User.economy.cash)
-                    {
-                        embedded.setColor('#ff4f4f')
-                            .setDescription('You can\'t afford that item.');
-        
-                        return message.channel.send(embedded);
-                    }
-                    else
-                    {
-                        var reply = _StoreHandler.buyItem(id, _User);
-        
-                        embedded.setColor('#78de87')
-                            .setDescription(reply);
-            
-                        _User.save();
-            
-                        return message.channel.send(embedded);
-                    }
-
+                    embedded.setColor('#ff4f4f')
+                        .setDescription('You can\'t afford that item.');
+    
+                    return message.channel.send(embedded);
                 }
                 else
                 {
 
-                    if(_StoreHandler.jsonStoreItems[id].value > _User.economy.cash)
+                    if(_StoreHandler.jsonStoreItems[id].name == "transport_bicycle")
+                    {
+                        if(_User.experience.level < 5)
+                        {
+                            embedded.setColor('#ff4f4f')
+                                    .setDescription('You have to be **level 5** to purchase a bicycle.');
+        
+                            return message.channel.send(embedded);
+                        }
+                        else
+                        {
+                            var reply = _StoreHandler.buyItem(id, _User);
+    
+                            embedded.setColor('#78de87')
+                                .setDescription(reply);
+                
+                            _User.save();
+                
+                            return message.channel.send(embedded);
+                        }
+                    }
+                    else if(_StoreHandler.jsonStoreItems[id].name == "transport_car")
+                    {
+                        if(_User.experience.level < 10)
+                        {
+                            embedded.setColor('#ff4f4f')
+                                    .setDescription('You have to be **level 10** to purchase a car.');
+        
+                            return message.channel.send(embedded);
+                        }
+                        else
+                        {
+                            var reply = _StoreHandler.buyItem(id, _User);
+    
+                            embedded.setColor('#78de87')
+                                .setDescription(reply);
+                
+                            _User.save();
+                
+                            return message.channel.send(embedded);
+                        }
+                    }
+                    else if(_StoreHandler.jsonStoreItems[id].name == "transport_boat")
+                    {
+                        if(_User.experience.level < 15)
+                        {
+                            embedded.setColor('#ff4f4f')
+                                    .setDescription('You have to be **level 15** to purchase a boat.');
+        
+                            return message.channel.send(embedded);
+                        }
+                        else
+                        {
+                            var reply = _StoreHandler.buyItem(id, _User);
+    
+                            embedded.setColor('#78de87')
+                                .setDescription(reply);
+                
+                            _User.save();
+                
+                            return message.channel.send(embedded);
+                        }
+                    }
+                    else if(_StoreHandler.jsonStoreItems[id].name == "transport_helicopter")
+                    {
+                        if(_User.experience.level < 20)
+                        {
+                            embedded.setColor('#ff4f4f')
+                                    .setDescription('You have to be **level 20** to purchase a helicopter.');
+        
+                            return message.channel.send(embedded);
+                        }
+                        else
+                        {
+                            var reply = _StoreHandler.buyItem(id, _User);
+    
+                            embedded.setColor('#78de87')
+                                .setDescription(reply);
+                
+                            _User.save();
+                
+                            return message.channel.send(embedded);
+                        }
+                    }
+                    else if(_StoreHandler.jsonStoreItems[id].name == "transport_portalgun")
+                    {
+                        if(_User.experience.level < 25)
+                        {
+                            embedded.setColor('#ff4f4f')
+                                    .setDescription('You have to be **level 25** to purchase a portal gun.');
+        
+                            return message.channel.send(embedded);
+                        }
+                        else
+                        {
+                            var reply = _StoreHandler.buyItem(id, _User);
+    
+                            embedded.setColor('#78de87')
+                                .setDescription(reply);
+                
+                            _User.save();
+                
+                            return message.channel.send(embedded);
+                        }
+                    }
+                    else if(_User.inventory.length >= _User.inventorySize)
                     {
                         embedded.setColor('#ff4f4f')
-                            .setDescription('You can\'t afford that item.');
-        
+                                .setDescription('Your inventory is full');
+            
                         return message.channel.send(embedded);
                     }
                     else
                     {
+
                         var reply = _StoreHandler.buyItem(id, _User);
-        
+    
                         embedded.setColor('#78de87')
                             .setDescription(reply);
             
                         _User.save();
             
                         return message.channel.send(embedded);
+
                     }
 
                 }
+
             }
+            
         }
     }
 }
