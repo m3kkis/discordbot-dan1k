@@ -51,7 +51,13 @@ module.exports = {
             {
                 console.log("[ARREST] Found victim ID.");
 
-                if( _Victim.arrest.isArrested == true ) {
+                if( _Victim.isPolice == true ) {
+                    embedded.setColor('#ff4f4f')
+                        .setDescription('Can\'t arrest a Police Officer.');
+        
+                    return message.channel.send(embedded);
+                }
+                else if( _Victim.arrest.isArrested == true ) {
                     embedded.setColor('#ff4f4f')
                         .setDescription('The user is already arrested.');
         
