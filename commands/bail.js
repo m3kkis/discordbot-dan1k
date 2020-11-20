@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const moment = require("moment");
 
 module.exports = {
     name: 'bail',
@@ -57,6 +58,7 @@ module.exports = {
             {
                 _User.economy.cash -= amount;
                 _User.arrest.isArrested = false;
+                _User.arrest.last_updated = n;
                 _User.save();
 
                 embedded.setColor('#78de87')
@@ -68,10 +70,31 @@ module.exports = {
         }
         else
         {    
-            embedded.setColor('#03b6fc')
-                    .setDescription(`You need to pay 15% of your networth or \`$100\` if you have a networth less than $100, to be able to bail out of prison.\nIn your case, it will be \`$${addCommas(priceBail)}\` to do so, you need to type \`${process.env.BOT_PREFIX}bail ${priceBail}\` you must have the money in cash`);
-    
-            return message.channel.send(embedded);
+            var n = moment().valueOf();
+            var timeLimit = 1000 * 60 * 60;
+            var timeDifference = n - _User.arrest.last_updated;
+
+            if( timeDifference > timeLimit )
+            {
+                _User.arrest.isArrested = false;
+                _User.arrest.last_updated = n;
+                _User.save();
+
+                embedded.setColor('#78de87')
+                        .setDescription(`You have finished your sentence, you are free to go!`);
+
+                return message.channel.send(embedded);
+            }
+            else
+            {
+                embedded.setColor('#ff4f4f')
+                        .setDescription(`You have ${moment.utc(timeLimit - timeDifference).format('HH:mm:ss')} left until you can bail for free\nOr you can pay bail at a price of \`$${addCommas(priceBail)}\` by doing \`${process.env.BOT_PREFIX}bail ${priceBail}\``);
+
+                return message.channel.send(embedded);
+            }
+
+
+
         }
 
         function addCommas(num){

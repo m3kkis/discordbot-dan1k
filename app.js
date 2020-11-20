@@ -236,8 +236,11 @@ client.on('message', message => {
         {
             console.log("[APP] User found.");
 
-            if(_User.travel.isTraveling)
+            if(_User.travel.isTraveling || _User.arrest.isArrested )
             {
+                var d = new Date();
+                var n = d.getTime();
+
                 if( 
                     commandName == "help" || 
                     commandName == "inventory" || commandName == "inv" ||
@@ -248,16 +251,35 @@ client.on('message', message => {
                     commandName == "money" || commandName == "bal" ||
                     commandName == "rank" || commandName == "xp" ||
                     commandName == "store" ||
-                    commandName == "use" 
+                    commandName == "use" ||
+                    commandName == "bail" 
                 )
                 {
                     executeCommand();
                 }
+                else if( !_User.travel.isTraveling && _User.arrest.isArrested)
+                {
+                    var timeLimit = 15 * (1000 * 60); // prison time limit
+                    var timeDifference = n - _User.arrest.last_updated;
+                    var timeLeft = timeLimit - timeDifference;
+
+                    if(timeLeft <= 0)
+                    {
+                        timeLeft = "00:00"
+                    }
+                    else
+                    {
+                        timeLeft = convertToMinutes(timeLeft);
+                    }
+
+                    var embedded = new Discord.MessageEmbed();
+                    embedded.setColor('#ff4f4f')
+                        .setAuthor(message.member.user.tag, message.member.user.avatarURL())
+                        .setDescription(`You are currently arrested and in prison, cannot use __that command__ until you are free in **${timeLeft}** use the command \`${process.env.BOT_PREFIX}bail\` to check if you can leave the prison.`);
+                    return message.channel.send(embedded);
+                }
                 else
                 {
-                    var d = new Date();
-                    var n = d.getTime();
-
                     var timeLimit = objTravelMethodTime[_User.travel.last_method] * (1000 * 60);
                     var timeDifference = n - _User.travel.last_updated;
 
@@ -275,15 +297,15 @@ client.on('message', message => {
                         var embedded = new Discord.MessageEmbed();
                         embedded.setColor('#ff4f4f')
                             .setAuthor(message.member.user.tag, message.member.user.avatarURL())
-                            .setDescription(`You are currently traveling to the **${_User.travel.location.toUpperCase()}** by ***${_User.travel.last_method.toUpperCase()}***, cannot use commands until you arrive in ` + convertToMinutes(timeLimit - timeDifference));
+                            .setDescription(`You are currently traveling to the **${_User.travel.location.toUpperCase()}** by ***${_User.travel.last_method.toUpperCase()}***, cannot use __that command__ until you arrive in ` + convertToMinutes(timeLimit - timeDifference));
                         return message.channel.send(embedded);
                     }
+                }
 
-                    function convertToMinutes(timestamp) {
-                        var min = Math.floor(timestamp / 60000);
-                        var sec = ((timestamp % 60000) / 1000).toFixed(0);
-                        return min + ":" + (sec < 10 ? '0' : '') + sec;
-                    }
+                function convertToMinutes(timestamp) {
+                    var min = Math.floor(timestamp / 60000);
+                    var sec = ((timestamp % 60000) / 1000).toFixed(0);
+                    return min + ":" + (sec < 10 ? '0' : '') + sec;
                 }
             }
             else

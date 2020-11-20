@@ -51,6 +51,11 @@ module.exports = {
             {
                 console.log("[ARREST] Found victim ID.");
 
+                var n = moment().valueOf();
+
+                var timeLimit = 15 * (1000 * 60); //prison time limit
+                var timeDifference = n - _Victim.arrest.last_updated;
+
                 if( _Victim.isPolice == true ) {
                     embedded.setColor('#ff4f4f')
                         .setDescription('Can\'t arrest a Police Officer.');
@@ -71,20 +76,24 @@ module.exports = {
                 }
                 else if( _Victim.travel.isTraveling == true ) {
                     embedded.setColor('#ff4f4f')
-                        .setDescription('You cannot arrest the user because he is currently in travel.');
-        
+                    .setDescription('You cannot arrest the user because he is currently in travel');
+                    
                     return message.channel.send(embedded);
                 }
                 else if( _User.travel.location != _Victim.travel.location ) {
                     embedded.setColor('#ff4f4f')
-                            .setDescription('You must be in the same location to arrest a player.');
+                    .setDescription('You must be in the same location to arrest a player.');
+                    
+                    return message.channel.send(embedded);
+                }
+                else if( timeDifference < timeLimit ) {
+                    embedded.setColor('#ff4f4f')
+                            .setDescription(`You cannot arrest this user for the next ${moment.utc(timeLimit - timeDifference).format('mm:ss')}`);
         
                     return message.channel.send(embedded);
                 }
                 else
                 {
-                    var n = moment().valueOf();
-
                     _Victim.travel.location = "prison";
                     _Victim.arrest.isArrested = true;
                     _Victim.arrest.last_updated = n;
@@ -106,19 +115,5 @@ module.exports = {
             }
             
         });
-
-        function addCommas(num){
-
-            var numToCommafy = num.toString();
-            var numCommafied = '';
-        
-            for (var i = numToCommafy.length; i > 0; i -= 3) {
-                numCommafied = numToCommafy.slice(Math.max(i - 3, 0), i) + (numCommafied ? ',' + numCommafied : '');
-            }
-            
-            return numCommafied;
-        }
-
-
     }
 }
