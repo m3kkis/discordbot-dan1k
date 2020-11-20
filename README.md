@@ -53,6 +53,8 @@ Depending on your roles, the BitchBox role needs to be pretty high in your curre
 Same applies to the Mayor and Police role.
 
 ## Commands (so far)
+* `!arrest <name>` Arrest a player and send them to prison. Only police.
+* `!bail <optional:amount>` Bail out prison for free in time or pay the bail amount to get released from prison right away.
 * `!blackjack <amount>` play blackjack! $100 minimum.
 * `!buy <list_item_number>` buy an item from the store.
 * `!clear <amount>` clear the amount specified of messages from chat.
@@ -72,6 +74,7 @@ Same applies to the Mayor and Police role.
 * `!money` display your current cash in pocket, bank and your networth.
 * `!promote <name>` Promote a player to Police Officer. Only mayor can use this in the townhall.
 * `!rank` display all players levels ranked.
+* `!release <name>` Release a player from prison. Only police..
 * `!rob` rob a member of your server.
 * `!search <name>` Search a players inventory. Must be in same location.
 * `!sell <item_inventory_number_list>` sell an item from your inventory.

@@ -3,7 +3,7 @@ const moment = require("moment");
 
 module.exports = {
     name: 'bail',
-    description: 'Pay the bail amount to get released from prison',
+    description: 'Bail out prison for free in time or pay the bail amount to get released from prison right away',
     args: false,
     execute(client, message, args, _User){
 

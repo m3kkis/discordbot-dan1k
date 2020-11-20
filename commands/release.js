@@ -4,7 +4,7 @@ const User = require('../models/User');
 
 module.exports = {
     name: 'release',
-    description: 'Release a player from prison.',
+    description: 'Release a player from prison. Only police.',
     args: true,
     usage: '<name>',
     execute(client, message, args, _User){
