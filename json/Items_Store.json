@@ -18,6 +18,24 @@
         "value": 5000
     },
     {
+        "name": "access_card_ltcfarm",
+        "display": "LTC Farm Access Card",
+        "description": "(LVL 10)This will let you inside the LTC farm.",
+        "value": 100000
+    },
+    {
+        "name": "access_card_ethfarm",
+        "display": "ETH Farm Access Card",
+        "description": "(LVL 20)This will let you inside the ETH farm.",
+        "value": 500000
+    },
+    {
+        "name": "access_card_ethfarm",
+        "display": "BTC Farm Access Card",
+        "description": "(LVL 30)This will let you inside the BTC farm.",
+        "value": 1000000
+    },
+    {
         "name": "transport_bicycle",
         "display": "Bicycle",
         "description": "(LVL 5) Leg day! Travel in 4min, no costs per travel.",

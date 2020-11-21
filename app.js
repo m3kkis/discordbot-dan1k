@@ -79,6 +79,19 @@ client.once('ready', () => {
             .catch(console.error);
     }
 
+    //Add crypto icos to server
+    const cryptoFiles = fs.readdirSync('./crypto/').filter(file => file.endsWith('.png'));
+    for(const file of cryptoFiles){
+        
+        var emojiName = file.replace(/.png/g, '');
+
+        if(client.emojis.name)
+
+        guild.emojis.create('./crypto/' + file, emojiName)
+            .then(emoji => console.log(`[APP] Created new emoji with name :${emoji.name}: !`))
+            .catch(console.error);
+    }
+
 
     //Create role for Bitch Box, after that don't forget to set role as separate.
     try{

@@ -59,6 +59,7 @@ Same applies to the Mayor and Police role.
 * `!buy <list_item_number>` buy an item from the store.
 * `!clear <amount>` clear the amount specified of messages from chat.
 * `!crime` work in crime, get highest pay but more chances to be caught.
+* `!crypto` check current prices for LTC, ETH and BTC using real data.
 * `!deposit <amount|all>` deposit an amount or all of your cash to your bank.
 * `!election` Vote for a mayor of your server. Lasts 7 days before can revote.
 * `!fire` Fire a Police Officer. Only mayor can do this in the townhall.

@@ -120,7 +120,7 @@
         },
         {
             "name": "card_jail_pass",
-            "display": "[EPIC] Jail Pass",
+            "display": "[EPIC] Card Jail Pass",
             "description": "Get out of prison instantly without any fees.",
             "chance":0.05,
             "value": 10000,
