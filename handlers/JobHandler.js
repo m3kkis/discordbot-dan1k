@@ -326,7 +326,7 @@ class JobHandler extends XpHandler{
         embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL());
         var reply;
 
-        if(_Victim.travel.isTaveling == true)
+        if(_Victim.travel.isTaveling == false)
         {
 
             if(_Victim.rob_protection == true)
@@ -387,6 +387,8 @@ class JobHandler extends XpHandler{
                         )
                     }
                 }
+
+
             }
 
         }
