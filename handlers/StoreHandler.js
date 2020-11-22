@@ -17,25 +17,80 @@ class StoreHandler {
         });
     }
 
-    displayAllStoreItems(invLevel){
+    displayAllStoreItems(_User){
         console.log('[STORE HANDLER] Display all store items');
         var me = this;
         var reply = "";
         me.jsonStoreItems.map(function (item,idx) {
             if(item.name == "upgrade_inventory")
             {
-                if(invLevel == 16)
+                if(_User.inventorySize == 16)
                 {
                     reply += `~~**${(idx+1)}. ${item.display}** \`MAXED OUT\` : *${item.description}*~~\n`;
                 }
                 else
                 {
-                    var lvlDiff = invLevel - 4;
+                    var lvlDiff = _User.inventorySize - 4;
                     var finalPrice = item.value * Math.pow(lvlDiff,2);
     
                     reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(finalPrice)}\` : *${item.description}*\n`;
                 }
 
+            }
+            else if(item.name == "transport_bicycle")
+            {
+                if(_User.travel.transportation.hasBicycle == true)
+                {
+                    reply += `~~**${(idx+1)}. ${item.display}** \`OWNED\` : *${item.description}*~~\n`;
+                }
+                else
+                {
+                    reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(item.value)}\` : *${item.description}*\n`;
+                }
+            }
+            else if(item.name == "transport_car")
+            {
+                if(_User.travel.transportation.hasCar == true)
+                {
+                    reply += `~~**${(idx+1)}. ${item.display}** \`OWNED\` : *${item.description}*~~\n`;
+                }
+                else
+                {
+                    reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(item.value)}\` : *${item.description}*\n`;
+                }
+            }
+            else if(item.name == "transport_boat")
+            {
+                if(_User.travel.transportation.hasBoat == true)
+                {
+                    reply += `~~**${(idx+1)}. ${item.display}** \`OWNED\` : *${item.description}*~~\n`;
+                }
+                else
+                {
+                    reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(item.value)}\` : *${item.description}*\n`;
+                }
+            }
+            else if(item.name == "transport_helicopter")
+            {
+                if(_User.travel.transportation.hasHelicopter == true)
+                {
+                    reply += `~~**${(idx+1)}. ${item.display}** \`OWNED\` : *${item.description}*~~\n`;
+                }
+                else
+                {
+                    reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(item.value)}\` : *${item.description}*\n`;
+                }
+            }
+            else if(item.name == "transport_portalgun")
+            {
+                if(_User.travel.transportation.hasPortalGun == true)
+                {
+                    reply += `~~**${(idx+1)}. ${item.display}** \`OWNED\` : *${item.description}*~~\n`;
+                }
+                else
+                {
+                    reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(item.value)}\` : *${item.description}*\n`;
+                }
             }
             else
             {
