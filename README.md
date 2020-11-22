@@ -52,6 +52,45 @@ Check in your server roles for the role "BitchBox". Go into role settings and ma
 Depending on your roles, the BitchBox role needs to be pretty high in your current role lineup. It needs high levels of permisisons. 
 Same applies to the Mayor and Police role.
 
+# Tutorial for Travel Update
+With the new update coming to this bot, lots of things have changed. Heres a quick tutorial on how to play this discord game.
+
+##### Locations
+Now there are different locations to travel to. To view the list of locations do `!loc list` this will display you different locations where you can travel. You can travel using the travel command to any of these locations but more on that later. You can also just do `!loc` to view your current location and the players that are in the same area as you. Some locations have their own commands such as `!dep` can only be done in the city but you can do `!with` at the city or at the casino etc. If ever you can't do a command it will tell you where to be to use it.
+
+CryptoFarm location will require you to have an access card to enter it and you cannot enter the Townhall if you are not the Mayor.
+
+##### Traveling
+To travel you use the command `!travel city` and you will use the fastest travel method you own. By default every one starts by walking and it is the slowest of them all but the rest can be purchased at the store and each method has a shorter traveling time to reach destination. Every other transport than walk and bicycle will require you to pay for fuel every time you use it so make sure you have cash on you.
+
+You can specify which travel method you want to use if ever you don't want to spend an X amount for fuel by adding the transport method to the command `!travel city car`
+
+##### Election
+An election can happen once every 7 days. Once the command `!election` is excecuted , two people at random will chosen to become a mayor and the people of the server must vote with emoji. If ever there is only 1 candidate, he will automatically become the mayor. The person will stay as the mayor until the next election has been triggered.
+
+##### Mayor
+The mayor role can collect taxes from people up to maximum of 15% using the command `!tax <0-15>` and can only do it once a week. The mayor cannot be put into prison and cannot slut or crime. But he has his own location where he can deposit and withdraw his money. The mayor can also assign a police offcer usign the command `!promote <player>` and also fire the current police officer using `!fire <name>`. The mayor always travels for free and travels by helicopter. There can only be one Mayor
+
+##### Police Officer
+The police officer role keeps the people of the server safe. Some people may deserve to be sent to prison its up to the police officer to do his job. He can send a person to prison using `!arrest <player>`, he can search a player inventory using the command `!search <player>` to see if any illegal items are in posession of the targeted player. The police can also release a prisoner by using the command `!release <name>` The police officers travels for free and travels using the Portal Gun. There can only be one police officer.
+
+##### Prisoners
+Once you have been sent to prison you cannot do any commands until you bail out using the command `!bail` you will have 2 options, either wait an hour or you can pay a bail amount of 15% of your networth. If you are broke someone can always come visit you in jail and give you cash.
+
+##### Farm
+The farm location is where you can do `!harvest` once every 12 hours and you have a fifty-fifty chance to get either legal crops or illegal crops which you can use to sell at the store. It is open to anyone to use but beware. Once you harvest an item, the bot will send you a direct message to you saying which item you harvested. The police can always search you to see if you have any illegal items and arrest you.
+
+##### Cryptofarm
+This locaton is only accessed by purcahsing the Access Card from the store. Once you buy it, it will be in your inventory so don't lose it! Now you can travel there and use the command `!mine` you will at randomly 33% each to get either a LiteCoin, Ethereum or a Bitcoin. You can use it every hour. With the coins you get, you can sell it right away or you can do the command `!crypto` to get the current price of that coin. The data is fetched from coingecko with the real prices of coins. The sell price you will see in your inventory is the price at the time you mined it so make sure you use `!crypto` to check the actual price of it before selling it.
+
+##### Rob
+The rob command was updated and now when you rob a player theres a 10% chance that you will rob an item from the victims inventory (if the victim has any)
+
+##### Give
+You can now give items to  other players by doing `!give <player> item <#item_from_your_inventory>`
+
+#### I believe that covers all the new stuff i added.
+
 ## Commands (so far)
 * `!arrest <name>` Arrest a player and send them to prison. Only police.
 * `!bail <optional:amount>` Bail out prison for free in time or pay the bail amount to get released from prison right away.
@@ -62,7 +101,7 @@ Same applies to the Mayor and Police role.
 * `!crypto` check current prices for LTC, ETH and BTC using real data.
 * `!deposit <amount|all>` deposit an amount or all of your cash to your bank.
 * `!election` Vote for a mayor of your server. Lasts 7 days before can revote.
-* `!fire` Fire a Police Officer. Only mayor can do this in the townhall.
+* `!fire <name>` Fire a Police Officer. Only mayor can do this in the townhall.
 * `!give <user> cash <amount>` give cash to another user.
 * `!harvest` Harvest either legal or illegal plants. Sell them for extra cash! But don\'t get caught by police.
 * `!help` display all of the available commands.
@@ -84,7 +123,7 @@ Same applies to the Mayor and Police role.
 * `!slut` medium amount of pay, also chances of being caught.
 * `!store` view whats in-store.
 * `!tax <percentage>` collect tax from your fellow peers. Only the mayor can do so and only once a week.
-* `!travel` travel to another location either by walking or other method of transport bought from store.
+* `!travel <location> <optional:transport_type>` travel to another location either by walking or other method of transport bought from store.
 * `!use <item_inventory_number_list>` Use an item from your inventory.
 * `!withdraw <amount|all>` withdraw cash from the bank.
 * `!work` lowest payout but the safest one, will never be caught.
