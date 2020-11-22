@@ -52,7 +52,7 @@ Check in your server roles for the role "BitchBox". Go into role settings and ma
 Depending on your roles, the BitchBox role needs to be pretty high in your current role lineup. It needs high levels of permisisons. 
 Same applies to the Mayor and Police role.
 
-# [Tutorial](#tutorial) for Travel Update
+# Tutorial for Travel Update
 With the new update coming to this bot, lots of things have changed. Heres a quick tutorial on how to play this discord game.
 
 ##### Locations
