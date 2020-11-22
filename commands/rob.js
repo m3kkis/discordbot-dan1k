@@ -37,8 +37,8 @@ module.exports = {
         var timeLimit = _JobHandler.robTimeout * (1000 * 60);
         var timeDifference = n - _User.jobs.rob.last_updated;
 
-        if( timeDifference > timeLimit )
-        {
+        //if( timeDifference > timeLimit )
+        //{
             _User.jobs.rob.last_updated = n;
 
             User.findOne({
@@ -64,12 +64,62 @@ module.exports = {
                     else
                     {
                         var reply = _JobHandler.doRob(message, _User, _Victim);
+
+                        /* ROB ITEM not sur if people will like this but ill put it separate for now */
+
+                        var chanceItemRob = Math.random();
+                        var itemRobSuccess = false;
+
+                        if(chanceItemRob < 0.1)
+                        {
+                            console.log("[ROB] Success robbing an item");
+                            itemRobSuccess = true;
+
+                            var itemRobReply = new Discord.MessageEmbed();
+
+                            if(_User.inventory.length == _User.inventorySize)
+                            {
+                                itemRobReply.setColor('#ff4f4f')
+                                            .setDescription('You robbed an item from that player but you had no where to put it... Your inventory was full. So the robbed player gets to keep his item.');
+                            }
+                            else
+                            {
+                                if(_Victim.inventory.length == 0)
+                                {
+                                    itemRobReply.setColor('#ff4f4f')
+                                                .setDescription('You robbed the player but he had no items for you to take...');
+                                }
+                                else
+                                {
+
+                                    var randomNbr = Math.floor(Math.random() * _Victim.inventory.length);
+                                    var itemRobbed = _Victim.inventory[randomNbr];
+                                    _Victim.inventory.splice(randomNbr,1);
+                                    _User.inventory.push(itemRobbed);
+
+                                    itemRobReply.setColor('#78de87')
+                                                .setDescription(`You also robbed **${itemRobbed.display}** from the player.`);
+                                }
+                            }
+                        }
+
+                        /*****************************************************************************/
     
                         _User.save().then(()=>{
                             _Victim.save();
                         });
+
+                        if(itemRobSuccess == true)
+                        {
+                            message.channel.send(reply);
+                            return message.channel.send(itemRobReply);
+                        }
+                        else
+                        {
+                            return message.channel.send(reply);
+                        }
                         
-                        return message.channel.send(reply);
+                        
                     }
 
                 }
@@ -83,14 +133,14 @@ module.exports = {
                 
             });
 
-        }
+        /*}
         else
         {
 
             embedded.setColor('#ff4f4f')
                 .setDescription("You cannot rob for the next " + convertToMinutes(timeLimit - timeDifference));
             return message.channel.send(embedded);
-        }
+        }*/
 
         function convertToMinutes(timestamp) {
             var min = Math.floor(timestamp / 60000);

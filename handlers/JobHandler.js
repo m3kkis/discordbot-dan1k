@@ -326,7 +326,7 @@ class JobHandler extends XpHandler{
         embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL());
         var reply;
 
-        if(_Victim.travel.isTaveling == false)
+        if(_Victim.travel.isTraveling == false)
         {
 
             if(_Victim.rob_protection == true)
@@ -396,7 +396,7 @@ class JobHandler extends XpHandler{
         {
             console.log('[JOB HANDLER] Do rob failed, victim is traveling.');
             embedded.setColor('#ff4f4f');
-            reply = `Can\t rob a person while the person is traveling.`;
+            reply = `Can\'t rob a person while the person is traveling.`;
 
             embedded.setDescription(reply);
         }
