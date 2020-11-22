@@ -79,20 +79,6 @@ client.once('ready', () => {
             .catch(console.error);
     }
 
-    //Add crypto icos to server
-    const cryptoFiles = fs.readdirSync('./crypto/').filter(file => file.endsWith('.png'));
-    for(const file of cryptoFiles){
-        
-        var emojiName = file.replace(/.png/g, '');
-
-        if(client.emojis.name)
-
-        guild.emojis.create('./crypto/' + file, emojiName)
-            .then(emoji => console.log(`[APP] Created new emoji with name :${emoji.name}: !`))
-            .catch(console.error);
-    }
-
-
     //Create role for Bitch Box, after that don't forget to set role as separate.
     try{
         roleBB = guild.roles.cache.find(x => x.name === "BitchBox");
@@ -388,6 +374,9 @@ client.on('message', message => {
                             command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
                             break;
                         case "harvest":
+                            command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
+                            break;
+                        case "mine":
                             command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
                             break;
                         default:

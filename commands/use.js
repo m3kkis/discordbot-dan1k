@@ -226,9 +226,23 @@ module.exports = {
 
                     return message.channel.send(embedded);
                 }
+                else if( _User.isMayor == false && strDestination == "townhall") {
+                    embedded.setColor('#ff4f4f')
+                        .setDescription('Only the mayor can teleport to the **' + strDestination.toUpperCase() + '**');
+        
+                    return message.channel.send(embedded);
+                }
+                else if (strDestination == "cryptofarm" && _User.inventory.filter(item => item.name === 'access_card_cryptofarm').length < 1) {
+                    embedded.setColor('#ff4f4f')
+                            .setDescription('You need an __Access Card__ to teleport to the **' + strDestination.toUpperCase() + '**');
+    
+                    return message.channel.send(embedded);
+                }
                 else
                 {
+                    var n = moment().valueOf();
                     _User.travel.location = strDestination;
+                    _User.travel.last_updated = n;
                 }
 
             }
@@ -287,6 +301,13 @@ module.exports = {
                     return message.channel.send(embedded);
                 }
 
+            }
+            else
+            {
+                embedded.setColor('#ff4f4f')
+                        .setDescription('You can\'t use that.');
+    
+                return message.channel.send(embedded);
             }
 
             

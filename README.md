@@ -72,6 +72,7 @@ Same applies to the Mayor and Police role.
 * `!location <optional: list>` display your current location and player nearby, optional: display information of all locations.
 * `!lootbox <open|itemlist>` open a lootbox if you have the key or view all items available in lootbox.
 * `!me` Display other hidden information about yourself.
+* `!mine` Mine a crypto coin and then sell it in store using real data. Or buy stuff from the CryptoStore.
 * `!money` display your current cash in pocket, bank and your networth.
 * `!promote <name>` Promote a player to Police Officer. Only mayor can use this in the townhall.
 * `!rank` display all players levels ranked.

@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const fetch = require('node-fetch');
 const XpHandler = require('./XpHandler.js')
 var fs = require('fs');
 
@@ -18,6 +19,7 @@ class JobHandler extends XpHandler{
         this.crimeFailChance = 0.5;
         this.robTimeout = 15;
         this.harvestTimeout = 720;
+        this.mineTimeout = 60;
         this.jsonJobSuccess;
         this.jsonJobFailed;
     }
@@ -134,6 +136,79 @@ class JobHandler extends XpHandler{
 
 
         return jsonReply;
+    }
+
+    doMine(message, _User){
+        console.log('[JOB HANDLER] Do mine success.');
+        var me = this;
+
+        var embedded = new Discord.MessageEmbed();
+            embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
+
+        getCryptoData().then(([ltc, eth, btc]) => {
+
+            var priceLTC = Math.floor(ltc.prices[0][1]);
+            var priceETH = Math.floor(eth.prices[0][1]);
+            var priceBTC = Math.floor(btc.prices[0][1]);
+
+            var embedded = new Discord.MessageEmbed();
+            embedded.setColor('#78de87')
+                .setAuthor(message.member.user.tag, message.member.user.avatarURL())
+    
+            /* MINE */
+            var randomNbr = Math.floor(Math.random() * 3);
+            var arrMineItems = [
+                {
+                    "name" : "coin_ltc",
+                    "display" : "LiteCoin",
+                    "description" : "Sell this to make extra cash or buy at the CryptoStore.",
+                    "value" : priceLTC,
+                    "source" :"cryptofarm"
+                },
+                {
+                    "name" : "coin_eth",
+                    "display" : "Ethereum",
+                    "description" : "Sell this to make extra cash or buy at the CryptoStore.",
+                    "value" : priceETH,
+                    "source" :"cryptofarm"
+                },
+                {
+                    "name" : "coin_btc",
+                    "display" : "Bitcoin",
+                    "description" : "Sell this to make extra cash or buy at the CryptoStore.",
+                    "value" : priceBTC,
+                    "source" :"cryptofarm"
+                }
+            ]
+            var randomItem = arrMineItems[randomNbr];
+            
+            _User.inventory.push(randomItem);
+    
+            var reply =  `You have successfully mined a ${randomItem.display}.`;
+    
+            embedded.setDescription(reply);
+    
+            /* XP */
+            var jsonExp = me.giveExperiencePoints(_User,'mine');
+    
+            if(jsonExp.levelUp == true)
+            {
+                embedded.addFields(
+                    { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true },
+                    { name: 'Congratulation!', value: `You leveled up. Here's a lootbox or \`500$\` if your inventory is full`,  inline: true }
+                )
+            }
+            else
+            {
+                embedded.addFields(
+                    { name: 'Gained XP', value: `+${jsonExp.points} XP`,  inline: true }
+                )
+            }
+
+            _User.save();
+
+            return message.channel.send(embedded);
+        });
     }
 
     doSlut(message, _User){
@@ -327,6 +402,22 @@ class JobHandler extends XpHandler{
         return embedded;
     }
 
+}
+
+function requestLTC() {
+    return fetch('https://api.coingecko.com/api/v3/coins/litecoin/market_chart?vs_currency=usd&days=0').then((res) => res.json());
+}
+
+function requestETH(){
+    return fetch('https://api.coingecko.com/api/v3/coins/ethereum/market_chart?vs_currency=usd&days=0').then((res) => res.json());
+}
+
+function requestBTC(){
+    return fetch('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=0').then((res) => res.json());
+}
+
+function getCryptoData(){
+    return Promise.all([requestLTC(), requestETH(), requestBTC()])
 }
 
 function addCommas(num){

@@ -19,7 +19,16 @@ module.exports = {
             var reply = "";
             var usedInv = 0;
             _User.inventory.map((item, idx) => {
-                reply += `${idx+1}. **${item.display}** - *${item.description}*\n \`Sell value: $${addCommas( (item.value/2) )}\`\n`;
+
+                if(item.name == "coin_ltc" || item.name == "coin_eth" || item.name == "coin_btc")
+                {
+                    reply += `${idx+1}. **${item.display}** - *${item.description}*\n \`Sell value: $${addCommas(item.value)}\`\n`;
+                }
+                else
+                {
+                    reply += `${idx+1}. **${item.display}** - *${item.description}*\n \`Sell value: $${addCommas( Math.floor((item.value/2)) )}\`\n`;
+                }
+
                 usedInv++;
             });
             

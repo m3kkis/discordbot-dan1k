@@ -13,6 +13,9 @@ module.exports = {
         var jsonLocEmoji = {
             "city":":cityscape:",
             "casino":":slot_machine:",
+            "townhall":":classical_building:",
+            "prison":":lock:",
+            "cryptofarm":":desktop:",
         };
 
         var fuelPrice = {
@@ -28,7 +31,7 @@ module.exports = {
         var d = new Date();
         var n = d.getTime();
 
-        if(strDestination == "city" || strDestination == "casino" || strDestination == "prison" || strDestination == "farm" || strDestination == "townhall" || strDestination == "ltcfarm" || strDestination == "ethfarm" || strDestination == "btcfarm")
+        if(strDestination == "city" || strDestination == "casino" || strDestination == "prison" || strDestination == "farm" || strDestination == "townhall" || strDestination == "cryptofarm")
         {
             console.log("[TRAVEL] Player trying to travel to " + strDestination);
 
@@ -43,6 +46,13 @@ module.exports = {
                 embedded.setColor('#ff4f4f')
                     .setDescription('Only the mayor can travel to the **' + strDestination.toUpperCase() + '**');
     
+                return message.channel.send(embedded);
+            }
+
+            if (strDestination == "cryptofarm" && _User.inventory.filter(item => item.name === 'access_card_cryptofarm').length < 1) {
+                embedded.setColor('#ff4f4f')
+                        .setDescription('You need an __Access Card__ to travel to the **' + strDestination.toUpperCase() + '**');
+
                 return message.channel.send(embedded);
             }
 

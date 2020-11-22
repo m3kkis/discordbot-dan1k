@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'crypto',
-    description: 'Display current cryptocurrency price live data.',
+    description: 'Display current Cryptocurrency price live data.',
     args: false,
     usage: '',
     execute(client, message, args, _User){
@@ -11,10 +11,6 @@ module.exports = {
         var embedded = new Discord.MessageEmbed();
         embedded.setColor('#03b6fc')
                 .setAuthor(message.member.user.tag, message.member.user.avatarURL());
-
-        const emjLTC = message.guild.emojis.cache.find(emoji => emoji.name === 'LTC');
-        const emjETH = message.guild.emojis.cache.find(emoji => emoji.name === 'ETH');
-        const emjBTC = message.guild.emojis.cache.find(emoji => emoji.name === 'BTC');
 
         //DATA https://www.coingecko.com/en/api#explore-api
 
@@ -43,9 +39,9 @@ module.exports = {
 
             embedded.setDescription("*Live data fetched from www.coingecko.com*")
                     .addFields(
-                        { name: `${emjLTC} LiteCoin`, value: `\`$${addCommas(priceLTC)}\`` },
-                        { name: `${emjETH} Ethereum`, value: `\`$${addCommas(priceETH)}\`` },
-                        { name: `${emjBTC} Bitcoin`, value: `\`$${addCommas(priceBTC)}\`` },
+                        { name: `LiteCoin`, value: `\`$${addCommas(priceLTC)}\``, inline:true},
+                        { name: `Ethereum`, value: `\`$${addCommas(priceETH)}\``, inline:true },
+                        { name: `Bitcoin`, value: `\`$${addCommas(priceBTC)}\``, inline:true },
                     )
                 
 

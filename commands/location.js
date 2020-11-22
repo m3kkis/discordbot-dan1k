@@ -13,9 +13,7 @@ module.exports = {
         embedded.setColor('#03b6fc')
                 .setAuthor(message.member.user.tag, message.member.user.avatarURL());
 
-        const emjLTC = message.guild.emojis.cache.find(emoji => emoji.name === 'LTC');
-        const emjETH = message.guild.emojis.cache.find(emoji => emoji.name === 'ETH');
-        const emjBTC = message.guild.emojis.cache.find(emoji => emoji.name === 'BTC');
+
         
         if(args[0] != undefined && args[0].toLowerCase() == "list")
         {
@@ -28,9 +26,7 @@ module.exports = {
                         { name: ':lock: Prison', value: '*Be a good citizen of discord or else a police officer will stop you  and you will end up here.*'},
                         { name: ':rice_scene: Farm', value: '*Farm your resources, legal or illegal. Just don\'t get caught.*'},
                         { name: ':classical_building: Townhall', value: '*Only the mayor can be at the townhall to feel safe and secure to do his stuff.*'},
-                        { name: `${emjLTC} LTCFarm`, value: '*Collect LiteCoins and sell using real data. Must have __Access Card__ to enter.*'},
-                        { name: `${emjETH} ETHFarm`, value: '*Collect Ethereum and sell using real data. Must have __Access Card__ to enter.*'},
-                        { name: `${emjBTC} BTCFarm`, value: '*Collect Bitcoins and sell using real data. Must have __Access Card__ to enter.*'},
+                        { name: `:desktop: Cryptofarm`, value: '*Mine crypto coins and sell using real data. Must have __Access Card__ to enter.*'},
                     )
             return message.channel.send(embedded);
         }
@@ -43,9 +39,7 @@ module.exports = {
                 "casino":":slot_machine:",
                 "townhall":":classical_building:",
                 "prison":":lock:",
-                "ltcfarm":`${emjLTC}`,
-                "ethfarm":`${emjETH}`,
-                "btcfarm":`${emjBTC}`,
+                "cryptofarm":":desktop:",
             };
 
             embedded.setDescription(`You are currently in the ${jsonLocEmoji[_User.travel.location]} **${_User.travel.location.toUpperCase()}**`)

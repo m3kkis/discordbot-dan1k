@@ -18,51 +18,39 @@
         "value": 5000
     },
     {
-        "name": "access_card_ltcfarm",
-        "display": "LTC Farm Access Card",
-        "description": "(LVL 10)This will let you inside the LTC farm.",
-        "value": 100000
-    },
-    {
-        "name": "access_card_ethfarm",
-        "display": "ETH Farm Access Card",
-        "description": "(LVL 20)This will let you inside the ETH farm.",
+        "name": "access_card_cryptofarm",
+        "display": "CryptoFarm Access Card",
+        "description": "Access to CryptoFarm.",
         "value": 500000
-    },
-    {
-        "name": "access_card_ethfarm",
-        "display": "BTC Farm Access Card",
-        "description": "(LVL 30)This will let you inside the BTC farm.",
-        "value": 1000000
     },
     {
         "name": "transport_bicycle",
         "display": "Bicycle",
-        "description": "(LVL 5) Leg day! Travel in 4min, no costs per travel.",
+        "description": "(LVL5) Leg day! Travel in 4min,no costs per travel.",
         "value": 400
     },
     {
         "name": "transport_car",
         "display": "Car",
-        "description": "(LVL 10) Faster than a lawn mower! Travel in 3min but costs $10 for fuel each travel.",
+        "description": "(LVL10) Faster than a lawn mower! Travel in 3min but costs $10 for fuel each travel.",
         "value": 35000
     },
     {
         "name": "transport_boat",
         "display": "Boat",
-        "description": "(LVL 15) Make Aquaman jealous! Travel in 2min but costs $200 for fuel each travel.",
+        "description": "(LVL15) Make Aquaman jealous! Travel in 2min but costs $200 for fuel each travel.",
         "value": 150000
     },
     {
         "name": "transport_helicopter",
         "display": "Helicopter",
-        "description": "(LVL 20) Forget traffic! Travel in 1min but costs $500 for fuel each travel.",
+        "description": "(LVL20) Forget traffic! Travel in 1min but costs $500 for fuel each travel.",
         "value": 640000
     },
     {
         "name": "transport_portalgun",
         "display": "Portal Gun",
-        "description": "(LVL 25) The cake is a lie! Travel instantly but costs $50,000 for energy each travel.",
+        "description": "(LVL25) The cake is a lie! Travel instantly but costs $50,000 for energy each travel.",
         "value": 1000000
     }
 ]

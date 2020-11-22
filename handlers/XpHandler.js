@@ -42,6 +42,9 @@ class XpHandler {
             case 'harvest':
                 xp = Math.floor(Math.pow(_User.experience.level,1)*8);
                 break;
+            case 'mine':
+                xp = Math.floor(Math.pow(_User.experience.level,1)*8);
+                break;
         }
 
         userPoints += xp;

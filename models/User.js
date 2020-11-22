@@ -53,6 +53,9 @@ const userSchema = new Schema(
         },
         harvest:{
             last_updated: { type: Number, default: 0 },
+        },
+        mine:{
+            last_updated: { type: Number, default: 0 },
         }
     }
 });
