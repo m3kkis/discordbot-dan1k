@@ -37,8 +37,8 @@ module.exports = {
         var timeLimit = _JobHandler.robTimeout * (1000 * 60);
         var timeDifference = n - _User.jobs.rob.last_updated;
 
-        //if( timeDifference > timeLimit )
-        //{
+        if( timeDifference > timeLimit )
+        {
             _User.jobs.rob.last_updated = n;
 
             User.findOne({
@@ -47,6 +47,9 @@ module.exports = {
 
                 if(_Victim)
                 {
+
+
+
                     console.log("[ROB] Found victim ID.");
 
                     if( _Victim.travel.isTraveling == true ) {
@@ -58,6 +61,12 @@ module.exports = {
                     else if( _User.travel.location != _Victim.travel.location ) {
                         embedded.setColor('#ff4f4f')
                             .setDescription('You must be in the same location to give items to another player.');
+            
+                        return message.channel.send(embedded);
+                    }
+                    else if(_Victim.dsid == _User.dsid){
+                        embedded.setColor('#ff4f4f')
+                            .setDescription('You can\'t rob yourself..');
             
                         return message.channel.send(embedded);
                     }
@@ -133,14 +142,14 @@ module.exports = {
                 
             });
 
-        /*}
+        }
         else
         {
 
             embedded.setColor('#ff4f4f')
                 .setDescription("You cannot rob for the next " + convertToMinutes(timeLimit - timeDifference));
             return message.channel.send(embedded);
-        }*/
+        }
 
         function convertToMinutes(timestamp) {
             var min = Math.floor(timestamp / 60000);
