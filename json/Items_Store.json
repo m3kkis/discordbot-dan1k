@@ -32,25 +32,25 @@
     {
         "name": "transport_car",
         "display": "Car",
-        "description": "(LVL10) Faster than a lawn mower! Travel in 3min but costs $10 for fuel each travel.",
+        "description": "(LVL20) Faster than a lawn mower! Travel in 3min but costs $10 for fuel each travel.",
         "value": 35000
     },
     {
         "name": "transport_boat",
         "display": "Boat",
-        "description": "(LVL15) Make Aquaman jealous! Travel in 2min but costs $200 for fuel each travel.",
+        "description": "(LVL35) Make Aquaman jealous! Travel in 2min but costs $200 for fuel each travel.",
         "value": 150000
     },
     {
         "name": "transport_helicopter",
         "display": "Helicopter",
-        "description": "(LVL20) Forget traffic! Travel in 1min but costs $500 for fuel each travel.",
+        "description": "(LVL50) Forget traffic! Travel in 1min but costs $500 for fuel each travel.",
         "value": 640000
     },
     {
         "name": "transport_portalgun",
         "display": "Portal Gun",
-        "description": "(LVL25) The cake is a lie! Travel instantly but costs $50,000 for energy each travel.",
+        "description": "(LVL65) The cake is a lie! Travel instantly but costs $50,000 for energy each travel.",
         "value": 1000000
     }
 ]
