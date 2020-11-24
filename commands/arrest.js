@@ -53,7 +53,7 @@ module.exports = {
 
                 var n = moment().valueOf();
 
-                var timeLimit = 15 * (1000 * 60); //prison time limit
+                var timeLimit = 60 * (1000 * 60); //prison time limit
                 var timeDifference = n - _Victim.arrest.last_updated;
 
                 if( _Victim.isPolice == true ) {
