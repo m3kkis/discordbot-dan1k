@@ -60,7 +60,7 @@ module.exports = {
                     }
                     else if( _User.travel.location != _Victim.travel.location ) {
                         embedded.setColor('#ff4f4f')
-                            .setDescription('You must be in the same location to give items to another player.');
+                            .setDescription('You must be in the same location to rob another player.');
             
                         return message.channel.send(embedded);
                     }
