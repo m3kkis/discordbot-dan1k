@@ -83,6 +83,16 @@ module.exports = {
 
         function dealCards(participants){
             console.log("[BLACKJACK] Dealing cards");
+
+
+            /*
+            for(var xx = 0; xx < _DeckHandler.deck.length; xx++)
+            {
+                console.log(_DeckHandler.deck[xx].Value)
+            }
+            */
+
+
             for(var i = 0; i < 2; i++)
             {
                 for (var j = 0; j < participants.length; j++)

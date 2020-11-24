@@ -380,6 +380,9 @@ client.on('message', message => {
                         case "mine":
                             command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
                             break;
+                        case "use":
+                            command.execute(client, message, args, _User, _DeckHandler);
+                            break;
                         default:
                             command.execute(client, message, args, _User);
 
