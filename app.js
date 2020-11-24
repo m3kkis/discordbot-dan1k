@@ -260,7 +260,7 @@ client.on('message', message => {
                 }
                 else if( !_User.travel.isTraveling && _User.arrest.isArrested)
                 {
-                    var timeLimit = 15 * (1000 * 60); // prison time limit
+                    var timeLimit = 60 * (1000 * 60); // prison time limit
                     var timeDifference = n - _User.arrest.last_updated;
                     var timeLeft = timeLimit - timeDifference;
 
