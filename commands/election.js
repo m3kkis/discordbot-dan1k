@@ -29,7 +29,7 @@ module.exports = {
                     var randomCandidateTwo;
                     var currentMayor = undefined;
 
-                    var VOTE_TIME = 120; // in seconds
+                    var VOTE_TIME = 180; // in seconds
 
                     _ColUsers.map(function (user) {
                         if(user.experience.level >= 10 && user.tag != _Bot.election.mayor )
@@ -107,7 +107,7 @@ module.exports = {
                 
                     embedded.setColor('#031cfc')
                             .setTitle('★★★ ELECTION ★★★')
-                            .setDescription('Click on one of the emojis below to vote or react to this message with an emoji to give your vote for the next mayor! Only players with minimum level 10 will be able to become a mayor.\n\n***IMPORTANT:*** \n*__• Only your first vote counts!__*\n*__• 2 minutes to vote__*\n*__• BUG: Discord on phone, vote not working __*')
+                            .setDescription('Click on one of the emojis below to vote or react to this message with an emoji to give your vote for the next mayor! Only players with minimum level 10 will be able to become a mayor.\n\n***IMPORTANT:*** \n*__• Only your first vote counts!__*\n*__• 2 minutes to vote__*')
                             .addField(randomCandidateOne, 'React Eggplant :eggplant: to vote.', true)
                             .addField(randomCandidateTwo, 'React Cucumber :cucumber: to vote.', true)
                     
@@ -124,7 +124,7 @@ module.exports = {
                             {
                                 console.log("[ELECTION] This user has already voted.");
                             }
-                            else if(user.id === message.author.id)
+                            else//else if(user.id === message.author.id) // bug here
                             {
                                 arrVoters.push(user.id);
                                 return [`🍆`, '🥒'].includes(reaction.emoji.name);
