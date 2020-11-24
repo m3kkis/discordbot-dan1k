@@ -35,6 +35,13 @@ module.exports = {
         {
             console.log("[TRAVEL] Player trying to travel to " + strDestination);
 
+            if( _User.ingame == true) {
+                embedded.setColor('#ff4f4f')
+                    .setDescription('You can\'t travel before finishing the game of blackjack.');
+    
+                return message.channel.send(embedded);
+            }
+
             if( _User.travel.location == strDestination) {
                 embedded.setColor('#ff4f4f')
                     .setDescription('You are already in the **' + strDestination.toUpperCase() + '**');
