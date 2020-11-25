@@ -55,6 +55,12 @@ class JobHandler extends XpHandler{
         
         randomReply = randomReply.replace("##", "\`$"+randomCashAmount+"\`");
 
+        if(_User.isMayor == true)
+        {
+            randomReply += '\nMayor Bonus: \`$300\`';
+            randomCashAmount += 300;
+        }
+
         _User.economy.cash += randomCashAmount;
         embedded.setDescription(randomReply);
 
