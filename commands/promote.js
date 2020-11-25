@@ -18,7 +18,8 @@ module.exports = {
         }
 
         if( _User.travel.location != "townhall") {
-        
+            
+            var embedded = new Discord.MessageEmbed();
             embedded.setColor('#ff4f4f')
                     .setDescription('You must be in the **TOWNHALL** to promote a player to a Police Officer.');
 

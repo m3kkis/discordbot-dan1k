@@ -57,7 +57,7 @@ class JobHandler extends XpHandler{
 
         if(_User.isMayor == true)
         {
-            randomReply += '\nMayor Bonus: \`$300\`';
+            randomReply += '\n\nMayor Bonus: \`$300\`';
             randomCashAmount += 300;
         }
 
