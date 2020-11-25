@@ -25,13 +25,13 @@ class XpHandler {
                 xp = Math.floor(Math.pow(_User.experience.level,1)*2);
                 break;
             case 'slut':
-                xp = Math.floor(Math.pow(_User.experience.level,1)*3);
-                break;
-            case 'crime':
                 xp = Math.floor(Math.pow(_User.experience.level,1)*4);
                 break;
+            case 'crime':
+                xp = Math.floor(Math.pow(_User.experience.level,1)*6);
+                break;
             case 'rob':
-                xp = Math.floor(Math.pow(_User.experience.level,1)*5);
+                xp = Math.floor(Math.pow(_User.experience.level,1)*8);
                 break;
             case 'bj':
                 xp = Math.floor(Math.pow(_User.experience.level,1)*2);
@@ -40,10 +40,10 @@ class XpHandler {
                 xp = Math.floor(Math.pow(_User.experience.level,1)*1);
                 break;
             case 'harvest':
-                xp = Math.floor(Math.pow(_User.experience.level,1)*5);
+                xp = Math.floor(Math.pow(_User.experience.level,1)*6);
                 break;
             case 'mine':
-                xp = Math.floor(Math.pow(_User.experience.level,1)*5);
+                xp = Math.floor(Math.pow(_User.experience.level,1)*3);
                 break;
         }
 
