@@ -139,7 +139,7 @@ module.exports = {
                     });
 
                     embedded.setColor('#3849ff')
-                        .setDescription(`You have arrested **${_Victim.tag}**`);
+                        .setDescription(`You have arrested **${_Victim.tag}**\n\nMayor Bonus +\`$300\``);
                     return message.channel.send(embedded);
                 }
  
