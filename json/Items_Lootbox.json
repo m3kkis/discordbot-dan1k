@@ -26,7 +26,7 @@
         },
         {
             "name": "card_shuffle_deck",
-            "display": "[UNCOMMON] Card Shuffle Deck",
+            "display": "[COMMON] Card Shuffle Deck",
             "description": "Shuffle the deck at any time.",
             "chance":0.6,
             "value": 6000,
@@ -57,6 +57,14 @@
             "chance":0.3,
             "value": 6000,
             "type":"card"
+        },
+        {
+            "name": "instant_level_up",
+            "display": "[UNCOMMON] Level Up, comes with another lootbox!",
+            "description": "Congrats, you leveled up!",
+            "chance":0.3,
+            "value": 6000,
+            "type":"card"
         }
     ],
     "rare":[
@@ -77,7 +85,7 @@
             "type":"card"
         },
         {
-            "name": "card_go_to_prison",
+            "name": "instant_go_to_prison",
             "display": "[RARE] Go to Prison",
             "description": "UNLUCKY YOU... You go to prison!",
             "chance":0.15,

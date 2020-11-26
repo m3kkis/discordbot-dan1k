@@ -105,7 +105,7 @@ class LootboxHandler {
 
         if(randomItem.type == "instant")
         {
-            if(randomItem.name == "card_go_to_prison")
+            if(randomItem.name == "instant_go_to_prison")
             {
                 if(_User.isMayor == true || _User.isPolice == true)
                 {
@@ -119,6 +119,20 @@ class LootboxHandler {
                     _User.travel.location = "prison";
                     reply = `You got a **${randomItem.display}** - ${randomItem.description}\n*It will by applied to you instantly. Sorry!*`;
                 }
+            }
+            else if(randomItem.name == "instant_level_up")
+            {
+                _User.experience.level += 1;
+
+                _User.inventory.push({
+                    "name":"lootbox",
+                    "display":"Lootbox",
+                    "description":"Open with a key and get surprise gift!",
+                    "value":1000,
+                    "source":"drop"
+                });
+
+                reply = `You got a **${randomItem.display}** - ${randomItem.description}\n*It will by applied to your account instantly. Enjoy!*`;
             }
             else
             {
