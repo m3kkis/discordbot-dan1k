@@ -5,6 +5,7 @@ module.exports = {
     description: 'Travel to another location.',
     args: true,
     usage: '<location> <optional:transport_type>',
+    aliases: ['go'],
     execute(client, message, args, _User){
 
         var embedded = new Discord.MessageEmbed();
@@ -31,8 +32,19 @@ module.exports = {
         var d = new Date();
         var n = d.getTime();
 
-        if(strDestination == "city" || strDestination == "casino" || strDestination == "prison" || strDestination == "farm" || strDestination == "townhall" || strDestination == "cryptofarm")
+        if(strDestination == "city" || strDestination == "casino" || strDestination == "cas" || strDestination == "prison" || strDestination == "farm" || strDestination == "townhall" || strDestination == "hall" || strDestination == "cryptofarm")
         {
+
+
+            if(strDestination == "hall"){
+                strDestination = "townhall";
+            }
+            
+            if(strDestination == "cas"){
+                strDestination = "casino";
+            }
+
+
             console.log("[TRAVEL] Player trying to travel to " + strDestination);
 
             if( _User.ingame == true) {
