@@ -103,12 +103,6 @@ module.exports = {
         
                     return message.channel.send(embedded);
                 }
-                else if( _Victim.isMayor == true ) {
-                    embedded.setColor('#ff4f4f')
-                        .setDescription('You cannot arrest a mayor.');
-        
-                    return message.channel.send(embedded);
-                }
                 else if( _Victim.travel.isTraveling == true ) {
                     embedded.setColor('#ff4f4f')
                     .setDescription('You cannot arrest the user because he is currently in travel');
@@ -132,8 +126,17 @@ module.exports = {
                     _Victim.travel.location = "prison";
                     _Victim.arrest.isArrested = true;
                     _Victim.arrest.last_updated = n;
+                    //_Victim.economy.cash -= 300;
 
-                    _Victim.save();
+                    _Victim.save().then(()=>{
+                        User.findOne({
+                            isMayor: true
+                        })
+                        .then(mayor => {
+                            mayor.economy.cash += 300;
+                            mayor.save();
+                        });
+                    });
 
                     embedded.setColor('#3849ff')
                         .setDescription(`You have arrested **${_Victim.tag}**`);
