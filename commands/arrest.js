@@ -103,6 +103,12 @@ module.exports = {
         
                     return message.channel.send(embedded);
                 }
+                else if( _Victim.isMayor == true ) {
+                    embedded.setColor('#ff4f4f')
+                        .setDescription('You cannot arrest a mayor.');
+        
+                    return message.channel.send(embedded);
+                }
                 else if( _Victim.travel.isTraveling == true ) {
                     embedded.setColor('#ff4f4f')
                     .setDescription('You cannot arrest the user because he is currently in travel');
