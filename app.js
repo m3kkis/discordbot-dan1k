@@ -30,6 +30,7 @@ var _DeckHandler = new DeckHandler();
 const XpHandler = require('./handlers/XpHandler.js');
 var _XpHandler = new XpHandler();
 
+/** travel time, probably needs its own class, fix later */
 var objTravelMethodTime = {
     "portal" : 0,
     "helicopter" : 1,

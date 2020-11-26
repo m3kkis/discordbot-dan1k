@@ -49,6 +49,41 @@ module.exports = {
 
             if(_Victim)
             {
+
+
+
+
+
+                /** travel time, probably needs its own class, fix later */
+
+                var dTravel = new Date();
+                var nTravel = dTravel.getTime();
+
+                var objTravelMethodTime = {
+                    "portal" : 0,
+                    "helicopter" : 1,
+                    "boat" : 2,
+                    "car" : 3,
+                    "bicycle" : 4,
+                    "walk" : 5
+                }
+
+                var traveltimeLimit = objTravelMethodTime[_Victim.travel.last_method] * (1000 * 60);
+                var traveltimeDifference = nTravel - _Victim.travel.last_updated;
+
+                if( traveltimeDifference > traveltimeLimit )
+                {
+                    _Victim.travel.last_updated = nTravel;
+                    _Victim.travel.isTraveling = false;
+                }
+        
+                /******************************************************** */
+
+
+
+
+
+
                 console.log("[ARREST] Found victim ID.");
 
                 var n = moment().valueOf();

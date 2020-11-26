@@ -50,6 +50,34 @@ module.exports = {
 
 
 
+
+                    /** travel time, probably needs its own class, fix later */
+                    var objTravelMethodTime = {
+                        "portal" : 0,
+                        "helicopter" : 1,
+                        "boat" : 2,
+                        "car" : 3,
+                        "bicycle" : 4,
+                        "walk" : 5
+                    }
+
+                    var timeLimit = objTravelMethodTime[_Victim.travel.last_method] * (1000 * 60);
+                    var timeDifference = n - _Victim.travel.last_updated;
+
+                    if( timeDifference > timeLimit )
+                    {
+                        _Victim.travel.last_updated = n;
+                        _Victim.travel.isTraveling = false;
+                    }
+
+                    /********************************************************* */
+
+
+
+
+
+                    
+
                     console.log("[ROB] Found victim ID.");
 
                     if( _Victim.travel.isTraveling == true ) {
