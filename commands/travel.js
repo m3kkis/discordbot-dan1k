@@ -79,6 +79,11 @@ module.exports = {
 
                 strTransportMethod = args[1].toLowerCase();
 
+                if(strTransportMethod == "heli")
+                {
+                    strTransportMethod = "helicopter";
+                }
+
                 if(strTransportMethod == "portal"){
 
                     if(_User.travel.transportation.hasPortalGun || _User.isPolice == true){
