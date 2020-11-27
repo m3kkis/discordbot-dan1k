@@ -21,7 +21,7 @@
         "name": "access_card_cryptofarm",
         "display": "CryptoFarm Access Card",
         "description": "Access to CryptoFarm.",
-        "value": 500000
+        "value": 250000
     },
     {
         "name": "transport_bicycle",
