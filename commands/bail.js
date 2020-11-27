@@ -71,7 +71,7 @@ module.exports = {
         else
         {    
             var n = moment().valueOf();
-            var timeLimit = 1000 * 60 * 60;
+            var timeLimit = 6 * ((1000 * 60) * 60); //time in prison 6 hours.
             var timeDifference = n - _User.arrest.last_updated;
 
             if( timeDifference > timeLimit )

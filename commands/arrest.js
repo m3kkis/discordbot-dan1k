@@ -43,8 +43,6 @@ module.exports = {
         User.find({
             'arrest.isArrested': true
         }).then( _allUsers => {
-
-            console.log(_allUsers);
             
             var countArrested = 0;
             _allUsers.forEach((usr) => {
@@ -162,8 +160,11 @@ module.exports = {
                                     isMayor: true
                                 })
                                 .then(mayor => {
-                                    mayor.economy.cash += 1500;
-                                    mayor.save();
+                                    if(mayor)
+                                    {
+                                        mayor.economy.cash += 1500;
+                                        mayor.save();
+                                    }
                                 });
                             });
                             

@@ -1,5 +1,6 @@
 const dotenv = require('dotenv').config();
 const Discord = require("discord.js");
+const moment = require("moment");
 const fs = require('fs');
 
 const mongoose = require('mongoose');
@@ -238,8 +239,9 @@ client.on('message', message => {
 
             if(_User.travel.isTraveling || _User.arrest.isArrested )
             {
-                var d = new Date();
-                var n = d.getTime();
+                //var d = new Date();
+                //var n = d.getTime();
+                var n = moment().valueOf();
 
                 if( 
                     commandName == "help" || 
@@ -261,7 +263,7 @@ client.on('message', message => {
                 }
                 else if( !_User.travel.isTraveling && _User.arrest.isArrested)
                 {
-                    var timeLimit = 60 * (1000 * 60); // prison time limit
+                    var timeLimit = 6 * ((1000 * 60) * 60); //time in prison 6 hours.
                     var timeDifference = n - _User.arrest.last_updated;
                     var timeLeft = timeLimit - timeDifference;
 
@@ -271,7 +273,7 @@ client.on('message', message => {
                     }
                     else
                     {
-                        timeLeft = convertToMinutes(timeLeft);
+                        timeLeft = moment.utc(timeLimit - timeDifference).format('HH:mm:ss');
                     }
 
                     var embedded = new Discord.MessageEmbed();
