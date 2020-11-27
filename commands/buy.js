@@ -82,10 +82,10 @@ module.exports = {
 
                     if(_StoreHandler.jsonStoreItems[id].name == "transport_bicycle")
                     {
-                        if(_User.experience.level < 5)
+                        if(_User.experience.level < 10)
                         {
                             embedded.setColor('#ff4f4f')
-                                    .setDescription('You have to be **level 5** to purchase a bicycle.');
+                                    .setDescription('You have to be **level 10** to purchase a bicycle.');
         
                             return message.channel.send(embedded);
                         }
