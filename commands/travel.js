@@ -28,9 +28,27 @@ module.exports = {
 
         var strDestination = args[0].toLowerCase();
         var strTransportMethod;
+        var intTravelDelay = 10; //seconds
 
         var d = new Date();
         var n = d.getTime();
+
+        var timeLimit = intTravelDelay * 1000;
+        var timeDifference = n - _User.travel.last_updated;
+
+        if( timeDifference < timeLimit ) {
+            embedded.setColor('#ff4f4f')
+                    .setDescription(`You cannot travel again this quickly, wait ${convertToMinutes(timeLimit - timeDifference)}`);
+
+            return message.channel.send(embedded);
+        }
+
+        function convertToMinutes(timestamp) {
+            var min = Math.floor(timestamp / 60000);
+            var sec = ((timestamp % 60000) / 1000).toFixed(0);
+            return min + ":" + (sec < 10 ? '0' : '') + sec;
+        }
+
 
         if(strDestination == "city" || strDestination == "casino" || strDestination == "cas" || strDestination == "prison" || strDestination == "farm" || strDestination == "townhall" || strDestination == "hall" || strDestination == "cryptofarm")
         {
