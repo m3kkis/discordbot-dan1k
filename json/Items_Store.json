@@ -45,12 +45,12 @@
         "name": "transport_helicopter",
         "display": "Helicopter",
         "description": "(LVL40) Forget traffic! Travel in 1min but costs $500 for fuel each travel.",
-        "value": 640000
+        "value": 500000
     },
     {
         "name": "transport_portalgun",
         "display": "Portal Gun",
-        "description": "(LVL50) The cake is a lie! Travel instantly but costs $50,000 for energy each travel.",
-        "value": 1000000
+        "description": "(LVL50) The cake is a lie! Travel instantly but costs $25,000 for energy each travel.",
+        "value": 750000
     }
 ]

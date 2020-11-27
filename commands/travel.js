@@ -23,7 +23,7 @@ module.exports = {
             "car" : 10,
             "boat" : 200,
             "helicopter" : 500,
-            "portal": 50000
+            "portal": 25000
         };
 
         var strDestination = args[0].toLowerCase();
