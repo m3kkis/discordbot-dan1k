@@ -124,10 +124,10 @@ module.exports = {
                     }
                     else if(_StoreHandler.jsonStoreItems[id].name == "transport_boat")
                     {
-                        if(_User.experience.level < 35)
+                        if(_User.experience.level < 30)
                         {
                             embedded.setColor('#ff4f4f')
-                                    .setDescription('You have to be **level 35** to purchase a boat.');
+                                    .setDescription('You have to be **level 30** to purchase a boat.');
         
                             return message.channel.send(embedded);
                         }
@@ -145,10 +145,10 @@ module.exports = {
                     }
                     else if(_StoreHandler.jsonStoreItems[id].name == "transport_helicopter")
                     {
-                        if(_User.experience.level < 50)
+                        if(_User.experience.level < 40)
                         {
                             embedded.setColor('#ff4f4f')
-                                    .setDescription('You have to be **level 50** to purchase a helicopter.');
+                                    .setDescription('You have to be **level 40** to purchase a helicopter.');
         
                             return message.channel.send(embedded);
                         }
@@ -166,10 +166,10 @@ module.exports = {
                     }
                     else if(_StoreHandler.jsonStoreItems[id].name == "transport_portalgun")
                     {
-                        if(_User.experience.level < 65)
+                        if(_User.experience.level < 50)
                         {
                             embedded.setColor('#ff4f4f')
-                                    .setDescription('You have to be **level 65** to purchase a portal gun.');
+                                    .setDescription('You have to be **level 50** to purchase a portal gun.');
         
                             return message.channel.send(embedded);
                         }
