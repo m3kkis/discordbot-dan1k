@@ -98,6 +98,12 @@ module.exports = {
             
                         return message.channel.send(embedded);
                     }
+                    else if( _Victim.economy.cash < 1000 ) {
+                        embedded.setColor('#ff4f4f')
+                            .setDescription('You cannot rob the user because he/she has less than \`$1000\` __in cash__.');
+            
+                        return message.channel.send(embedded);
+                    }
                     else
                     {
                         var reply = _JobHandler.doRob(message, _User, _Victim);
