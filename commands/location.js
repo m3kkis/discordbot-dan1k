@@ -34,9 +34,49 @@ module.exports = {
         {
 
 
+
+
+
+            /** travel time, probably needs its own class, fix later */
+        
+            var dTravel = new Date();
+            var nTravel = dTravel.getTime();
+
+            var objTravelMethodTime = {
+                "portal" : 0,
+                "helicopter" : 1,
+                "boat" : 2,
+                "car" : 3,
+                "bicycle" : 4,
+                "walk" : 5
+            }
+
+            var traveltimeLimit = objTravelMethodTime[_User.travel.last_method] * (1000 * 60);
+            var traveltimeDifference = nTravel - _User.travel.last_updated;
+
+            if( traveltimeDifference > traveltimeLimit )
+            {
+                _User.travel.last_updated = nTravel;
+                _User.travel.isTraveling = false;
+                _User.save();
+            }
+
+
+            function convertToMinutes(timestamp) {
+                var min = Math.floor(timestamp / 60000);
+                var sec = ((timestamp % 60000) / 1000).toFixed(0);
+                return min + ":" + (sec < 10 ? '0' : '') + sec;
+            }
+    
+            /******************************************************** */
+
+
+
+
+
             if( _User.travel.isTraveling == true ) {
                 embedded.setColor('#ff4f4f')
-                        .setDescription('You cannot check current location during travel.');
+                        .setDescription(`You are currently traveling to the **${_User.travel.location.toUpperCase()}** by ***${_User.travel.last_method.toUpperCase()}***, cannot use __that command__ until you arrive in **${convertToMinutes(traveltimeLimit - traveltimeDifference)}**`);
                 
                 return message.channel.send(embedded);
             }

@@ -302,7 +302,7 @@ client.on('message', message => {
                         var embedded = new Discord.MessageEmbed();
                         embedded.setColor('#ff4f4f')
                             .setAuthor(message.member.user.tag, message.member.user.avatarURL())
-                            .setDescription(`You are currently traveling to the **${_User.travel.location.toUpperCase()}** by ***${_User.travel.last_method.toUpperCase()}***, cannot use __that command__ until you arrive in ` + convertToMinutes(timeLimit - timeDifference));
+                            .setDescription(`You are currently traveling to the **${_User.travel.location.toUpperCase()}** by ***${_User.travel.last_method.toUpperCase()}***, cannot use __that command__ until you arrive in **${convertToMinutes(timeLimit - timeDifference)}**`);
                         return message.channel.send(embedded);
                     }
                 }
