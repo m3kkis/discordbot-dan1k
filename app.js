@@ -253,6 +253,7 @@ client.on('message', message => {
                     commandName == "money" || commandName == "bal" ||
                     commandName == "rank" || commandName == "xp" ||
                     commandName == "location" || commandName == "loc" ||
+                    commandName == "cooldown" || commandName == "cd" ||
                     commandName == "store" ||
                     commandName == "use" ||
                     commandName == "crypto" ||
@@ -329,9 +330,6 @@ client.on('message', message => {
                                 command.execute(client, message, args, _User, _Bot, _DeckHandler, _XpHandler);
                             }
                             break;
-                        case "buy":
-                            command.execute(client, message, args, _User, _StoreHandler);
-                            break;
                         case "election":
                         case "ele":
                             if(_Bot.election.inProgress == false)
@@ -339,48 +337,35 @@ client.on('message', message => {
                                 command.execute(client, message, args, _User, _Bot);
                             }
                             break;
-                        case "crime":
-                            command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
-                            break;
-                        case "level":
-                        case "lvl":
-                            command.execute(client, message, args, _User, _XpHandler);
-                            break;
-                        case "location":
-                        case "loc":
-                            command.execute(client, message, args, _User, _XpHandler);
-                            break;
                         case "lootbox":
                         case "loot":
                             command.execute(client, message, args, _User, _LootboxHandler, _XpHandler);
                             break;
+                        case "level":
+                        case "lvl":
                         case "rank":
                         case "xp":
                             command.execute(client, message, args, _User, _XpHandler);
-                            break;
-                        case "rob":
-                            command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
                             break;
                         case "slot-machine":
                         case "sm":
                             command.execute(client, message, args, _User, _LootboxHandler, _XpHandler);
                             break;
-                        case "slut":
-                            command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
-                            break;
                         case "store":
+                        case "buy":
                             command.execute(client, message, args, _User, _StoreHandler);
                             break;
                         case "tax":
                             command.execute(client, message, args, _User, _Bot);
                             break;
                         case "work":
-                            command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
-                            break;
+                        case "slut":
+                        case "crime":
+                        case "rob":
                         case "harvest":
-                            command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
-                            break;
                         case "mine":
+                        case "cooldown":
+                        case "cd":
                             command.execute(client, message, args, _User, _JobHandler, _LootboxHandler);
                             break;
                         case "use":

@@ -96,6 +96,7 @@ You can now give items to  other players by doing `!give <player> item <#item_fr
 * `!bail <optional:amount>` Bail out prison for free in time or pay the bail amount to get released from prison right away.
 * `!blackjack <amount>` play blackjack! $100 minimum.
 * `!buy <list_item_number>` buy an item from the store.
+* `!cooldown` View info about all of your cooldowns.
 * `!clear <amount>` clear the amount specified of messages from chat.
 * `!crime` work in crime, get highest pay but more chances to be caught.
 * `!crypto` check current prices for LTC, ETH and BTC using real data.

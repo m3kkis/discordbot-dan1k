@@ -32,51 +32,65 @@ module.exports = {
         }
         else
         {
-            console.log("[LOCATION] Displaying curent location.");
 
-            var jsonLocEmoji = {
-                "city":":cityscape:",
-                "casino":":slot_machine:",
-                "townhall":":classical_building:",
-                "prison":":lock:",
-                "cryptofarm":":desktop:",
-            };
 
-            embedded.setDescription(`You are currently in the ${jsonLocEmoji[_User.travel.location]} **${_User.travel.location.toUpperCase()}**`)
+            if( _User.travel.isTraveling == true ) {
+                embedded.setColor('#ff4f4f')
+                        .setDescription('You cannot check current location during travel.');
+                
+                return message.channel.send(embedded);
+            }
+            else
+            {
 
-            User.find({}).then( _AllUsers => {
+                console.log("[LOCATION] Displaying curent location.");
 
-                var arrPlayers = [];
-                var fieldsToAdd = "";
+                var jsonLocEmoji = {
+                    "city":":cityscape:",
+                    "casino":":slot_machine:",
+                    "townhall":":classical_building:",
+                    "prison":":lock:",
+                    "cryptofarm":":desktop:",
+                };
     
-                _AllUsers.map(function (otherUser) {
-                    if( otherUser.tag != _User.tag && otherUser.travel.location == _User.travel.location)
+                embedded.setDescription(`You are currently in the ${jsonLocEmoji[_User.travel.location]} **${_User.travel.location.toUpperCase()}**`)
+    
+                User.find({}).then( _AllUsers => {
+    
+                    var arrPlayers = [];
+                    var fieldsToAdd = "";
+        
+                    _AllUsers.map(function (otherUser) {
+                        if( otherUser.tag != _User.tag && otherUser.travel.location == _User.travel.location)
+                        {
+                            arrPlayers.push(otherUser.tag);
+                        }          
+                    });
+    
+                    if(arrPlayers.length > 0)
                     {
-                        arrPlayers.push(otherUser.tag);
-                    }          
+                        arrPlayers.forEach(player =>{
+                            fieldsToAdd += "- " + player + "\n";
+                        });
+    
+                        embedded.addFields(
+                            { name: 'Other players near you:', value: fieldsToAdd },
+                        );
+    
+                    }
+                    else
+                    {
+                        embedded.addFields(
+                            { name: 'Other players near you:', value: '*-NONE-*' },
+                        );
+                    }
+    
+                    return message.channel.send(embedded);
+    
                 });
 
-                if(arrPlayers.length > 0)
-                {
-                    arrPlayers.forEach(player =>{
-                        fieldsToAdd += "- " + player + "\n";
-                    });
-
-                    embedded.addFields(
-                        { name: 'Other players near you:', value: fieldsToAdd },
-                    );
-
-                }
-                else
-                {
-                    embedded.addFields(
-                        { name: 'Other players near you:', value: '*-NONE-*' },
-                    );
-                }
-
-                return message.channel.send(embedded);
-
-            });
+            }
+            
         }
     }
 }
