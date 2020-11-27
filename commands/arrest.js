@@ -109,7 +109,7 @@ module.exports = {
         
                         var n = moment().valueOf();
         
-                        var timeLimit = 60 * (1000 * 60); //prison time limit
+                        var timeLimit = 6 * (60 * (1000 * 60)); //arrest person delay time. 6hrs
                         var timeDifference = n - _Victim.arrest.last_updated;
         
 
@@ -145,7 +145,7 @@ module.exports = {
                         }
                         else if( timeDifference < timeLimit ) {
                             embedded.setColor('#ff4f4f')
-                                    .setDescription(`You cannot arrest this user for the next ${moment.utc(timeLimit - timeDifference).format('mm:ss')}`);
+                                    .setDescription(`You cannot arrest this user for the next ${moment.utc(timeLimit - timeDifference).format('hh:mm:ss')}`);
                 
                             return message.channel.send(embedded);
                         }
