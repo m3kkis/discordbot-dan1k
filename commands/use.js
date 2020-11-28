@@ -219,6 +219,13 @@ module.exports = {
 
                     return message.channel.send(embedded);
                 }
+                else if(_User.ingame == true)
+                {
+                    embedded.setColor('#ff4f4f')
+                            .setDescription('You are currently in a game of blackjack finish it first.');
+
+                    return message.channel.send(embedded);
+                }
                 else if(_User.arrest.isArrested)
                 {
                     embedded.setColor('#ff4f4f')
