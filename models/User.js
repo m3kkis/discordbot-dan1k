@@ -21,8 +21,14 @@ const userSchema = new Schema(
     },
     inventorySize: { type: Number, default: 5 },
     inventory: { type: Array, default: [] },
+    upgrades:{
+        farm:{
+            level_quantity: { type: Number, default: 1 },
+            level_quality: { type: Number, default: 0 },
+        }
+    },
     travel:{
-        location: { type: String, default: 'city' },
+        location: { type: String, default: 'city'},
         isTraveling: { type: Boolean, default: false },
         last_updated: { type: Number, default: 0 },
         last_method: { type: String },

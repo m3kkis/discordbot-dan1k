@@ -94,25 +94,43 @@ class JobHandler extends XpHandler{
             .setAuthor(message.member.user.tag, message.member.user.avatarURL())
 
         /* HARVEST */
+
         var randomNbr = Math.floor(Math.random() * 2);
         var arrHarvestItems = [
             {
                 "name" : "harvest_drugs",
-                "display" : "Bag of drugs ",
+                "display" : "Bag of marijuana",
                 "description" : "Sell this to make extra cash.",
-                "value" : 10000,
+                "value" : 10000 + (_User.upgrades.farm.level_quality * 2000),
                 "source" :"farm"
             },
             {
                 "name" : "harvest_crops",
-                "display" : "Crate of crops ",
+                "display" : "Crate of crops",
                 "description" : "Sell this to make extra cash.",
-                "value" : 5000,
+                "value" : 5000 + (_User.upgrades.farm.level_quality * 2000),
                 "source" :"farm"
             }
         ]
-        var randomItem = arrHarvestItems[randomNbr];
-        _User.inventory.push(randomItem);
+
+        var randomItem;
+
+        //mayor can only harvest crops
+        if( _User.isMayor == true) {
+            randomItem = arrHarvestItems[1]; 
+        }
+        else
+        {
+            randomItem = arrHarvestItems[randomNbr];
+        }
+
+        for(var i = 0; i < _User.upgrades.farm.level_quantity; i++)
+        {
+            if(_User.inventory.length < _User.inventorySize)
+            {
+                _User.inventory.push(randomItem);
+            }
+        }
 
         var reply =  "You have successfully harvested plants.";
 

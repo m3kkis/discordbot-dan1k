@@ -107,7 +107,7 @@ module.exports = {
         
                         var n = moment().valueOf();
         
-                        var timeLimit = 6 * (60 * (1000 * 60)); //arrest person delay time. 6hrs
+                        var timeLimit = 2 * (60 * (1000 * 60)); //arrest person delay time. 2hrs
                         var timeDifference = n - _Victim.arrest.last_updated;
         
 

@@ -125,6 +125,7 @@ You can now give items to  other players by doing `!give <player> item <#item_fr
 * `!store` view whats in-store.
 * `!tax <percentage>` collect tax from your fellow peers. Only the mayor can do so and only once a week.
 * `!travel <location> <optional:transport_type>` travel to another location either by walking or other method of transport bought from store.
+* `!upgrade <optional:id>` Upgrade a location (ex. Farm), if oyu type just upgrade it will show you the available upgrades on that location. If you add a number after, it will purchase that upgrade id.
 * `!use <item_inventory_number_list>` Use an item from your inventory.
 * `!withdraw <amount|all>` withdraw cash from the bank.
 * `!work` lowest payout but the safest one, will never be caught.
