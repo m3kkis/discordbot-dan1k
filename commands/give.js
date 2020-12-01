@@ -83,6 +83,12 @@ module.exports = {
             
                         return message.channel.send(embedded);
                     }
+                    else if( _Victim.travel.isTraveling == true ) {
+                        embedded.setColor('#ff4f4f')
+                            .setDescription('The player you are trying to give is currently in travel.');
+            
+                        return message.channel.send(embedded);
+                    }
                     else
                     {
                         _User.economy.cash -= amount;
@@ -166,6 +172,12 @@ module.exports = {
                     if( _User.travel.location != _Victim.travel.location ) {
                         embedded.setColor('#ff4f4f')
                             .setDescription('You must be in the same location to give items to another player.');
+            
+                        return message.channel.send(embedded);
+                    }
+                    else if( _Victim.travel.isTraveling == true ) {
+                        embedded.setColor('#ff4f4f')
+                            .setDescription('The player you are trying to give is currently in travel.');
             
                         return message.channel.send(embedded);
                     }
