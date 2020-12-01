@@ -16,6 +16,7 @@ const userSchema = new Schema(
     isMayor: { type: Boolean, default: false },
     isPolice: { type: Boolean, default: false },
     arrest:{ 
+        priceBail: { type: Number, default: 0 },
         isArrested:{ type: Boolean, default: false },
         last_updated: { type: Number, default: 0 },
     },

@@ -17,17 +17,6 @@ module.exports = {
             return message.channel.send(embedded);
         }
 
-        var usrNetworth = _User.economy.cash + _User.economy.bank;
-        var priceBail = 0;
-        if(usrNetworth > 100)
-        {
-            priceBail = Math.floor( usrNetworth * 0.15);
-        }
-        else
-        {
-            priceBail = 100;
-        }
-
         if(args[0] != undefined)
         {
             var amount = Math.abs(parseInt(args[0]));
@@ -43,7 +32,7 @@ module.exports = {
             if(amount < priceBail)
             {
                 embedded.setColor('#ff4f4f')
-                    .setDescription(`You have to pay a minimum of \`$${addCommas(priceBail)}\``);
+                    .setDescription(`You have to pay a minimum of \`$${addCommas(_User.arrest.priceBail)}\``);
     
                 return message.channel.send(embedded);
             }
@@ -59,6 +48,7 @@ module.exports = {
                 _User.economy.cash -= amount;
                 _User.arrest.isArrested = false;
                 _User.arrest.last_updated = n;
+                _User.arrest.priceBail = 0;
                 _User.save();
 
                 embedded.setColor('#78de87')
@@ -78,6 +68,7 @@ module.exports = {
             {
                 _User.arrest.isArrested = false;
                 _User.arrest.last_updated = n;
+                _User.arrest.priceBail = 0;
                 _User.save();
 
                 embedded.setColor('#78de87')

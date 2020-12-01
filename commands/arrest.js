@@ -149,9 +149,23 @@ module.exports = {
                         }
                         else
                         {
+
+                            var usrNetworth = _Victim.economy.cash + _Victim.economy.bank;
+                            var priceBail = 0;
+                            if(usrNetworth > 100)
+                            {
+                                priceBail = Math.floor( usrNetworth * 0.15);
+                            }
+                            else
+                            {
+                                priceBail = 100;
+                            }
+
                             _Victim.travel.location = "prison";
                             _Victim.arrest.isArrested = true;
                             _Victim.arrest.last_updated = n;
+                            _Victim.arrest.priceBail = priceBail;
+
 
                             _Victim.save();
         

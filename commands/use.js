@@ -200,6 +200,7 @@ module.exports = {
                     var n = moment().valueOf();
                     _User.arrest.isArrested = false;
                     _User.arrest.last_updated = n;
+                    _User.arrest.priceBail = 0;
                 }
             }
             else if(_User.inventory[id].name == "card_teleport")

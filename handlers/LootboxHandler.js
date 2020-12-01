@@ -113,9 +113,21 @@ class LootboxHandler {
                 }
                 else
                 {
+                    var usrNetworth = _User.economy.cash + _User.economy.bank;
+                    var priceBail = 0;
+                    if(usrNetworth > 100)
+                    {
+                        priceBail = Math.floor( usrNetworth * 0.15);
+                    }
+                    else
+                    {
+                        priceBail = 100;
+                    }
+
                     var n = moment().valueOf();
                     _User.arrest.isArrested = true;
                     _User.arrest.last_updated = n;
+                    _User.arrest.priceBail = priceBail;
                     _User.travel.location = "prison";
                     reply = `You got a **${randomItem.display}** - ${randomItem.description}\n*It will by applied to you instantly. Sorry!*`;
                 }
