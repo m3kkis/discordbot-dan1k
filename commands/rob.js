@@ -11,6 +11,15 @@ module.exports = {
         var embedded = new Discord.MessageEmbed();
         embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
 
+        if( _User.isPolice == true) {
+            var embedded = new Discord.MessageEmbed();
+            embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
+                .setColor('#ff4f4f')
+                .setDescription('A police cannot rob.');
+
+            return message.channel.send(embedded);
+        }
+
         var victim = args[0];
 
         if( victim.substring(0,2) == '<@')
