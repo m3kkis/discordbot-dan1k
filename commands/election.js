@@ -274,7 +274,7 @@ module.exports = {
         {
             embedded.setColor('#ff4f4f')
                     .setAuthor(message.member.user.tag, message.member.user.avatarURL())
-                    .setDescription("You cannot start an election. The mayor still has until " + moment(_Bot.election.last_updated + timeLimit).format('MMMM Do YYYY, hh:mm:ss'));
+                    .setDescription("You cannot start an election. The mayor still has until " + moment(_Bot.election.last_updated + timeLimit).format('MMMM Do YYYY, HH:mm:ss'));
 
             return message.channel.send(embedded);
         }
