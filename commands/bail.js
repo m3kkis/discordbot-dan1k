@@ -29,7 +29,7 @@ module.exports = {
                 return message.channel.send(embedded);
             }
 
-            if(amount < priceBail)
+            if(amount < _User.arrest.priceBail)
             {
                 embedded.setColor('#ff4f4f')
                     .setDescription(`You have to pay a minimum of \`$${addCommas(_User.arrest.priceBail)}\``);
