@@ -11,13 +11,39 @@ module.exports = {
             .setTitle("List of commands")
 
         var reply = "For more info visit https://github.com/m3kkis/discordbot-dan1k \n\n";
-        client.commands.map(function (cmd) {
-            reply += "\`" + process.env.BOT_PREFIX + cmd.name + "\` : " + cmd.description + "\n";
+
+
+        var counter = 0;
+        var totalCount = 0;
+
+        client.commands.map((cmd) => {
+            counter++;
+            totalCount++;
+            if(counter < 15)
+            {
+                reply += "\`" + process.env.BOT_PREFIX + cmd.name + "\` : " + cmd.description + "\n";
+
+                if(totalCount == client.commands.size)
+                {
+                    embedded.setDescription(reply);
+                    embedded.setFooter("// END OF COMMAND LIST");
+                    return message.channel.send(embedded);
+                }
+            }
+            else
+            {
+                embedded.setDescription(reply);
+                message.channel.send(embedded);
+
+                embedded.setAuthor("","")
+                        .setTitle("");
+
+                reply = "";
+                counter = 0;
+            }
+            
+
         });
-
-        embedded.setDescription(reply);
-
-        return message.channel.send(embedded);
 
     }
 }
