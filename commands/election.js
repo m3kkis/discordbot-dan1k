@@ -57,6 +57,7 @@ module.exports = {
                         _Bot.election.mayor = arrAllUser[0];
                         _Bot.election.last_updated = n;
                         _Bot.election.inProgress = false;
+                        _Bot.tax_last_updated = 0;
 
                         var pos = _ColUsers.map(function(usr) {return usr.tag; }).indexOf(arrAllUser[0]);
 
@@ -174,6 +175,7 @@ module.exports = {
                                 _Bot.election.mayor = randomCandidateOne;
                                 _Bot.election.last_updated = n;
                                 _Bot.election.inProgress = false;
+                                _Bot.tax_last_updated = 0;
 
                                 
                                 _Bot.save().then(()=>{
@@ -212,6 +214,7 @@ module.exports = {
                                 _Bot.election.mayor = randomCandidateTwo;
                                 _Bot.election.last_updated = n;
                                 _Bot.election.inProgress = false;
+                                _Bot.tax_last_updated = 0;
 
 
                                 _Bot.save().then(()=>{
