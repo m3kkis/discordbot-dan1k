@@ -45,6 +45,8 @@ module.exports = {
             }
             else
             {
+                var n = moment().valueOf();
+
                 _User.economy.cash -= amount;
                 _User.arrest.isArrested = false;
                 _User.arrest.last_updated = n;
