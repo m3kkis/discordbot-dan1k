@@ -79,7 +79,7 @@ module.exports = {
             else
             {
                 embedded.setColor('#ff4f4f')
-                        .setDescription(`You have ${moment.utc(timeLimit - timeDifference).format('HH:mm:ss')} left until you can bail for free\nOr you can pay bail at a price of \`$${addCommas(priceBail)}\` by doing \`${process.env.BOT_PREFIX}bail ${priceBail}\``);
+                        .setDescription(`You have ${moment.utc(timeLimit - timeDifference).format('HH:mm:ss')} left until you can bail for free\nOr you can pay bail at a price of \`$${addCommas(_User.arrest.priceBail)}\` by doing \`${process.env.BOT_PREFIX}bail ${priceBail}\``);
 
                 return message.channel.send(embedded);
             }
