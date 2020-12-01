@@ -19,8 +19,9 @@ module.exports = {
         }
 
         if( _User.travel.location != "townhall") {
-        
-            embedded.setColor('#ff4f4f')
+            var embedded = new Discord.MessageEmbed();
+            embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
+                    .setColor('#ff4f4f')
                     .setDescription('You must be in the **TOWNHALL** to fire a Police Officer.');
 
             return message.channel.send(embedded);
