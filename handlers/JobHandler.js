@@ -99,7 +99,7 @@ class JobHandler extends XpHandler{
         var arrHarvestItems = [
             {
                 "name" : "harvest_drugs",
-                "display" : "Bag of marijuana",
+                "display" : "Bag of Marijuana",
                 "description" : "Sell this to make extra cash.",
                 "value" : 10000 + (_User.upgrades.farm.level_quality * 2000),
                 "source" :"farm"

@@ -152,25 +152,11 @@ module.exports = {
                             _Victim.travel.location = "prison";
                             _Victim.arrest.isArrested = true;
                             _Victim.arrest.last_updated = n;
-                            //_Victim.economy.cash -= 1500;
-        
 
-                            _Victim.save().then(()=>{
-                                User.findOne({
-                                    isMayor: true
-                                })
-                                .then(mayor => {
-                                    if(mayor)
-                                    {
-                                        mayor.economy.cash += 1500;
-                                        mayor.save();
-                                    }
-                                });
-                            });
-                            
+                            _Victim.save();
         
                             embedded.setColor('#3849ff')
-                                .setDescription(`You have arrested **${_Victim.tag}**\n\nMayor Bonus +\`$1,500\``);
+                                .setDescription(`You have arrested **${_Victim.tag}**`);
                             return message.channel.send(embedded);
                         }
          
