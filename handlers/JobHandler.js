@@ -101,14 +101,14 @@ class JobHandler extends XpHandler{
                 "name" : "harvest_drugs",
                 "display" : "Bag of Marijuana",
                 "description" : "Sell this to make extra cash.",
-                "value" : 10000 + (_User.upgrades.farm.level_quality * 2000),
+                "value" : 10000 + (_User.upgrades.farm.level_quality * 1000),
                 "source" :"farm"
             },
             {
                 "name" : "harvest_crops",
                 "display" : "Crate of crops",
                 "description" : "Sell this to make extra cash.",
-                "value" : 5000 + (_User.upgrades.farm.level_quality * 2000),
+                "value" : 5000 + (_User.upgrades.farm.level_quality * 1000),
                 "source" :"farm"
             }
         ]

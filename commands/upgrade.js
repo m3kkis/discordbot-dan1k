@@ -16,7 +16,7 @@ module.exports = {
                 console.log("[UPGRADE] FARM.")
 
                 var priceQuality = 20000;
-                var priceQuantity = 50000;
+                var priceQuantity = 75000;
 
                 var priceQuantityUpdated = priceQuantity * _User.upgrades.farm.level_quantity;
                 var priceQualityUpdated = priceQuality * (_User.upgrades.farm.level_quality + 1);
@@ -26,7 +26,7 @@ module.exports = {
                     {
                         console.log("[UPGRADE] FARM UPGRADE 1.QUANTITY")
 
-                        if(_User.upgrades.farm.level_quantity < 5)
+                        if(_User.upgrades.farm.level_quantity < 3)
                         {
 
                             if(_User.economy.cash < priceQuantityUpdated)
@@ -102,22 +102,22 @@ module.exports = {
 
                     var strUpgrades = "";
 
-                    if(_User.upgrades.farm.level_quantity == 5)
+                    if(_User.upgrades.farm.level_quantity == 3)
                     {
-                        strUpgrades += `**1.** Farm Size (${_User.upgrades.farm.level_quantity}/5) - \`MAXED OUT\` - *Increase harvest quantity by 1*\n`;
+                        strUpgrades += `**1.** Farm Size (${_User.upgrades.farm.level_quantity}/3) - \`MAXED OUT\` - *Increase harvest quantity by 1*\n`;
                     }
                     else
                     {
-                        strUpgrades += `**1.** Farm Size (${_User.upgrades.farm.level_quantity}/5) - \`$${addCommas(priceQuantityUpdated)}\` - *Increase harvest quantity by 1*\n`;
+                        strUpgrades += `**1.** Farm Size (${_User.upgrades.farm.level_quantity}/3) - \`$${addCommas(priceQuantityUpdated)}\` - *Increase harvest quantity by 1*\n`;
                     }
 
                     if(_User.upgrades.farm.level_quality == 5)
                     {
-                        strUpgrades += `**2.** Seed Quality (${_User.upgrades.farm.level_quality}/5) - \`MAXED OUT\` - *Increase harvest item price by $1000*`;
+                        strUpgrades += `**2.** Seed Quality (${_User.upgrades.farm.level_quality}/5) - \`MAXED OUT\` - *Increase harvest item price by $500*`;
                     }
                     else
                     {
-                        strUpgrades += `**2.** Seed Quality (${_User.upgrades.farm.level_quality}/5) - \`$${addCommas(priceQualityUpdated)}\` - *Increase harvest item price by $1000*`;
+                        strUpgrades += `**2.** Seed Quality (${_User.upgrades.farm.level_quality}/5) - \`$${addCommas(priceQualityUpdated)}\` - *Increase harvest item price by $500*`;
                     }
 
 
