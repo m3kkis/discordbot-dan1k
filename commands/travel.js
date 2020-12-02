@@ -17,6 +17,8 @@ module.exports = {
             "townhall":":classical_building:",
             "prison":":lock:",
             "cryptofarm":":desktop:",
+            "farm":":rice_scene:",
+            "lab":":dna:",
         };
 
         var fuelPrice = {
@@ -50,7 +52,7 @@ module.exports = {
         }
 
 
-        if(strDestination == "city" || strDestination == "casino" || strDestination == "cas" || strDestination == "prison" || strDestination == "farm" || strDestination == "townhall" || strDestination == "hall" || strDestination == "cryptofarm")
+        if(strDestination == "city" || strDestination == "casino" || strDestination == "cas" || strDestination == "prison" || strDestination == "farm" || strDestination == "townhall" || strDestination == "hall" || strDestination == "cryptofarm" || strDestination == "lab")
         {
 
 

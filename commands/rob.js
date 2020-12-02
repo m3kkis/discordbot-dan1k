@@ -20,6 +20,15 @@ module.exports = {
             return message.channel.send(embedded);
         }
 
+        if( _User.isMayor == true) {
+            var embedded = new Discord.MessageEmbed();
+            embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
+                .setColor('#ff4f4f')
+                .setDescription('A mayor cannot rob.');
+
+            return message.channel.send(embedded);
+        }
+
         var victim = args[0];
 
         if( victim.substring(0,2) == '<@')

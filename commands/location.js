@@ -27,6 +27,7 @@ module.exports = {
                         { name: ':rice_scene: Farm', value: '*Farm your resources, legal or illegal. Just don\'t get caught.*'},
                         { name: ':classical_building: Townhall', value: '*Only the mayor can be at the townhall to feel safe and secure to do his stuff.*'},
                         { name: `:desktop: Cryptofarm`, value: '*Mine crypto coins and sell using real data. Must have __Access Card__ to enter.*'},
+                        { name: `:dna: Lab`, value: '*Visit here to process your crops or drugs... into something better!*'},
                     )
             return message.channel.send(embedded);
         }
@@ -91,6 +92,8 @@ module.exports = {
                     "townhall":":classical_building:",
                     "prison":":lock:",
                     "cryptofarm":":desktop:",
+                    "farm":":rice_scene:",
+                    "lab":":dna:",
                 };
     
                 embedded.setDescription(`You are currently in the ${jsonLocEmoji[_User.travel.location]} **${_User.travel.location.toUpperCase()}**`)
