@@ -15,7 +15,7 @@ module.exports = {
             case "farm":
                 console.log("[UPGRADE] FARM.")
 
-                var priceQuality = 20000;
+                var priceQuality = 25000;
                 var priceQuantity = 75000;
 
                 var priceQuantityUpdated = priceQuantity * _User.upgrades.farm.level_quantity;

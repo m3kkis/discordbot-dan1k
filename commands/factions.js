@@ -15,9 +15,9 @@ module.exports = {
             .setDescription(`You can join of the following Factions to represent and get bonuses by doing the command \`${process.env.BOT_PREFIX}join <name>\``)
             .addFields(
                 { name: '¤ FREELANCERS ¤', value: '•Bonus $ for work\n•Reduced bail $\n•Bonus $ crops\n•', inline: true  },
-                { name: '× OUTLAWS ×', value: '•Better % in slut\n•Better % in crime\n•Better % in robbing items\n•', inline: true },
+                { name: '× OUTLAWS ×', value: '•Better % in slut\n•Better % in crime\n•Better % in robbing items\n•Can`t do work', inline: true },
             )
-            .setFooter("WORK IN PROGRESS, NOT APPLIED YET. OPEN FOR SUGGESTION FOR BONUSES")
+            .setFooter("WORK IN PROGRESS, NOT APPLIED YET.\nOPEN FOR SUGGESTIONS")
 
         
         return message.channel.send(embedded);

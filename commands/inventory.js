@@ -35,13 +35,34 @@ module.exports = {
             embedded.setDescription(`Inventory size: [ ${usedInv}/${_User.inventorySize}]`)
                 .addField('Your Inventory',reply,true);
 
-            return message.channel.send(embedded);
+            return message.author.send(embedded);
+            /*
+            if(args[0] == "hide")
+            {
+                return message.author.send(embedded);
+            }
+            else
+            {
+                return message.channel.send(embedded);
+            }
+            */
         }
         else
         {
             embedded.setDescription(`Inventory size: [ 0/${_User.inventorySize}]`)
                 .addField('Your Inventory','*- Empty -*',true);
-            return message.channel.send(embedded);
+
+            return message.author.send(embedded);
+            /*
+            if(args[0] == "hide")
+            {
+                return message.author.send(embedded);
+            }
+            else
+            {
+                return message.channel.send(embedded);
+            }
+            */
         }
 
         function addCommas(num){
