@@ -56,7 +56,7 @@
             "description": "Congrats, you leveled up!",
             "chance":0.3,
             "value": 6000,
-            "type":"card"
+            "type":"instant"
         },
         {
             "name": "card_debt_cleaner",
