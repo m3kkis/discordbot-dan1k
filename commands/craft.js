@@ -24,7 +24,7 @@ module.exports = {
             embedded.setColor('#03b6fc')
                     .setDescription(`Craft items using either Crops or Marijuana. To craft an item, type \`${process.env.BOT_PREFIX}craft <itemname>\``)
                     .addField("ITEMS","Cookies\nCake\nOil", true)
-                    .addField("INGREDIENT","2x\n4x\n6x", true)
+                    .addField("INGREDIENT","2x Crop/Weed\n4x Crop/Weed\n6x Crop/Weed", true)
                     .addField("FEE","\`$100\`\n\`$150\`\n\`$300\`\n", true)
 
             return message.channel.send(embedded);
