@@ -119,6 +119,7 @@ You can now give items to  other players by doing `!give <player> item <#item_fr
 * `!rank` display all players levels ranked.
 * `!release <name>` Release a player from prison. Only police..
 * `!rob` rob a member of your server.
+* `!roll` displays a random number between 1-100.
 * `!search <name>` Search a players inventory. Must be in same location.
 * `!sell <item_inventory_number_list>` sell an item from your inventory.
 * `!slot-machine <amount>` play the slot machine! $50 minimum.
