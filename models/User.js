@@ -64,6 +64,16 @@ const userSchema = new Schema(
         mine:{
             last_updated: { type: Number, default: 0 },
         }
+    },
+    pet:{
+        name: { type: String },
+        species: { type: String },
+        level: { type: Number, default: 1 },
+        points: { type: Number, default: 0 },
+        hp: { type: Number, default: 10 },
+        atk: { type: Number, default: 1 },
+        def: { type: Number, default: 1 },
+        img: { type: String },
     }
 });
 

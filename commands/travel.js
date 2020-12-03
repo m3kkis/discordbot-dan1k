@@ -19,6 +19,7 @@ module.exports = {
             "cryptofarm":":desktop:",
             "farm":":rice_scene:",
             "lab":":dna:",
+            "arena":":crossed_swords:"
         };
 
         var fuelPrice = {
@@ -52,7 +53,7 @@ module.exports = {
         }
 
 
-        if(strDestination == "city" || strDestination == "casino" || strDestination == "cas" || strDestination == "prison" || strDestination == "farm" || strDestination == "townhall" || strDestination == "hall" || strDestination == "cryptofarm" || strDestination == "lab")
+        if(strDestination == "city" || strDestination == "casino" || strDestination == "cas" || strDestination == "prison" || strDestination == "farm" || strDestination == "townhall" || strDestination == "hall" || strDestination == "cryptofarm" || strDestination == "lab" || strDestination == "arena")
         {
 
 

@@ -28,6 +28,7 @@ module.exports = {
                         { name: ':classical_building: Townhall', value: '*Only the mayor can be at the townhall to feel safe and secure to do his stuff.*'},
                         { name: `:desktop: Cryptofarm`, value: '*Mine crypto coins and sell using real data. Must have __Access Card__ to enter.*'},
                         { name: `:dna: Lab`, value: '*Visit here to process your crops or drugs... into something better!*'},
+                        { name: `:crossed_swords: Arena`, value: '*Fight, train and upgrade your battle pet!*'},
                     )
             return message.channel.send(embedded);
         }
@@ -94,6 +95,7 @@ module.exports = {
                     "cryptofarm":":desktop:",
                     "farm":":rice_scene:",
                     "lab":":dna:",
+                    "arena":":crossed_swords:"
                 };
     
                 embedded.setDescription(`You are currently in the ${jsonLocEmoji[_User.travel.location]} **${_User.travel.location.toUpperCase()}**`)
