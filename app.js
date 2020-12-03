@@ -257,6 +257,7 @@ client.on('message', message => {
                     commandName == "store" ||
                     commandName == "use" ||
                     commandName == "crypto" ||
+                    commandName == "roll" ||
                     commandName == "bail" 
                 )
                 {
