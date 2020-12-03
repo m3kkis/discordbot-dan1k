@@ -31,6 +31,9 @@ var _DeckHandler = new DeckHandler();
 const XpHandler = require('./handlers/XpHandler.js');
 var _XpHandler = new XpHandler();
 
+const PetHandler = require('./handlers/PetHandler.js');
+var _PetHandler = new PetHandler();
+
 /** travel time, probably needs its own class, fix later */
 var objTravelMethodTime = {
     "portal" : 0,
@@ -371,6 +374,10 @@ client.on('message', message => {
                             break;
                         case "use":
                             command.execute(client, message, args, _User, _DeckHandler);
+                            break;
+                        case "battlepet":
+                        case "pet":
+                            command.execute(client, message, args, _User, _PetHandler);
                             break;
                         default:
                             command.execute(client, message, args, _User);

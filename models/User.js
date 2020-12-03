@@ -29,7 +29,7 @@ const userSchema = new Schema(
         }
     },
     travel:{
-        location: { type: String, default: 'city'},
+        location: { type: String, default: 'arena'},
         isTraveling: { type: Boolean, default: false },
         last_updated: { type: Number, default: 0 },
         last_method: { type: String },
@@ -67,12 +67,12 @@ const userSchema = new Schema(
     },
     pet:{
         name: { type: String },
-        species: { type: String },
-        level: { type: Number, default: 1 },
-        points: { type: Number, default: 0 },
-        hp: { type: Number, default: 10 },
-        atk: { type: Number, default: 1 },
-        def: { type: Number, default: 1 },
+        description: { type: String },
+        level: { type: Number},
+        points: { type: Number},
+        hp: { type: Number},
+        atk: { type: Number},
+        def: { type: Number},
         img: { type: String },
     }
 });
