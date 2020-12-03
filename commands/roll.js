@@ -36,11 +36,6 @@ module.exports = {
         {
             var randomNbr = Math.floor(Math.random() * 100) + 1;
 
-            if(_User.username == "alinamiaw")
-            {
-                randomNbr = 1;
-            }
-
             embedded.setColor('#03b6fc')
                 .setAuthor(message.member.user.tag, message.member.user.avatarURL())
                 .setDescription(`You have rolled a **${randomNbr}**`);
