@@ -29,7 +29,7 @@ const userSchema = new Schema(
         }
     },
     travel:{
-        location: { type: String, default: 'arena'},
+        location: { type: String, default: 'city'},
         isTraveling: { type: Boolean, default: false },
         last_updated: { type: Number, default: 0 },
         last_method: { type: String },
@@ -74,6 +74,7 @@ const userSchema = new Schema(
         atk: { type: Number},
         def: { type: Number},
         img: { type: String },
+        color: { type: String },
     }
 });
 

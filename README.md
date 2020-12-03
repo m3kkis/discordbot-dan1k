@@ -94,6 +94,7 @@ You can now give items to  other players by doing `!give <player> item <#item_fr
 ## Commands (so far)
 * `!arrest <name>` Arrest a player and send them to prison. Only police.
 * `!bail <optional:amount>` Bail out prison for free in time or pay the bail amount to get released from prison right away.
+* `!battlepet <optional:create,delete,color,img,desc>` Create a battle pet and view your pet or modify it.
 * `!blackjack <amount>` play blackjack! $100 minimum.
 * `!buy <list_item_number>` buy an item from the store.
 * `!cooldown` View info about all of your cooldowns.
