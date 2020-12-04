@@ -62,6 +62,13 @@ module.exports = {
                     return message.channel.send(embedded);
                 }
 
+                if(_Victim.pet.name == undefined)
+                {
+                    embedded.setColor('#ff4f4f')
+                            .setDescription(`The Player you are trying to battle doesn't own a battle pet.`);
+                    return message.channel.send(embedded);
+                }
+
                 if( _Victim.pet.inBattle == true ) {
 
                     embedded.setColor('#ff4f4f')
