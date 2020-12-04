@@ -42,6 +42,13 @@ module.exports = {
                 return message.channel.send(embedded);
             }
 
+            if(args[1].length > 32)
+            {
+                embedded.setColor('#ff4f4f')
+                        .setDescription(`Max 32 characters for name.`);
+                return message.channel.send(embedded);
+            }
+
             _PetHandler.createPet(args[1],_User);
 
             embedded.setColor('#78de87')
@@ -74,6 +81,34 @@ module.exports = {
 
             embedded.setColor('#78de87')
                     .setDescription(`You have changed your pet description successfully!`);
+    
+            return message.channel.send(embedded);
+            
+        }
+        else if(args[0] != undefined && args[0] == "special" )
+        {
+            if(_User.pet.name == undefined)
+            {
+                embedded.setColor('#ff4f4f')
+                        .setDescription(`You don't own a battle pet. Type \`${process.env.BOT_PREFIX}pet create <pet_name>\``);
+                return message.channel.send(embedded);
+            }
+
+            args.shift();
+
+            var spec = args.join(" ");
+
+            if(spec.length > 64)
+            {
+                embedded.setColor('#ff4f4f')
+                        .setDescription(`Max 64 characters for special ability.`);
+                return message.channel.send(embedded);
+            }
+
+            _PetHandler.changeSpecial(spec, _User);
+
+            embedded.setColor('#78de87')
+                    .setDescription(`You have changed your pet special ability successfully!`);
     
             return message.channel.send(embedded);
             
@@ -164,7 +199,7 @@ module.exports = {
                 embedded.setColor(_User.pet.color)
                         .setImage(_User.pet.img)
                         .setTitle(`${_User.pet.name}`)
-                        .setDescription(`*${_User.pet.description}*`)
+                        .setDescription(`*${_User.pet.description}*\n\n__Special Ability__: ${_User.pet.special}`)
                         .addField(`STATS`,`*hp:* ${_User.pet.hp}\n*atk:* ${_User.pet.atk}\n*def:* ${_User.pet.def}`,true)
                         .addField(`EXPERIENCE`,`*level:* ${_User.pet.level}\n*points:* ${_User.pet.points}/0`,true)
                 return message.channel.send(embedded);

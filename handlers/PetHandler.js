@@ -11,6 +11,7 @@ class PetHandler {
 
         _User.pet.name = name;
         _User.pet.description = "<UNKNOWN>";
+        _User.pet.special = "<UNKNOWN>";
         _User.pet.level = 1;
         _User.pet.points = 0;
         _User.pet.hp = 10;
@@ -45,6 +46,13 @@ class PetHandler {
         console.log("[PETHANDLER] Changed pet image");
 
         _User.pet.img = img;
+        _User.save();
+    }
+
+    changeSpecial(spec, _User){
+        console.log("[PETHANDLER] Changed pet special");
+
+        _User.pet.special = spec;
         _User.save();
     }
 

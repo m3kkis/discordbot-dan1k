@@ -69,6 +69,7 @@ const userSchema = new Schema(
     pet:{
         name: { type: String },
         description: { type: String },
+        special: { type: String },
         level: { type: Number},
         points: { type: Number},
         hp: { type: Number},
