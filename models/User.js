@@ -77,6 +77,7 @@ const userSchema = new Schema(
         hp_max: { type: Number, default: 10},
         atk: { type: Number, default: 1},
         def: { type: Number, default: 1},
+        chance: { type: Number, default: 0},
         img: { type: String, default: 'https://raw.githubusercontent.com/m3kkis/discordbot-dan1k/master/img/no_pet.jpg'},
         color: { type: String, default: '#03b6fc'},
         inBattle: { type: Boolean, default: false }

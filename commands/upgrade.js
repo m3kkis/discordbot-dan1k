@@ -121,10 +121,130 @@ module.exports = {
                     }
 
 
-                    embedded.setDescription(`You can upgrade your farm with the following options by doing \`${process.env.BOT_PREFIX}upgrade <1 or 2>\``)
+                    embedded.setDescription(`You can upgrade your farm with the following options by doing \`${process.env.BOT_PREFIX}upgrade <1,2 or 3>\``)
                             .addField('UPGRADES', strUpgrades, true)
                     return message.channel.send(embedded);
                 }
+            case "arena":
+                console.log("[UPGRADE] ARENA.");
+
+                if(_User.pet.name == undefined)
+                {
+                    embedded.setColor('#ff4f4f')
+                            .setDescription(`You don't own a battle pet. Type \`${process.env.BOT_PREFIX}pet create <pet_name>\``);
+                    return message.channel.send(embedded);
+                }
+
+                if(args[0] != undefined){
+
+
+                    if( _User.pet.inBattle == true ) {
+        
+                        embedded.setColor('#ff4f4f')
+                                .setDescription('Your pet is currently doing training or battle, cannot upgrade.');
+            
+                        return message.channel.send(embedded);
+                    }
+
+                    if( _User.pet.points_upgrade < 1 ) {
+        
+                        embedded.setColor('#ff4f4f')
+                                .setDescription('Your do not have any upgrade points.');
+            
+                        return message.channel.send(embedded);
+                    }
+
+
+
+                    if(args[0] == '1')
+                    {
+                        console.log("[UPGRADE] PET UPGRADE 1.HP")
+
+                        embedded.setColor('#78de87')
+                                .setDescription(`Pet **HP** upgrade success.`)
+
+                        _User.pet.hp_max++;
+                        _User.pet.points_upgrade--;
+                        _User.save();
+
+                        return message.channel.send(embedded);
+
+                    }
+                    else if(args[0] == '2')
+                    {
+                        console.log("[UPGRADE] PET UPGRADE 2.ATK")
+
+                        embedded.setColor('#78de87')
+                                .setDescription(`Pet **ATK** upgrade success.`)
+
+                        _User.pet.atk++;
+                        _User.pet.points_upgrade--;
+                        _User.save();
+
+                        return message.channel.send(embedded);
+                    }
+                    else if(args[0] == '3')
+                    {
+                        console.log("[UPGRADE] PET UPGRADE 3.DEF")
+
+                        embedded.setColor('#78de87')
+                                .setDescription(`Pet **DEF** upgrade success.`)
+
+                        _User.pet.def++;
+                        _User.pet.points_upgrade--;
+                        _User.save();
+
+                        return message.channel.send(embedded);
+                    }
+                    else if(args[0] == '4')
+                    {
+                        console.log("[UPGRADE] PET UPGRADE 3.CHA")
+
+                        if(_User.pet.chance >= 15)
+                        {
+                            embedded.setColor('#ff4f4f')
+                                    .setDescription('You have already maxed out your pet chance, cannot upgrade.');
+                            
+                            return message.channel.send(embedded);
+                        }
+                        else
+                        {
+                            embedded.setColor('#78de87')
+                                    .setDescription(`Pet **CHA** upgrade success.`)
+
+                            _User.pet.chance++;
+                            _User.pet.points_upgrade--;
+                            _User.save();
+
+                            return message.channel.send(embedded);
+                        }
+                    }
+                    else
+                    {
+                        embedded.setColor('#ff4f4f')
+                            .setDescription('Make sure you typed the right number for upgrade.');
+                        return message.channel.send(embedded);
+                    }
+                }
+                else
+                {
+                    strUpgrades = '**1.** HP - *Increase Health by +1*\n**2.** ATK - *Increase Attack by +1*\n**3.** DEF - *Increase Defense by +1*';
+
+                    if(_User.pet.chance >= 15)
+                    {
+                        strUpgrades += '\n**4.** ~~CHA - *Increase Chance by +1%*~~ \`MAXED OUT\`';
+                    }
+                    else
+                    {
+                        strUpgrades += '\n**4.** CHA - *Increase Chance by +1%*';
+                    }
+
+                    embedded.setDescription(`You can upgrade your pet with the following options by doing \`${process.env.BOT_PREFIX}upgrade <1 or 2>\``)
+                            .addField('UPGRADES', strUpgrades, true)
+                    return message.channel.send(embedded);
+                }
+
+                return message.channel.send(embedded);
             default:
                 embedded.setColor('#ff4f4f')
                     .setDescription('You must be in the **FARM** to upgrade.');

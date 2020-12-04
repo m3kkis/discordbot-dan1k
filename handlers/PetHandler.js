@@ -121,11 +121,12 @@ class PetHandler {
         var enemyHP = _User.pet.hp_max;
         var enemyATK = _User.pet.atk;
         var enemyDEF = _User.pet.def;
+        var enemyCHA = _User.pet.chance;
         var enemyLVL = _User.pet.level + modifierLVL;
 
         for(var i = 0; i < modifierLVL; i++)
         {
-            var randomStat = Math.floor(Math.random() * 3);
+            var randomStat = Math.floor(Math.random() * 4);
 
             if(randomStat == 0)
             {
@@ -139,6 +140,10 @@ class PetHandler {
             {
                 enemyDEF++;
             }
+            else if(randomStat == 3)
+            {
+                enemyCHA++;
+            }
         }
 
         var result = {
@@ -147,6 +152,7 @@ class PetHandler {
             "hp_max": enemyHP,
             "atk" : enemyATK,
             "def" : enemyDEF,
+            "chance" : enemyCHA,
             "lvl": enemyLVL
         }
 

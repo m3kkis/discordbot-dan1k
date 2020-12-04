@@ -78,8 +78,8 @@ module.exports = {
         });
 
         function battle(dmg1,dmg2){
-            var chancePlayer = Math.floor(Math.random() * 100) + 1;
-            var chanceEnemy = Math.floor(Math.random() * 100) + 1;
+            var chancePlayer = Math.floor(Math.random() * 100) + 1 + (_User.pet.chance - jsonEnemy.chance);
+            var chanceEnemy = Math.floor(Math.random() * 100) + 1 + (jsonEnemy.chance - _User.pet.chance );
 
             if(chancePlayer > chanceEnemy)
             {

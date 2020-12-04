@@ -200,7 +200,7 @@ module.exports = {
                         .setImage(_User.pet.img)
                         .setTitle(`${_User.pet.name}`)
                         .setDescription(`*${_User.pet.description}*\n\n__Special Ability__: ${_User.pet.special}`)
-                        .addField(`STATS`,`*hp:* ${_User.pet.hp}/${_User.pet.hp_max}\n*atk:* ${_User.pet.atk}\n*def:* ${_User.pet.def}`,true)
+                        .addField(`STATS`,`*health:* ${_User.pet.hp}/${_User.pet.hp_max}\n*attack:* ${_User.pet.atk}\n*defense:* ${_User.pet.def}\n*chance:* +${_User.pet.chance}%`,true)
                         .addField(`EXPERIENCE`,`*level:* ${_User.pet.level}\n*points:* ${_User.pet.points}/${_PetHandler.calculateTotalXP(_User.pet.level)}`,true)
                         .setFooter(`AVAILABLE POINTS : ${_User.pet.points_upgrade}`)
                 return message.channel.send(embedded);
