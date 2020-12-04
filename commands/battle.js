@@ -97,6 +97,7 @@ module.exports = {
 
                     console.log("[BATTLE] Starting battle");
                     embedded.setColor('#03b6fc')
+                            .setThumbnail(_Victim.pet.img)
                             .setDescription(`*Battle in progress...*`)
                             .addFields(
                                 { name:`HP: ${_User.pet.hp}/${_User.pet.hp_max}`, value: `${_User.pet.name}\n__\nLVL ${_User.pet.level}\natk: ${_User.pet.atk}\ndef: ${_User.pet.def}\ncha: +${_User.pet.chance}%`, inline: true },
@@ -189,10 +190,6 @@ module.exports = {
                         jsonExpPlayer = _PetHandler.giveExperiencePoints("battle_win", _User);
                         jsonExpVictim = _PetHandler.giveExperiencePoints("battle_lost", _Victim);
 
-                        console.log(jsonExpPlayer);
-                        console.log("------------------");
-                        console.log(jsonExpVictim);
-
                         _User.save().then(_Victim.save());
                     }
                     else if(result != undefined && result == "loss")
@@ -217,11 +214,9 @@ module.exports = {
                             );
 
                     if(gameOver == true){
-                        console.log("0");
                         /* XP */
                         if(jsonExpPlayer.levelUp == true && jsonExpVictim.levelUp == false)
                         {
-                            console.log("1");
                             embedded.addFields(
                                 { name: 'Pet Gained XP', value: `+${jsonExpPlayer.points} XP\n**Level UP!**`,  inline: true },
                                 { name: '\u200B', value: '\u200B', inline: true },
@@ -230,7 +225,6 @@ module.exports = {
                         }
                         else if(jsonExpPlayer.levelUp == false && jsonExpVictim.levelUp == true)
                         {
-                            console.log("2");
                             embedded.addFields(
                                 { name: 'Pet Gained XP', value: `+${jsonExpPlayer.points} XP`,  inline: true },
                                 { name: '\u200B', value: '\u200B', inline: true },
@@ -239,7 +233,6 @@ module.exports = {
                         }
                         else if(jsonExpPlayer.levelUp == true && jsonExpVictim.levelUp == true)
                         {
-                            console.log("3");
                             embedded.addFields(
                                 { name: 'Pet Gained XP', value: `+${jsonExpPlayer.points} XP\n**Level UP!**`,  inline: true },
                                 { name: '\u200B', value: '\u200B', inline: true },
@@ -248,7 +241,6 @@ module.exports = {
                         }
                         else if(jsonExpPlayer.levelUp == false && jsonExpVictim.levelUp == false)
                         {
-                            console.log("3");
                             embedded.addFields(
                                 { name: 'Pet Gained XP', value: `+${jsonExpPlayer.points} XP`,  inline: true },
                                 { name: '\u200B', value: '\u200B', inline: true },
