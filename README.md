@@ -109,6 +109,7 @@ You can now give items to  other players by doing `!give <player> item <#item_fr
 * `!harvest` Harvest either legal or illegal plants. Sell them for extra cash! But don\'t get caught by police.
 * `!help` display all of the available commands.
 * `!inventory` display all items in your inventory.
+* `!law <optional: add|del>` Create, show , delete laws created by mayor.
 * `!leaderboard` display the leaderboard of your server, higher the "networth" the higher in ranks.
 * `!level` display your current level and progression.
 * `!location <optional: list>` display your current location and player nearby, optional: display information of all locations.

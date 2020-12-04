@@ -257,6 +257,8 @@ client.on('message', message => {
                     commandName == "rank" || commandName == "xp" ||
                     commandName == "location" || commandName == "loc" ||
                     commandName == "cooldown" || commandName == "cd" ||
+                    commandName == "battlepet" || commandName == "pet" ||
+                    commandName == "law" ||
                     commandName == "store" ||
                     commandName == "use" ||
                     commandName == "crypto" ||
@@ -359,6 +361,7 @@ client.on('message', message => {
                         case "buy":
                             command.execute(client, message, args, _User, _StoreHandler);
                             break;
+                        case "law":
                         case "tax":
                             command.execute(client, message, args, _User, _Bot);
                             break;
