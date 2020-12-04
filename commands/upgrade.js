@@ -228,7 +228,7 @@ module.exports = {
                 }
                 else
                 {
-                    strUpgrades = '**1.** HP - *Increase Health by +1*\n**2.** ATK - *Increase Attack by +1*\n**3.** DEF - *Increase Defense by +1*';
+                    var strUpgrades = '**1.** HP - *Increase Health by +1*\n**2.** ATK - *Increase Attack by +1*\n**3.** DEF - *Increase Defense by +1*';
 
                     if(_User.pet.chance >= 15)
                     {
@@ -243,11 +243,9 @@ module.exports = {
                             .addField('UPGRADES', strUpgrades, true)
                     return message.channel.send(embedded);
                 }
-
-                return message.channel.send(embedded);
             default:
                 embedded.setColor('#ff4f4f')
-                    .setDescription('You must be in the **FARM** to upgrade.');
+                    .setDescription('You must be in the **FARM** or **ARENA** to upgrade.');
                 return message.channel.send(embedded);
             
         }

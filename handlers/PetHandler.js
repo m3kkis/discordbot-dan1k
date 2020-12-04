@@ -190,7 +190,10 @@ class PetHandler {
             case 'training_win':
                 xp = Math.floor(Math.pow(_User.pet.level,1)*2);
                 break;
-            case 'pvp':
+            case 'battle_lost':
+                xp = Math.floor(Math.pow(_User.pet.level,1)*1);
+                break;
+            case 'battle_win':
                 xp = Math.floor(Math.pow(_User.pet.level,1)*3);
                 break;
         }

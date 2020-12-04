@@ -383,6 +383,8 @@ client.on('message', message => {
                         case "pet":
                         case "training":
                         case "train":
+                        case "battle":
+                        case "pvp":
                             command.execute(client, message, args, _User, _PetHandler);
                             break;
                         default:
