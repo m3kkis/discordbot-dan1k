@@ -59,9 +59,9 @@ module.exports = {
                     .setDescription(`*Training in progress...*`)
                     .setThumbnail(_User.pet.img)
                     .addFields(
-                        { name:`HP: ${_User.pet.hp}/${_User.pet.hp_max}`, value: `${_User.pet.name}\n__\nLVL ${_User.pet.level}\natk: ${_User.pet.atk}\ndef: ${_User.pet.def}`, inline: true },
+                        { name:`HP: ${_User.pet.hp}/${_User.pet.hp_max}`, value: `${_User.pet.name}\n__\nLVL ${_User.pet.level}\natk: ${_User.pet.atk}\ndef: ${_User.pet.def}\ncha: +${_User.pet.chance}%`, inline: true },
                         { name: '\u200B', value: 'vs.', inline: true },
-                        { name:`HP: ${jsonEnemy.hp}/${jsonEnemy.hp_max}`, value: `${jsonEnemy.name}\n__\nLVL ${jsonEnemy.lvl}\natk: ${jsonEnemy.atk}\ndef: ${jsonEnemy.def}`, inline: true },
+                        { name:`HP: ${jsonEnemy.hp}/${jsonEnemy.hp_max}`, value: `${jsonEnemy.name}\n__\nLVL ${jsonEnemy.lvl}\natk: ${jsonEnemy.atk}\ndef: ${jsonEnemy.def}\ncha: +${jsonEnemy.chance}%`, inline: true },
                     );
 
             message.channel.send(embedded).then( sent => {
@@ -80,6 +80,8 @@ module.exports = {
         function battle(dmg1,dmg2){
             var chancePlayer = Math.floor(Math.random() * 100) + 1 + (_User.pet.chance - jsonEnemy.chance);
             var chanceEnemy = Math.floor(Math.random() * 100) + 1 + (jsonEnemy.chance - _User.pet.chance );
+
+            //console.log("[TRAINING] Chance player : " + chancePlayer + "% Chance Enemy : " + chanceEnemy + "%");
 
             if(chancePlayer > chanceEnemy)
             {
@@ -156,9 +158,9 @@ module.exports = {
             }
 
             embedded.addFields(
-                        { name:`HP: ${_User.pet.hp}/${_User.pet.hp_max}`, value: `${_User.pet.name}\n__\nLVL ${_User.pet.level}\natk: ${_User.pet.atk}\ndef: ${_User.pet.def}`, inline: true },
+                        { name:`HP: ${_User.pet.hp}/${_User.pet.hp_max}`, value: `${_User.pet.name}\n__\nLVL ${_User.pet.level}\natk: ${_User.pet.atk}\ndef: ${_User.pet.def}\ncha: +${_User.pet.chance}%`, inline: true },
                         { name: '\u200B', value: 'vs.', inline: true },
-                        { name:`HP: ${jsonEnemy.hp}/${jsonEnemy.hp_max}`, value: `${jsonEnemy.name}\n__\nLVL ${jsonEnemy.lvl}\natk: ${jsonEnemy.atk}\ndef: ${jsonEnemy.def}`, inline: true },
+                        { name:`HP: ${jsonEnemy.hp}/${jsonEnemy.hp_max}`, value: `${jsonEnemy.name}\n__\nLVL ${jsonEnemy.lvl}\natk: ${jsonEnemy.atk}\ndef: ${jsonEnemy.def}\ncha: +${jsonEnemy.chance}%`, inline: true },
                     );
 
             if(gameOver == true){
