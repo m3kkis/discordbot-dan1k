@@ -51,6 +51,7 @@ module.exports = {
                 _User.arrest.isArrested = false;
                 _User.arrest.last_updated = n;
                 _User.arrest.priceBail = 0;
+                _User.arrest.canEscape = true;
                 _User.save();
 
                 embedded.setColor('#78de87')
@@ -71,6 +72,7 @@ module.exports = {
                 _User.arrest.isArrested = false;
                 _User.arrest.last_updated = n;
                 _User.arrest.priceBail = 0;
+                _User.arrest.canEscape = true;
                 _User.save();
 
                 embedded.setColor('#78de87')

@@ -252,12 +252,13 @@ client.on('message', message => {
                     commandName == "leaderboard" || commandName == "lb" ||
                     commandName == "level" ||
                     commandName == "lootbox" || commandName == "loot" ||
-                    commandName == "me" ||
                     commandName == "money" || commandName == "bal" ||
                     commandName == "rank" || commandName == "xp" ||
                     commandName == "location" || commandName == "loc" ||
                     commandName == "cooldown" || commandName == "cd" ||
                     commandName == "battlepet" || commandName == "pet" ||
+                    commandName == "escape" || commandName == "esc" ||
+                    commandName == "me" ||
                     commandName == "law" ||
                     commandName == "store" ||
                     commandName == "use" ||

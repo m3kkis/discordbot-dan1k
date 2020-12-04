@@ -19,6 +19,7 @@ const userSchema = new Schema(
         priceBail: { type: Number, default: 0 },
         isArrested:{ type: Boolean, default: false },
         last_updated: { type: Number, default: 0 },
+        canEscape: { type: Boolean, default: true },
     },
     inventorySize: { type: Number, default: 5 },
     inventory: { type: Array, default: [] },

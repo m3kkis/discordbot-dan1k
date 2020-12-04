@@ -201,6 +201,7 @@ module.exports = {
                     _User.arrest.isArrested = false;
                     _User.arrest.last_updated = n;
                     _User.arrest.priceBail = 0;
+                    _User.arrest.canEscape = true;
                 }
             }
             else if(_User.inventory[id].name == "card_teleport")
