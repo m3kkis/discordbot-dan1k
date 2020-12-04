@@ -104,6 +104,7 @@ You can now give items to  other players by doing `!give <player> item <#item_fr
 * `!crypto` check current prices for LTC, ETH and BTC using real data.
 * `!deposit <amount|all>` deposit an amount or all of your cash to your bank.
 * `!election` Vote for a mayor of your server. Lasts 7 days before can revote.
+* `!escape` Try to escape from prison!
 * `!fire <name>` Fire a Police Officer. Only mayor can do this in the townhall.
 * `!give <user> cash <amount>` give cash to another user.
 * `!harvest` Harvest either legal or illegal plants. Sell them for extra cash! But don\'t get caught by police.
