@@ -30,7 +30,7 @@ const userSchema = new Schema(
         }
     },
     travel:{
-        location: { type: String, default: 'city'},
+        location: { type: String, default: 'arena'},
         isTraveling: { type: Boolean, default: false },
         last_updated: { type: Number, default: 0 },
         last_method: { type: String },
@@ -68,15 +68,18 @@ const userSchema = new Schema(
     },
     pet:{
         name: { type: String },
-        description: { type: String },
-        special: { type: String },
-        level: { type: Number},
-        points: { type: Number},
-        hp: { type: Number},
-        atk: { type: Number},
-        def: { type: Number},
-        img: { type: String },
-        color: { type: String },
+        description: { type: String, default: '<UNKNOWN>'},
+        special: { type: String, default: '<UNKNOWN>'},
+        level: { type: Number,  default: 1},
+        points: { type: Number,  default: 0},
+        points_upgrade: { type: Number,  default: 0},
+        hp: { type: Number, default: 10},
+        hp_max: { type: Number, default: 10},
+        atk: { type: Number, default: 1},
+        def: { type: Number, default: 1},
+        img: { type: String, default: 'https://raw.githubusercontent.com/m3kkis/discordbot-dan1k/master/img/no_pet.jpg'},
+        color: { type: String, default: '#03b6fc'},
+        inBattle: { type: Boolean, default: false }
     }
 });
 

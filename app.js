@@ -381,6 +381,8 @@ client.on('message', message => {
                             break;
                         case "battlepet":
                         case "pet":
+                        case "training":
+                        case "train":
                             command.execute(client, message, args, _User, _PetHandler);
                             break;
                         default:

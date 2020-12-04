@@ -10,15 +10,6 @@ class PetHandler {
         console.log("[PETHANDLER] Create new pet -> " + name);
 
         _User.pet.name = name;
-        _User.pet.description = "<UNKNOWN>";
-        _User.pet.special = "<UNKNOWN>";
-        _User.pet.level = 1;
-        _User.pet.points = 0;
-        _User.pet.hp = 10;
-        _User.pet.atk = 1;
-        _User.pet.def = 1;
-        _User.pet.img = "https://raw.githubusercontent.com/m3kkis/discordbot-dan1k/master/img/no_pet.jpg";
-        _User.pet.color = "#03b6fc";
         _User.save();
     }
 
@@ -54,6 +45,170 @@ class PetHandler {
 
         _User.pet.special = spec;
         _User.save();
+    }
+
+    spawnEnemy(_User){
+        console.log("[PETHANDLER] Spawning enemy.");
+        var arrNames = [
+            'Morgan Freeman',
+            'Natalie Portman',
+            'Leonardo DiCaprio',
+            'Emma Stone',
+            'Rober De Niro',
+            'Angelina Jolie',
+            'Brad Pitt',
+            'Scarlett Johansson',
+            'Matt Damon',
+            'Carrie Fisher',
+            'Tom Hanks',
+            'Al Pacino',
+            'Harrison Ford',
+            'Johnny Depp',
+            'Bruce Willis',
+            'Samuel L. Jackson',
+            'George Clooney',
+            'Liam Neeson',
+            'Tom Cruise',
+            'Ryan Gosling',
+            'Bradley Cooper',
+            'Bill Murray',
+            'Mark Wahlberg',
+            'Robert Downey Jr.',
+            'Zach Galifianakis',
+            'Daniel Craig',
+            'Owen Wilson',
+            'Jim Carrey',
+            'John Travolta',
+            'Keanu Reeves',
+            'Dany DeVito',
+            'Mark Hamill',
+            'Hugh Jackman',
+            'Benedict Cumberbatch',
+            'Elijah Wood',
+            'Jonah Hill',
+            'Jason Statham',
+            'Daniel Radcliffe',
+            'Chris Hemsworth',
+            'Nicolas Cage',
+            'Seth Rogen',
+            'Chriss Pratt',
+            'Will Smith',
+            'Jeff Goldblum',
+            'Mel Gibson',
+            'Jame Franco',
+            'Jesse Eisenberg',
+            'Vin Diesel',
+            'Sylvester Stallone',
+            'Neil Patrick Harris',
+            'Channing Tatum',
+            'Jack Black',
+            'Ashton Kutcher',
+            'Charlie Sheen',
+            'Shia LeBeouf',
+            'Ryan Reynolds',
+            'Arnold Shwarzenegger',
+            'Gerard Butler',
+            'Adam Sandler',
+            'Jet Li',
+            'Jackie Chan',
+            'Kevin Hart',
+            'Dwayne Johnson',
+            'Bruce Lee',
+        ];
+
+        var modifierLVL = (Math.floor(Math.random() * 3));
+
+        var enemyHP = _User.pet.hp_max;
+        var enemyATK = _User.pet.atk;
+        var enemyDEF = _User.pet.def;
+        var enemyLVL = _User.pet.level + modifierLVL;
+
+        for(var i = 0; i < modifierLVL; i++)
+        {
+            var randomStat = Math.floor(Math.random() * 3);
+
+            if(randomStat == 0)
+            {
+                enemyHP++;
+            }
+            else if(randomStat == 1)
+            {
+                enemyATK++;
+            }
+            else if(randomStat == 2)
+            {
+                enemyDEF++;
+            }
+        }
+
+        var result = {
+            "name": arrNames[Math.floor(Math.random() * arrNames.length)],
+            "hp": enemyHP,
+            "hp_max": enemyHP,
+            "atk" : enemyATK,
+            "def" : enemyDEF,
+            "lvl": enemyLVL
+        }
+
+        return result;
+    }
+
+    calculateDamage(aATK,bDEF){
+        // ((a.atk*a.atk) / (a.atk + b.def))
+        var result = Math.floor(((aATK*aATK) / (aATK + bDEF)));
+
+        // (2*a.att) - (1*b.def)
+        //var result = Math.floor((2*aATK) - (1*bDEF));
+
+        return Math.max(result,1);
+    }
+
+    calculateTotalXP(currentLevel){
+        console.log("[PETHANDLER] Calculating XP Required");
+        var result = Math.pow((currentLevel + (currentLevel - 1)) + 1, 2);
+        return Math.floor(result);
+    }
+
+    giveExperiencePoints(type, _User){
+        console.log("[PETHANDLER] Giving out XP");
+        var me = this;
+        var xp = 0;
+        var petPoints = _User.pet.points;
+        var reqPointsLevelUp = me.calculateTotalXP(_User.pet.level);
+        var boolLevelUp = false;
+
+        switch(type){
+            case 'training_lost':
+                xp = Math.floor(Math.pow(_User.pet.level,1)*1);
+                break;
+            case 'training_win':
+                xp = Math.floor(Math.pow(_User.pet.level,1)*2);
+                break;
+            case 'pvp':
+                xp = Math.floor(Math.pow(_User.pet.level,1)*3);
+                break;
+        }
+
+        petPoints += xp;
+
+        if(petPoints >= reqPointsLevelUp)
+        {
+            console.log("[PETHANDLER] Level UP!");
+            var extraPoints = petPoints - reqPointsLevelUp;
+            _User.pet.points = extraPoints;
+            _User.pet.points_upgrade += 1;
+            _User.pet.level += 1;
+            boolLevelUp = true;
+
+        }
+        else
+        {
+            console.log("[PETHANDLER] Gave XP");
+            _User.pet.points = petPoints;
+            boolLevelUp = false;
+        }
+
+        return {points:xp, levelUp: boolLevelUp};
     }
 
 }

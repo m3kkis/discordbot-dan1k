@@ -78,6 +78,7 @@ class XpHandler {
         {
             console.log("[XP] Gave XP");
             _User.experience.points = userPoints;
+            boolLevelUp = false;
         }
 
 
