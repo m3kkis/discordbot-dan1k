@@ -140,7 +140,7 @@ module.exports = {
 
             if(args[1] == undefined) 
             {
-                _PetHandler.createPet("#03b6fc",_User);
+                _PetHandler.setColor("#03b6fc",_User);
 
                 embedded.setColor('#ffd900')
                         .setDescription(`Pet color restored to default.`);
