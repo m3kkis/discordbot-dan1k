@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const moment = require("moment");
 const User = require('../models/User'); 
 
 module.exports = {
@@ -54,6 +55,40 @@ module.exports = {
             if(_Victim)
             {
 
+                /** travel time, probably needs its own class, fix later */
+        
+                var dTravel = new Date();
+                var nTravel = dTravel.getTime();
+
+                var objTravelMethodTime = {
+                    "portal" : 0,
+                    "helicopter" : 1,
+                    "boat" : 2,
+                    "car" : 3,
+                    "bicycle" : 4,
+                    "walk" : 5
+                }
+
+                var traveltimeLimit = objTravelMethodTime[_Victim.travel.last_method] * (1000 * 60);
+                var traveltimeDifference = nTravel - _Victim.travel.last_updated;
+
+                if( traveltimeDifference > traveltimeLimit )
+                {
+                    _Victim.travel.last_updated = nTravel;
+                    _Victim.travel.isTraveling = false;
+                }
+        
+                /******************************************************** */
+
+                
+                if( _Victim.travel.isTraveling == true ) {
+
+                    embedded.setColor('#ff4f4f')
+                            .setDescription('The player is currently in travel.');
+
+                    return message.channel.send(embedded);
+                }
+
                 if( _User.travel.location != _Victim.travel.location ) {
 
                     embedded.setColor('#ff4f4f')
@@ -96,7 +131,7 @@ module.exports = {
                 _User.save().then(_Victim.save().then(()=>{
 
                     console.log("[BATTLE] Starting battle");
-                    embedded.setColor('#03b6fc')
+                    embedded.setColor(_User.pet.color)
                             .setThumbnail(_Victim.pet.img)
                             .setDescription(`*Battle in progress...*`)
                             .addFields(
