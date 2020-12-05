@@ -201,6 +201,7 @@ client.on('message', message => {
      * PINK:        #ff69af
      * DARKBLUE:    #031cfc
      * POLICEBLUE:  #3849ff
+     * TOXICGREEN:  #84ff00
      */
 
     if(!message.content.startsWith(prefix) || message.author.bot) return;
