@@ -55,7 +55,7 @@ module.exports = {
         _User.save().then(()=>{
 
             console.log("[TRAINING] Starting training");
-            embedded.setColor('#03b6fc')
+            embedded.setColor(_User.pet.color)
                     .setDescription(`*Training in progress...*`)
                     .setThumbnail(_User.pet.img)
                     .addFields(
