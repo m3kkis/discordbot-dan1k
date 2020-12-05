@@ -21,6 +21,12 @@ module.exports = {
                 var priceQuantityUpdated = priceQuantity * _User.upgrades.farm.level_quantity;
                 var priceQualityUpdated = priceQuality * (_User.upgrades.farm.level_quality + 1);
 
+                if(_User.store_sale == true)
+                {
+                    priceQuantityUpdated = priceQuantityUpdated/2
+                    priceQualityUpdated = priceQualityUpdated/2;
+                }
+
                 if(args[0] != undefined){
                     if(args[0] == '1')
                     {
@@ -41,6 +47,7 @@ module.exports = {
                                         .setDescription(`Farm upgrade success.`)
 
                                 _User.economy.cash -= priceQuantityUpdated;
+                                if(_User.store_sale == true) _User.store_sale = false;
 
                                 _User.upgrades.farm.level_quantity++;
                                 _User.save();
@@ -75,6 +82,7 @@ module.exports = {
                                         .setDescription(`Farm upgrade success.`)
 
                                 _User.economy.cash -= priceQualityUpdated;
+                                if(_User.store_sale == true) _User.store_sale = false;
 
                                 _User.upgrades.farm.level_quality++;
                                 _User.save();

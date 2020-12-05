@@ -82,6 +82,36 @@ module.exports = {
                     
                 }
             }
+            else if(_User.inventory[id].name == "potion_healing")
+            {
+                if( _User.pet.inBattle == true)
+                {
+                    embedded.setColor('#ff4f4f')
+                        .setDescription('You cannot use potions during battles.');
+    
+                    return message.channel.send(embedded);
+                }
+                else
+                {
+                    _User.pet.hp = _User.pet.hp_max;
+                    
+                }
+            }
+            else if(_User.inventory[id].name == "card_food_stamp")
+            {
+                if( _User.store_sale == true)
+                {
+                    embedded.setColor('#ff4f4f')
+                        .setDescription('You have already activated store sale.');
+    
+                    return message.channel.send(embedded);
+                }
+                else
+                {
+                    _User.store_sale = true;
+                    
+                }
+            }
             else if(_User.inventory[id].name == "card_debt_cleaner")
             {
                 if( _User.economy.cash >= 0)

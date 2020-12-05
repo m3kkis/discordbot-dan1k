@@ -77,6 +77,13 @@ module.exports = {
     
                     return message.channel.send(embedded);
                 }
+                else if(_User.store_sale == true && _StoreHandler.jsonStoreItems[id].value/2 > _User.economy.cash)
+                {
+                    embedded.setColor('#ff4f4f')
+                        .setDescription('You can\'t afford that item even with sale on.');
+    
+                    return message.channel.send(embedded);
+                }
                 else
                 {
 

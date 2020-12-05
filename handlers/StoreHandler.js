@@ -32,6 +32,8 @@ class StoreHandler {
                 {
                     var lvlDiff = _User.inventorySize - 4;
                     var finalPrice = item.value * Math.pow(lvlDiff,2);
+
+                    if(_User.store_sale == true) finalPrice = finalPrice/2;
     
                     reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(finalPrice)}\` : *${item.description}*\n`;
                 }
@@ -45,7 +47,11 @@ class StoreHandler {
                 }
                 else
                 {
-                    reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(item.value)}\` : *${item.description}*\n`;
+                    var price = item.value;
+
+                    if(_User.store_sale == true) price = price/2;
+
+                    reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(price)}\` : *${item.description}*\n`;
                 }
             }
             else if(item.name == "transport_car")
@@ -56,7 +62,12 @@ class StoreHandler {
                 }
                 else
                 {
-                    reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(item.value)}\` : *${item.description}*\n`;
+
+                    var price = item.value;
+
+                    if(_User.store_sale == true) price = price/2;
+
+                    reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(price)}\` : *${item.description}*\n`;
                 }
             }
             else if(item.name == "transport_boat")
@@ -67,7 +78,11 @@ class StoreHandler {
                 }
                 else
                 {
-                    reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(item.value)}\` : *${item.description}*\n`;
+                    var price = item.value;
+
+                    if(_User.store_sale == true) price = price/2;
+
+                    reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(price)}\` : *${item.description}*\n`;
                 }
             }
             else if(item.name == "transport_helicopter")
@@ -78,7 +93,12 @@ class StoreHandler {
                 }
                 else
                 {
-                    reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(item.value)}\` : *${item.description}*\n`;
+
+                    var price = item.value;
+
+                    if(_User.store_sale == true) price = price/2;
+
+                    reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(price)}\` : *${item.description}*\n`;
                 }
             }
             else if(item.name == "transport_portalgun")
@@ -89,12 +109,21 @@ class StoreHandler {
                 }
                 else
                 {
-                    reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(item.value)}\` : *${item.description}*\n`;
+                    var price = item.value;
+
+                    if(_User.store_sale == true) price = price/2;
+
+                    reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(price)}\` : *${item.description}*\n`;
                 }
             }
             else
             {
-                reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(item.value)}\` : *${item.description}*\n`;
+
+                var price = item.value;
+
+                if(_User.store_sale == true) price = price/2;
+
+                reply += `**${(idx+1)}. ${item.display}** \`$${addCommas(price)}\` : *${item.description}*\n`;
             }
             
         });
@@ -130,6 +159,14 @@ class StoreHandler {
                 var finalPrice = item.value * Math.pow(lvlDiff,2);
 
                 _User.inventorySize += 1;
+
+                if(_User.store_sale == true)
+                {
+                    finalPrice = finalPrice/2;
+                    _User.store_sale = false;
+                }
+                
+
                 _User.economy.cash -= finalPrice;
                 return reply = "Successfully upgraded inventory slot";
             }
@@ -142,7 +179,16 @@ class StoreHandler {
             if(_User.rob_protection != true)
             {
                 _User.rob_protection = true;
-                _User.economy.cash -= item.value;
+
+                var price = item.value;
+
+                if(_User.store_sale == true)
+                {
+                    price = price/2;
+                    _User.store_sale = false;
+                }
+
+                _User.economy.cash -= price;
                 return reply = "Successfully turned on rob protection.";
             }
             else
@@ -154,7 +200,16 @@ class StoreHandler {
             if(_User.travel.transportation.hasBicycle != true)
             {
                 _User.travel.transportation.hasBicycle = true;
-                _User.economy.cash -= item.value;
+
+                var price = item.value;
+
+                if(_User.store_sale == true)
+                {
+                    price = price/2;
+                    _User.store_sale = false;
+                }
+
+                _User.economy.cash -= price;
                 return reply = "Successfully bought a bicycle.";
             }
             else
@@ -166,7 +221,16 @@ class StoreHandler {
             if(_User.travel.transportation.hasCar != true)
             {
                 _User.travel.transportation.hasCar = true;
-                _User.economy.cash -= item.value;
+
+                var price = item.value;
+
+                if(_User.store_sale == true)
+                {
+                    price = price/2;
+                    _User.store_sale = false;
+                }
+
+                _User.economy.cash -= price;
                 return reply = "Successfully bought a car.";
             }
             else
@@ -178,7 +242,16 @@ class StoreHandler {
             if(_User.travel.transportation.hasBoat != true)
             {
                 _User.travel.transportation.hasBoat = true;
-                _User.economy.cash -= item.value;
+
+                var price = item.value;
+
+                if(_User.store_sale == true)
+                {
+                    price = price/2;
+                    _User.store_sale = false;
+                }
+
+                _User.economy.cash -= price;
                 return reply = "Successfully bought a boat.";
             }
             else
@@ -190,7 +263,16 @@ class StoreHandler {
             if(_User.travel.transportation.hasHelicopter != true)
             {
                 _User.travel.transportation.hasHelicopter = true;
-                _User.economy.cash -= item.value;
+
+                var price = item.value;
+
+                if(_User.store_sale == true)
+                {
+                    price = price/2;
+                    _User.store_sale = false;
+                }
+
+                _User.economy.cash -= price;
                 return reply = "Successfully bought a helicopter.";
             }
             else
@@ -202,7 +284,16 @@ class StoreHandler {
             if(_User.travel.transportation.hasPortalGun != true)
             {
                 _User.travel.transportation.hasPortalGun = true;
-                _User.economy.cash -= item.value;
+
+                var price = item.value;
+
+                if(_User.store_sale == true)
+                {
+                    price = price/2;
+                    _User.store_sale = false;
+                }
+
+                _User.economy.cash -= price;
                 return reply = "Successfully bought a portal gun.";
             }
             else
@@ -220,7 +311,15 @@ class StoreHandler {
                 "source":"store"
             });
 
-            _User.economy.cash -= item.value;
+            var price = item.value;
+
+            if(_User.store_sale == true)
+            {
+                price = price/2;
+                _User.store_sale = false;
+            }
+
+            _User.economy.cash -= price;
 
             return reply = `Succesfully purchased **${item.display}**!`; 
 

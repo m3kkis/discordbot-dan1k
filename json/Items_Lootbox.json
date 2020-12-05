@@ -151,6 +151,14 @@
             "chance":0.01,
             "value": 20000,
             "type":"card"
+        },
+        {
+            "name": "card_food_stamp",
+            "display": "[LEGENDARY] Food Stamp",
+            "description": "50% off for the next item you buy or upgrade.",
+            "chance":0.01,
+            "value": 20000,
+            "type":"card"
         }
     ]
 }

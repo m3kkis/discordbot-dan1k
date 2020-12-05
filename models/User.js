@@ -13,6 +13,7 @@ const userSchema = new Schema(
     ingame: { type: Boolean, default: false },
     rob_protection: { type: Boolean, default: false },
     bj_insurance: { type: Boolean, default: false },
+    store_sale: { type: Boolean, default: false },
     isMayor: { type: Boolean, default: false },
     isPolice: { type: Boolean, default: false },
     arrest:{ 

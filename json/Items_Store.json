@@ -12,6 +12,12 @@
         "value": 10000
     },
     {
+        "name": "potion_healing",
+        "display": "Healing Potion",
+        "description": "Heal your pet. Cannot be used during battle. Goes into inventory.",
+        "value": 500
+    },
+    {
         "name": "rob_protection",
         "display": "Rob Protection",
         "description": "Protect yourself from being robbed once.",
