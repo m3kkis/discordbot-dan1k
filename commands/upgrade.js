@@ -249,6 +249,7 @@ module.exports = {
 
                     embedded.setDescription(`You can upgrade your pet with the following options by doing \`${process.env.BOT_PREFIX}upgrade <1 or 2>\``)
                             .addField('UPGRADES', strUpgrades, true)
+                            .setFooter(`AVAILABLE POINTS : ${_User.pet.points_upgrade}`)
                     return message.channel.send(embedded);
                 }
             default:
