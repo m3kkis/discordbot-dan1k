@@ -10,6 +10,10 @@ const botSchema = new Schema(
         last_updated: { type: Number, default: 0},
         inProgress: { type: Boolean, default: false }
     },
+    protest: {
+        last_updated: { type: Number, default: 0},
+        inProgress: { type: Boolean, default: false }
+    },
     tax_last_updated : { type: Number, default: 0},
     law: { type: Array, default: [] }
 });

@@ -345,6 +345,12 @@ client.on('message', message => {
                                 command.execute(client, message, args, _User, _Bot);
                             }
                             break;
+                        case "protest":
+                            if(_Bot.protest.inProgress == false)
+                            {
+                                command.execute(client, message, args, _User, _Bot);
+                            }
+                            break;
                         case "lootbox":
                         case "loot":
                             command.execute(client, message, args, _User, _LootboxHandler, _XpHandler);

@@ -120,6 +120,7 @@ You can now give items to  other players by doing `!give <player> item <#item_fr
 * `!mine` Mine a crypto coin and then sell it in store using real data. Or buy stuff from the CryptoStore.
 * `!money` display your current cash in pocket, bank and your networth.
 * `!promote <name>` Promote a player to Police Officer. Only mayor can use this in the townhall.
+* `!prtest` Start a protest against the mayor.
 * `!rank` display all players levels ranked.
 * `!release <name>` Release a player from prison. Only police..
 * `!rob` rob a member of your server.

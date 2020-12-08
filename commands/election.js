@@ -12,6 +12,15 @@ module.exports = {
 
         var embedded = new Discord.MessageEmbed();
 
+        if( _User.travel.location != "city" ) {
+            var embedded = new Discord.MessageEmbed();
+            embedded.setAuthor(message.member.user.tag, message.member.user.avatarURL())
+                .setColor('#ff4f4f')
+                .setDescription('You must be in the **CITY** to start an election.');
+
+            return message.channel.send(embedded);
+        }
+
         var n = moment().valueOf();
         var timeLimit = 7 * (((60 * 1000) * 60) * 24); // 7 days
         var timeDifference = n - _Bot.election.last_updated;
@@ -29,7 +38,7 @@ module.exports = {
                     var randomCandidateTwo;
                     var currentMayor = undefined;
 
-                    var VOTE_TIME = 120; // in seconds
+                    var VOTE_TIME = 12; // in seconds
 
                     _ColUsers.map(function (user) {
                         if(user.experience.level >= 10 && user.tag != _Bot.election.mayor )
@@ -41,6 +50,17 @@ module.exports = {
                             currentMayor = user.tag;
                         }
                     });
+
+                    if(arrAllUser.length < 1)
+                    {
+                        _Bot.election.inProgress = false;
+                        _Bot.save()
+
+                        embedded.setColor("#ff4f4f")
+                                .setDescription("There must be atleast one player level 10 to start an election.")
+
+                        return message.channel.send(embedded);
+                    }
 
                     if(arrAllUser.length == 1 && currentMayor != undefined)
                     {
@@ -159,7 +179,7 @@ module.exports = {
 
                             console.log('total votes > ' + totalVotes);
 
-                            if(totalVotes < 2){
+                            if(totalVotes < 1){
                                 //NOT ENOUGH VOTES
                                 console.log("[ELECTION] NOT ENOUGH VOTES");
                                 _Bot.election.inProgress = false;
@@ -294,7 +314,7 @@ module.exports = {
 
             if(userRole != undefined)
             {
-                console.log("[USE] This user has the mayor role already.");
+                console.log("[ELECTION] This user has the mayor role already.");
             }
             else
             {
@@ -303,7 +323,7 @@ module.exports = {
                 message.guild.members.cache.forEach(member => {
                     if(!member.roles.cache.find(r => r.name == 'Mayor')) return;
                     member.roles.remove(role.id).then(function() {
-                        console.log(`[USE] Removed mayor role from user ${member.user.tag}!`);
+                        console.log(`[ELECTION] Removed mayor role from user ${member.user.tag}!`);
                     });
                 });
                 
