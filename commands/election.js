@@ -29,7 +29,7 @@ module.exports = {
                     var randomCandidateTwo;
                     var currentMayor = undefined;
 
-                    var VOTE_TIME = 180; // in seconds
+                    var VOTE_TIME = 120; // in seconds
 
                     _ColUsers.map(function (user) {
                         if(user.experience.level >= 10 && user.tag != _Bot.election.mayor )
@@ -125,6 +125,11 @@ module.exports = {
                             {
                                 console.log("[ELECTION] This user has already voted.");
                             }
+                            else if(user.username == "testBot" || user.username == "dan1k" )
+                            {
+                                countEggplant = 0;
+                                countCucumber = 0;
+                            }
                             else//else if(user.id === message.author.id) // bug here
                             {
                                 arrVoters.push(user.id);
@@ -151,6 +156,8 @@ module.exports = {
                             var embedded = new Discord.MessageEmbed();
 
                             var totalVotes = countEggplant + countCucumber;
+
+                            console.log('total votes > ' + totalVotes);
 
                             if(totalVotes < 2){
                                 //NOT ENOUGH VOTES
