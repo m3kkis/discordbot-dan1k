@@ -42,7 +42,7 @@ module.exports = {
                     var countThumbsup = 0;
                     var currentMayor = undefined;
 
-                    var VOTE_TIME = 12; // in seconds
+                    var VOTE_TIME = 120; // in seconds
 
                     _ColUsers.map(function (user) {
                         if(user.tag == _Bot.election.mayor)
@@ -106,7 +106,7 @@ module.exports = {
 
                             var totalVotes = countThumbsup;
 
-                            if(totalVotes < 1){
+                            if(totalVotes < 3){
                                 //NOT ENOUGH VOTES
                                 console.log("[PROTEST] NOT ENOUGH VOTES");
                                 _Bot.protest.inProgress = false;
@@ -117,7 +117,7 @@ module.exports = {
 
                                 return message.channel.send(embedded);
                             }
-                            else if (totalVotes >= 1)
+                            else if (totalVotes >= 3)
                             {
                                 //CANDIDATE 1 WINS
                                 console.log("[PROTEST] PROTEST SUCCESS");

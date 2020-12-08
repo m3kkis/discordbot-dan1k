@@ -38,7 +38,7 @@ module.exports = {
                     var randomCandidateTwo;
                     var currentMayor = undefined;
 
-                    var VOTE_TIME = 12; // in seconds
+                    var VOTE_TIME = 120; // in seconds
 
                     _ColUsers.map(function (user) {
                         if(user.experience.level >= 10 && user.tag != _Bot.election.mayor )
@@ -179,7 +179,7 @@ module.exports = {
 
                             console.log('total votes > ' + totalVotes);
 
-                            if(totalVotes < 1){
+                            if(totalVotes < 2){
                                 //NOT ENOUGH VOTES
                                 console.log("[ELECTION] NOT ENOUGH VOTES");
                                 _Bot.election.inProgress = false;
