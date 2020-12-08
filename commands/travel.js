@@ -89,13 +89,6 @@ module.exports = {
                 return message.channel.send(embedded);
             }
 
-            if (strDestination == "cryptofarm" && _User.inventory.filter(item => item.name === 'access_card_cryptofarm').length < 1) {
-                embedded.setColor('#ff4f4f')
-                        .setDescription('You need an __Access Card__ to travel to the **' + strDestination.toUpperCase() + '**');
-
-                return message.channel.send(embedded);
-            }
-
             if(args[1] != undefined){
 
                 strTransportMethod = args[1].toLowerCase();

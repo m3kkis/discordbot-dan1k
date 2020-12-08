@@ -18,6 +18,13 @@ module.exports = {
             return message.channel.send(embedded);
         }
 
+        if ( _User.inventory.filter(item => item.name === 'access_card_cryptofarm').length < 1) {
+            embedded.setColor('#ff4f4f')
+                    .setDescription('You need an __Access Card__ to mine cryptocurrency.');
+
+            return message.channel.send(embedded);
+        }
+
         var n = moment().valueOf();
 
         var timeLimit = _JobHandler.mineTimeout * (1000 * 60);
